@@ -1,0 +1,716 @@
+/*
+* Appliance: the icto-ui visual layer (Braun / Dieter Rams).
+*
+* It re-points the shared tokens and restyles the shared components, so every
+* screen changes without editing upstream views. Warm grey body, off-white
+* working surfaces, charcoal type and primary actions; flat colour only (no
+* gradients, glows or soft shadows); colour only where it does a job: status
+* lamps, focus, links and selection.
+*
+* app.css imports this file near the top (CSS allows @import only there), so
+* upstream rules come later. Every rule here therefore wins by specificity:
+* tokens live on `html:root` / `html.dark`, which beat upstream `:root` /
+* `.dark` and Tailwind's theme layer, and component rules are nested under
+* `html`, one element above the upstream selector they replace.
+*/
+
+@font-face {
+    font-display: swap;
+    font-family: 'Hanken Grotesk';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('../fonts/hanken-grotesk-variable-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Hanken Grotesk';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('../fonts/hanken-grotesk-variable-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---- Tokens --------------------------------------------------------------- */
+
+html:root {
+    --font-sans: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --font-geist-sans: var(--font-sans);
+
+    /* Warm grey body. Hue 75 is the warm cast of Braun's light-grey plastics;
+       chroma stays under 0.01 so it reads as grey, not beige. */
+    --color-white: oklch(99.3% 0.002 85);
+    --color-black: oklch(19% 0.005 70);
+    --color-neutral-50: oklch(96.4% 0.004 80);
+    --color-neutral-100: oklch(93.8% 0.005 80);
+    --color-neutral-200: oklch(89.6% 0.006 78);
+    --color-neutral-300: oklch(83.5% 0.007 76);
+    --color-neutral-400: oklch(68.5% 0.008 74);
+    --color-neutral-500: oklch(52.5% 0.008 72);
+    --color-neutral-600: oklch(44% 0.008 70);
+    --color-neutral-700: oklch(36.5% 0.007 70);
+    --color-neutral-800: oklch(27.5% 0.006 70);
+    --color-neutral-900: oklch(22% 0.005 70);
+    --color-neutral-950: oklch(16.5% 0.004 70);
+
+    /* Graphite (dark-mode utilities). */
+    --color-coolgray-100: oklch(21% 0.004 70);
+    --color-coolgray-200: oklch(24% 0.005 70);
+    --color-coolgray-300: oklch(27% 0.005 70);
+    --color-coolgray-400: oklch(30% 0.006 70);
+    --color-coolgray-500: oklch(34% 0.006 70);
+    --color-base: oklch(16.5% 0.004 70);
+
+    /* The one functional accent, Braun signal orange: focus, links,
+       selection, the active marker. Never a fill for a whole control. */
+    --color-coollabs-50: oklch(96.5% 0.02 60);
+    --color-coollabs: oklch(57% 0.18 44);
+    --color-coollabs-100: oklch(60% 0.18 44);
+    --color-coollabs-200: oklch(53% 0.17 44);
+    --color-coollabs-300: oklch(46% 0.15 44);
+    --color-brand: oklch(57% 0.18 44);
+    --color-brand-hover: oklch(53% 0.17 44);
+    --color-brand-press: oklch(48% 0.16 44);
+    --color-brand-depth: oklch(42% 0.14 44);
+    --color-brand-light: oklch(74% 0.14 55);
+    --color-accent: oklch(57% 0.18 44);
+    --color-accent-foreground: oklch(99.3% 0.002 85);
+
+    /* Status lamps. */
+    --color-success: oklch(60% 0.14 148);
+    --color-warning: oklch(79% 0.15 78);
+    --color-error: oklch(56% 0.2 27);
+
+    /* Charcoal primary key. */
+    --appliance-primary: oklch(23% 0.006 70);
+    --appliance-primary-hover: oklch(31% 0.006 70);
+    --appliance-primary-fg: oklch(99.3% 0.002 85);
+
+    --appliance-canvas: var(--color-neutral-50);
+    --appliance-surface: var(--color-white);
+    --appliance-surface-sunk: oklch(97.6% 0.003 82);
+    --appliance-rule: oklch(19% 0.005 70 / 0.1);
+    --appliance-rule-strong: oklch(19% 0.005 70 / 0.17);
+    --appliance-fg: var(--color-black);
+    --appliance-fg-dim: var(--color-neutral-600);
+    --appliance-fg-faint: var(--color-neutral-500);
+    --appliance-link: oklch(50% 0.16 44);
+    --appliance-hover: oklch(19% 0.005 70 / 0.045);
+    --appliance-active: oklch(19% 0.005 70 / 0.08);
+    --appliance-focus: var(--color-accent);
+
+    --coollabs-canvas: var(--appliance-canvas);
+    --coollabs-elevated: var(--appliance-surface);
+    --coollabs-recessed: var(--appliance-surface);
+    --coollabs-base: var(--appliance-surface);
+    --coollabs-fill: var(--color-neutral-100);
+    --coollabs-line: var(--appliance-rule);
+    --coollabs-hairline: var(--appliance-rule-strong);
+    --coollabs-subtle: var(--color-neutral-500);
+
+    --color-nav-text: var(--color-neutral-600);
+    --color-nav-muted: var(--color-neutral-500);
+    --color-nav-active: var(--color-black);
+
+    --shadow-dropdown: 0 0 0 1px var(--appliance-rule-strong);
+    --shadow-modal: 0 0 0 1px var(--appliance-rule-strong);
+
+    --chart-spark-bandwidth: var(--color-neutral-700);
+}
+
+html.dark {
+    /* Text on the off-white primary key; upstream forces it with a layered !important. */
+    --color-accent-foreground: oklch(19% 0.005 70);
+    --color-app: oklch(16.5% 0.004 70);
+    --color-panel: oklch(16.5% 0.004 70);
+    --color-card: oklch(20.5% 0.004 70);
+    --color-sidebar: oklch(16.5% 0.004 70);
+    --color-surface: oklch(20.5% 0.004 70);
+    --color-raised: oklch(23.5% 0.005 70);
+    --color-selected: oklch(27% 0.005 70);
+    --color-log: oklch(14.5% 0.003 70);
+    --color-fg: oklch(95% 0.004 80);
+    --color-fg-dim: oklch(80% 0.005 80);
+    --color-fg-faint: oklch(66% 0.006 78);
+    --color-hairline: oklch(95% 0.004 80 / 0.09);
+    --color-accent: oklch(70% 0.16 50);
+
+    --appliance-primary: oklch(93% 0.005 80);
+    --appliance-primary-hover: oklch(99% 0.002 85);
+    --appliance-primary-fg: oklch(19% 0.005 70);
+
+    --appliance-canvas: var(--color-app);
+    --appliance-surface: var(--color-surface);
+    --appliance-surface-sunk: oklch(18.5% 0.004 70);
+    --appliance-rule: oklch(95% 0.004 80 / 0.09);
+    --appliance-rule-strong: oklch(95% 0.004 80 / 0.15);
+    --appliance-fg: var(--color-fg);
+    --appliance-fg-dim: var(--color-fg-dim);
+    --appliance-fg-faint: var(--color-fg-faint);
+    --appliance-link: oklch(76% 0.13 55);
+    --appliance-hover: oklch(95% 0.004 80 / 0.05);
+    --appliance-active: oklch(95% 0.004 80 / 0.09);
+
+    --coollabs-canvas: var(--appliance-canvas);
+    --coollabs-elevated: var(--appliance-surface);
+    --coollabs-recessed: var(--color-raised);
+    --coollabs-base: var(--appliance-surface);
+    --coollabs-fill: var(--color-selected);
+    --coollabs-line: var(--appliance-rule);
+    --coollabs-hairline: var(--appliance-rule-strong);
+    --coollabs-subtle: var(--color-fg-faint);
+
+    --color-nav-text: var(--color-fg-dim);
+    --color-nav-muted: var(--color-fg-faint);
+    --color-nav-active: var(--color-fg);
+
+    --chart-spark-bandwidth: var(--color-neutral-300);
+}
+
+/* ---- Components ----------------------------------------------------------- */
+
+/* `:not(#icto-ui)` adds ID-level specificity, so these beat upstream's plain
+   rules (including `.button:not(:disabled)` chains) without !important. */
+html:not(#icto-ui) {
+    caret-color: var(--color-accent);
+    accent-color: var(--color-accent);
+    background-color: var(--appliance-canvas);
+
+    & body {
+        background-color: var(--appliance-canvas);
+        color: var(--appliance-fg);
+    }
+
+    &.dark body {
+        color: var(--appliance-fg-dim);
+    }
+
+    /* Browser surfaces */
+    & ::selection {
+        background: oklch(57% 0.18 44 / 0.22);
+    }
+
+    &.dark ::selection {
+        background: oklch(70% 0.16 50 / 0.3);
+    }
+
+    & * {
+        scrollbar-color: var(--color-neutral-300) transparent;
+    }
+
+    &.dark * {
+        scrollbar-color: var(--color-coolgray-500) transparent;
+    }
+
+    & :is(table, .data-table, [class*="table-grid"], time, .tabular) {
+        font-variant-numeric: tabular-nums;
+    }
+
+    & a {
+        text-underline-offset: 3px;
+    }
+
+    /* Headings */
+    & h1 {
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        color: var(--appliance-fg);
+    }
+
+    & :is(h2, h3) {
+        letter-spacing: -0.005em;
+        color: var(--appliance-fg);
+    }
+
+    /* Buttons: flat keys, small radius, no raised edge or hover lift. */
+    & :is(.button, .split-action-main, .split-action-caret),
+    & :is(.button, .split-action-main, .split-action-caret):not(:disabled):is(:hover, :active) {
+        box-shadow: none;
+        transform: none;
+    }
+
+    & .button {
+        border-radius: 6px;
+        border-color: var(--appliance-rule-strong);
+        background-color: var(--appliance-surface);
+        color: var(--appliance-fg);
+        text-transform: none;
+    }
+
+    & .button:not(:disabled):hover {
+        background-color: var(--color-neutral-100);
+        color: var(--appliance-fg);
+    }
+
+    & .button:not(:disabled):active {
+        background-color: var(--color-neutral-200);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: var(--color-raised);
+        border-color: var(--appliance-rule-strong);
+        color: var(--color-fg);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: var(--color-selected);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) svg {
+        color: currentColor;
+        opacity: 0.8;
+    }
+
+    /* Primary: the charcoal key (light), the off-white key (dark). */
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled),
+    & .button-highlighted {
+        background: var(--appliance-primary);
+        border-color: var(--appliance-primary);
+        color: var(--appliance-primary-fg) !important;
+    }
+
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled):hover {
+        background: var(--appliance-primary-hover);
+        border-color: var(--appliance-primary-hover);
+    }
+
+    & .control-selected {
+        background: var(--appliance-primary);
+        color: var(--appliance-primary-fg);
+    }
+
+    /* One focus language: a 2px orange outline with a small gap. */
+    & :is(.button, .icon-button, .app-tab, .menu-item, .menu-subitem, a, [role="button"]):focus-visible,
+    & .button:not(:disabled):hover:focus-visible {
+        box-shadow: none;
+        outline: 2px solid var(--appliance-focus);
+        outline-offset: 2px;
+    }
+
+    & .button.button-error:not(:disabled):is(:focus-visible, :hover:focus-visible) {
+        box-shadow: none;
+        outline: 2px solid var(--color-error);
+        outline-offset: 2px;
+    }
+
+    /* Inputs */
+    & :is(.input, .select, .input-select) {
+        border-radius: 6px;
+        border-color: var(--appliance-rule-strong);
+        background-color: var(--appliance-surface);
+    }
+
+    &.dark :is(.input, .select, .input-select) {
+        background-color: var(--color-raised);
+        border-color: var(--appliance-rule-strong);
+    }
+
+    & :is(.input, .select):focus-visible,
+    &.dark :is(.input, .select):focus-visible {
+        border-color: var(--appliance-focus);
+        box-shadow: 0 0 0 1px var(--appliance-focus);
+    }
+
+    & .input:read-only,
+    &.dark .input:read-only {
+        background-color: var(--appliance-surface-sunk);
+        color: var(--appliance-fg-dim);
+    }
+
+    /* Tabs and navigation */
+    & .app-tab-active,
+    &.dark .app-tab-active {
+        background: var(--appliance-active);
+        color: var(--appliance-fg);
+        box-shadow: none;
+        --tw-ring-shadow: 0 0 #0000;
+    }
+
+    & :is(.menu-item-active, .menu-subitem-active),
+    &.dark :is(.menu-item-active, .menu-subitem-active) {
+        background: var(--appliance-active);
+        color: var(--color-nav-active);
+        font-weight: 600;
+    }
+
+    & :is(.menu-item, .menu-subitem):hover {
+        background: var(--appliance-hover);
+    }
+
+    & .nav-section {
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 10.5px;
+        font-weight: 600;
+    }
+
+    & .text-helper {
+        color: var(--appliance-link);
+    }
+
+    /* Shell: one flat canvas behind sidebar, top bar and content. */
+    & :is(.app-topbar, .app-topbar-brand, .app-sidebar, .auth-shell),
+    &.dark :is(.app-topbar, .app-topbar-brand, .app-sidebar, .auth-shell) {
+        background: var(--appliance-canvas);
+        background-image: none;
+        backdrop-filter: none;
+    }
+
+    & .app-sidebar,
+    &.dark .app-sidebar {
+        border-color: var(--appliance-rule);
+    }
+
+    /* Cards: a heading over one hairline surface, never a box in a box. */
+    & :is(.application-settings-section, .application-settings-section-body, .empty-state),
+    &.dark :is(.application-settings-section, .application-settings-section-body, .empty-state) {
+        --card-bg: transparent;
+        --card-underlay: transparent;
+        --card-border: var(--appliance-rule);
+        --well-bg: var(--appliance-surface);
+        --well-border: var(--appliance-rule);
+        --well-shadow: none;
+        --card-fg: var(--appliance-fg);
+        --card-fg-dim: var(--appliance-fg-dim);
+        --card-fg-faint: var(--appliance-fg-faint);
+    }
+
+    & .application-settings-section,
+    & :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *),
+    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    & .application-settings-section > :is(header, .application-settings-section-header) {
+        padding: 0 0 0.625rem;
+    }
+
+    & .application-settings-section > :is(header, .application-settings-section-header) :is(h3, h3 span) {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--appliance-fg);
+        text-decoration: none;
+    }
+
+    & .application-settings-section-body,
+    & .application-settings-section-body:not(.application-settings-section *),
+    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) > :is(.application-settings-section-body, .empty-state-well) {
+        background: var(--well-bg);
+        border: 1px solid var(--well-border);
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    /* A section inside a section is a group on the same surface. */
+    & .application-settings-section-body .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+    }
+
+    & .application-settings-section.application-settings-form,
+    &.dark .application-settings-section.application-settings-form {
+        background: var(--appliance-canvas);
+        border: 1px solid var(--appliance-rule-strong);
+        border-radius: 10px;
+        padding: 0.375rem;
+        box-shadow: none !important;
+    }
+
+    &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] {
+        background-color: var(--appliance-surface) !important;
+        border-color: var(--appliance-rule) !important;
+    }
+
+    &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] > [class~="border-b"]:first-child {
+        background: var(--appliance-surface-sunk) !important;
+    }
+
+    /* Tables */
+    & .data-table-header {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--appliance-fg-faint);
+    }
+
+    & .data-table-row:hover {
+        background: var(--appliance-hover);
+    }
+
+    /* Overlays: a hairline edge, no blur, no floating shadow. */
+    & .surface-popover {
+        background: var(--appliance-surface);
+        box-shadow: 0 0 0 1px var(--appliance-rule-strong);
+    }
+
+    & :is(.info-helper-popup, .auth-tooltip) {
+        box-shadow: 0 0 0 1px var(--appliance-rule-strong);
+    }
+
+    /* Status lamps (the signature move): lit only when live. */
+    & .status-lamp {
+        position: relative;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        background: var(--lamp-color, transparent);
+        box-shadow: inset 0 0 0 1px oklch(0% 0 0 / 0.18);
+    }
+
+    &.dark .status-lamp {
+        box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.12);
+    }
+
+    & .status-lamp-success {
+        --lamp-color: var(--color-success);
+    }
+
+    & .status-lamp-warning {
+        --lamp-color: var(--color-warning);
+    }
+
+    & .status-lamp-error {
+        --lamp-color: var(--color-error);
+    }
+
+    /* Unlit: a stopped or unknown resource shows the empty lamp housing. */
+    & .status-lamp-neutral {
+        --lamp-color: transparent;
+        box-shadow: inset 0 0 0 1.5px var(--color-neutral-400);
+    }
+
+    &.dark .status-lamp-neutral {
+        box-shadow: inset 0 0 0 1.5px var(--color-coolgray-500);
+    }
+
+    & .status-lamp-pulse {
+        animation: status-lamp-pulse 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    & .status-badge,
+    &.dark .status-badge {
+        height: auto;
+        gap: 0.5rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        font-size: 13px;
+        color: var(--appliance-fg);
+    }
+
+    /* Split action (Deploy): the primary key, flat. */
+    & :is(.split-action-main, .split-action-caret),
+    &.dark :is(.split-action-main, .split-action-caret) {
+        background: var(--appliance-primary);
+        border-color: var(--appliance-primary);
+        color: var(--appliance-primary-fg) !important;
+        box-shadow: none;
+        transform: none;
+    }
+
+    & :is(.split-action-main, .split-action-caret):not(:disabled):hover {
+        background: var(--appliance-primary-hover);
+        box-shadow: none;
+        transform: none;
+    }
+
+    & .split-action-caret {
+        border-left: 1px solid color-mix(in oklab, var(--appliance-primary-fg) 22%, transparent);
+    }
+
+    /* Beta / "Try it" badges: an outline, not an orange fill. */
+    & :is(.bg-coollabs, .dark\:bg-coollabs):not(.button, .status-lamp) {
+        background-color: transparent;
+        color: var(--appliance-fg-dim);
+        box-shadow: inset 0 0 0 1px var(--appliance-rule-strong);
+    }
+
+    /* Dark shell: graphite, no lavender. */
+    &.dark :is(.app-sidebar nav.sidebar-nav, .mobile-sidebar-sheet [role="dialog"]) {
+        background-color: var(--appliance-canvas);
+        background-image: none;
+        border-right-color: var(--appliance-rule);
+        --color-nav-text: var(--color-fg-dim);
+        --color-nav-muted: var(--color-fg-faint);
+    }
+
+    &.dark .app-topbar-brand,
+    &.dark.is-scrolled .app-topbar > .app-topbar-brand {
+        background-color: var(--appliance-canvas);
+        background-image: none;
+        border-right-color: var(--appliance-rule);
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search {
+        background-color: var(--color-raised) !important;
+        box-shadow: inset 0 0 0 1px var(--appliance-rule-strong) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search:hover {
+        background-color: var(--color-selected) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search kbd,
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .sidebar-nav :is([class~="dark:border-white/[0.06]"], [class~="dark:border-white/[0.07]"], [class~="dark:border-white/[0.08]"]) {
+        border-color: var(--appliance-rule) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) nav:not(.sidebar-collapsed) .nav-section {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--color-fg-faint);
+    }
+
+    &.dark .app-topbar,
+    &.dark.is-scrolled .app-topbar {
+        background-color: var(--appliance-canvas);
+        backdrop-filter: none;
+    }
+
+    &.is-scrolled .app-topbar > div:not(.app-topbar-brand),
+    &.dark.is-scrolled .app-topbar > div:not(.app-topbar-brand) {
+        border-bottom-color: var(--appliance-rule);
+        box-shadow: none;
+    }
+
+    &.dark .view-toggle {
+        background-color: var(--color-raised);
+        border-color: var(--appliance-rule-strong);
+    }
+
+    &.dark .view-toggle > :is(a, button),
+    &.dark .view-toggle > :is(a, button) svg {
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .view-toggle > :is(a, button):not(.is-selected):hover {
+        background-color: var(--color-selected);
+        color: var(--color-fg);
+    }
+
+    &.dark .view-toggle > .is-selected,
+    & .view-toggle > .is-selected {
+        background: var(--appliance-primary);
+        color: var(--appliance-primary-fg);
+        box-shadow: none;
+    }
+
+    &.dark .view-toggle > .is-selected svg {
+        color: var(--appliance-primary-fg);
+    }
+
+    & .toast-icon {
+        box-shadow: none;
+    }
+
+    &.dark .toast-card {
+        box-shadow: 0 0 0 1px var(--appliance-rule-strong);
+    }
+
+    &.dark :is(.command-palette, .listbox-panel.top-user-menu-panel-sidebar) {
+        background: var(--color-raised);
+        border-color: var(--appliance-rule-strong);
+        box-shadow: 0 0 0 1px var(--appliance-rule-strong);
+    }
+
+    &.dark .command-palette-body {
+        background: var(--appliance-surface);
+        box-shadow: 0 0 0 1px var(--appliance-rule);
+    }
+
+    &.dark .command-palette-header-icon:not(.is-loading),
+    &.dark .card-icon-button {
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .command-palette-input::placeholder {
+        color: var(--color-fg-faint);
+    }
+
+    &.dark .top-user-menu-panel-sidebar .listbox-option:hover,
+    &.dark .card-icon-button:hover {
+        background: var(--appliance-hover);
+        color: var(--color-fg);
+    }
+
+    &.dark .resource-glyph {
+        border-color: var(--appliance-rule-strong);
+        background: var(--color-raised);
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .app-main :is(article.group, a.group).rounded-xl {
+        background-color: var(--appliance-surface) !important;
+        border-color: var(--appliance-rule) !important;
+    }
+
+    &.dark .app-main :is(article.group, a.group).rounded-xl:hover {
+        border-color: var(--appliance-rule-strong) !important;
+    }
+
+    &.dark :is(.application-settings-form, .application-settings-workspace) :is(.input, select, textarea):is(:focus, :focus-visible) {
+        border-color: var(--appliance-focus);
+        box-shadow: 0 0 0 1px var(--appliance-focus) !important;
+    }
+
+    /* Tailwind inlines shadow values at build time, so re-point the utilities:
+       overlays get a hairline edge instead of a floating shadow. */
+    & :is(.shadow-modal, .shadow-dropdown, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+        --tw-shadow: 0 0 0 1px var(--appliance-rule-strong);
+    }
+}
+
+@keyframes status-lamp-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(#icto-ui) .status-lamp-pulse {
+        animation: none;
+    }
+}
+
+/* Upstream paints dark collection shells #121212 with !important inside the
+   utilities layer, which no unlayered rule can beat; answer in the same layer. */
+@layer utilities {
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: var(--color-raised) !important;
+        border-color: var(--appliance-rule-strong) !important;
+        color: var(--color-fg) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: var(--color-selected) !important;
+        border-color: var(--appliance-rule-strong) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .view-toggle {
+        background-color: var(--color-raised) !important;
+        border-color: var(--appliance-rule-strong) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main [class*="dark:bg-white/[0.05]"].rounded-xl {
+        background-color: var(--appliance-surface) !important;
+        border-color: var(--appliance-rule) !important;
+    }
+}

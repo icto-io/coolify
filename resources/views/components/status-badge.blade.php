@@ -15,7 +15,10 @@
         'error' => 'bg-red-500',
     ];
 
-    $baseClasses = 'inline-flex h-6 max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-neutral-200 bg-neutral-100 px-2 text-xs font-medium leading-none text-neutral-700 dark:border-white/[0.12] dark:bg-white/[0.07] dark:text-white';
+    // Indicator lamp: lit (and pulsing while in progress) only when live.
+    $lampClasses = 'status-lamp status-lamp-'.(array_key_exists($type, $dotClasses) ? $type : 'neutral').($pulse ? ' status-lamp-pulse' : '');
+
+    $baseClasses = 'status-badge inline-flex h-6 max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-neutral-200 bg-neutral-100 px-2 text-xs font-medium leading-none text-neutral-700 dark:border-white/[0.12] dark:bg-white/[0.07] dark:text-white';
 @endphp
 
 @if ($as === 'button')
@@ -23,12 +26,7 @@
         @if ($dynamic)
             {{ $slot }}
         @else
-            <span class="relative flex size-1.5 shrink-0">
-                @if ($pulse)
-                    <span class="absolute inline-flex size-full rounded-full opacity-75 motion-safe:animate-ping {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-                @endif
-                <span class="relative inline-flex size-1.5 rounded-full {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-            </span>
+            <span class="{{ $lampClasses }}" aria-hidden="true"></span>
             <span class="truncate">{{ collect([$label, $status])->filter()->join(' ') }}</span>
         @endif
     </button>
@@ -37,12 +35,7 @@
         @if ($dynamic)
             {{ $slot }}
         @else
-            <span class="relative flex size-1.5 shrink-0">
-                @if ($pulse)
-                    <span class="absolute inline-flex size-full rounded-full opacity-75 motion-safe:animate-ping {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-                @endif
-                <span class="relative inline-flex size-1.5 rounded-full {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-            </span>
+            <span class="{{ $lampClasses }}" aria-hidden="true"></span>
             <span class="truncate">{{ collect([$label, $status])->filter()->join(' ') }}</span>
         @endif
     </a>
@@ -51,12 +44,7 @@
         @if ($dynamic)
             {{ $slot }}
         @else
-            <span class="relative flex size-1.5 shrink-0">
-                @if ($pulse)
-                    <span class="absolute inline-flex size-full rounded-full opacity-75 motion-safe:animate-ping {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-                @endif
-                <span class="relative inline-flex size-1.5 rounded-full {{ $dotClasses[$type] ?? $dotClasses['neutral'] }}"></span>
-            </span>
+            <span class="{{ $lampClasses }}" aria-hidden="true"></span>
             <span class="truncate">{{ collect([$label, $status])->filter()->join(' ') }}</span>
         @endif
     </span>

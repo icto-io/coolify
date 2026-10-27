@@ -4,6 +4,8 @@
 @import "tw-animate-css";
 
 @import "./utilities.css";
+/* icto-ui: Appliance visual layer (wins by specificity, see the file header). */
+@import "./appliance.css";
 
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';
