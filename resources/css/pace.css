@@ -381,6 +381,70 @@ html:not(#icto-ui) {
         color: var(--pace-fg-muted);
     }
 
+    /* Listboxes stand in for <select>: the trigger matches the inputs, the panel is a popover card. */
+    & .listbox-trigger {
+        border-radius: var(--pace-radius-control);
+        border-color: var(--pace-input);
+        background-color: transparent;
+        color: var(--pace-fg);
+    }
+
+    &.dark .listbox-trigger {
+        background-color: color-mix(in srgb, var(--pace-input) 30%, transparent);
+        border-color: var(--pace-input);
+    }
+
+    &.dark .listbox-trigger:not(:disabled):hover {
+        background-color: color-mix(in srgb, var(--pace-input) 50%, transparent);
+    }
+
+    & .listbox-trigger:focus-visible,
+    &.dark .listbox-trigger:focus-visible {
+        border-color: var(--pace-ring);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ring) 50%, transparent) !important;
+    }
+
+    & .listbox-trigger:disabled,
+    &.dark .listbox-trigger:disabled {
+        background-color: var(--pace-muted);
+        color: var(--pace-fg-faint);
+    }
+
+    & :is(.listbox-panel, .searchable-listbox-panel):not(.top-user-menu-panel-sidebar),
+    &.dark :is(.listbox-panel, .searchable-listbox-panel):not(.top-user-menu-panel-sidebar) {
+        border-color: var(--pace-border);
+        border-radius: var(--pace-radius-control);
+        background: var(--pace-card);
+        box-shadow: var(--pace-shadow-lg);
+    }
+
+    & .listbox-option,
+    &.dark .listbox-option {
+        color: var(--pace-fg);
+    }
+
+    & .listbox-option:not(.listbox-option-disabled):hover,
+    &.dark .listbox-option:not(.listbox-option-disabled):hover {
+        background: var(--pace-accent);
+    }
+
+    & .searchable-listbox-search,
+    &.dark .searchable-listbox-search {
+        border-color: var(--pace-border);
+    }
+
+    & .searchable-listbox-search-input,
+    &.dark .searchable-listbox-search-input {
+        border-color: var(--pace-input);
+        background: transparent;
+        color: var(--pace-fg);
+    }
+
+    & .searchable-listbox-search-input:focus,
+    &.dark .searchable-listbox-search-input:focus {
+        border-color: var(--pace-ring);
+    }
+
     /* Tabs: the active tab is a raised chip. */
     & .app-tab-active,
     &.dark .app-tab-active {
