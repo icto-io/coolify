@@ -1,277 +1,333 @@
 ---
-name: Coolify (icto-ui "Appliance")
-description: Upstream Coolify v4.5.0 reskinned as a Braun appliance; warm grey, charcoal keys, colour only as function.
+name: Coolify (icto-ui "Graphite Panels")
+description: Upstream Coolify v4.5.0 as a dark-first graphite console of persistent panels; seams instead of shadows, colour only for state.
 colors:
-  primary-key: "oklch(23% 0.006 70)"
-  primary-key-hover: "oklch(31% 0.006 70)"
-  primary-key-dark: "oklch(93% 0.005 80)"
-  primary-key-dark-hover: "oklch(99% 0.002 85)"
-  signal-orange: "oklch(57% 0.18 44)"
-  signal-orange-dark: "oklch(70% 0.16 50)"
-  link-orange: "oklch(50% 0.16 44)"
-  link-orange-dark: "oklch(76% 0.13 55)"
-  lamp-green: "oklch(60% 0.14 148)"
-  lamp-amber: "oklch(79% 0.15 78)"
-  lamp-red: "oklch(56% 0.2 27)"
-  warm-grey-canvas: "oklch(96.4% 0.004 80)"
-  off-white-surface: "oklch(99.3% 0.002 85)"
-  surface-sunk: "oklch(97.6% 0.003 82)"
-  control-hover: "oklch(93.8% 0.005 80)"
-  control-press: "oklch(89.6% 0.006 78)"
-  ink: "oklch(19% 0.005 70)"
-  ink-dim: "oklch(44% 0.008 70)"
-  ink-faint: "oklch(52.5% 0.008 72)"
-  rule: "oklch(19% 0.005 70 / 0.1)"
-  rule-strong: "oklch(19% 0.005 70 / 0.17)"
-  graphite-canvas: "oklch(21% 0.004 70)"
-  graphite-surface: "oklch(24.5% 0.004 70)"
-  graphite-raised: "oklch(27.5% 0.005 70)"
-  graphite-selected: "oklch(31% 0.005 70)"
-  graphite-log: "oklch(18% 0.003 70)"
-  graphite-fg: "oklch(95% 0.004 80)"
-  graphite-fg-dim: "oklch(80% 0.005 80)"
-  graphite-fg-faint: "oklch(66% 0.006 78)"
-  graphite-rule: "oklch(95% 0.004 80 / 0.09)"
-  graphite-rule-strong: "oklch(95% 0.004 80 / 0.15)"
+  graphite-ground: "#17181b"
+  graphite-panel: "#1d1f23"
+  graphite-sunk: "#1a1c1f"
+  graphite-raised: "#24262b"
+  graphite-selected: "#2b2e34"
+  graphite-log: "#141518"
+  graphite-fg: "#e8e9ec"
+  graphite-fg-dim: "#a3a7b0"
+  graphite-fg-faint: "#8e939c"
+  graphite-rule: "rgb(255 255 255 / 0.07)"
+  graphite-rule-strong: "rgb(255 255 255 / 0.12)"
+  graphite-hover: "rgb(255 255 255 / 0.04)"
+  graphite-active: "rgb(255 255 255 / 0.07)"
+  signal-blue-dark: "#61afef"
+  signal-blue-dark-hover: "#7dbdf2"
+  signal-blue-dark-ink: "#0f1420"
+  run-green-dark: "#7ec699"
+  build-yellow-dark: "#e6c07b"
+  fail-red-dark: "#e06c75"
+  paper-canvas: "#eeeeeb"
+  paper-panel: "#fafaf8"
+  paper-sunk: "#f3f3f0"
+  paper-log: "#f6f6f3"
+  paper-control-hover: "#eaeae6"
+  paper-control-press: "#dcdcd8"
+  ink: "#1b1d21"
+  ink-dim: "#4f535b"
+  ink-faint: "#6b7079"
+  paper-rule: "rgb(20 22 26 / 0.09)"
+  paper-rule-strong: "rgb(20 22 26 / 0.15)"
+  paper-hover: "rgb(20 22 26 / 0.04)"
+  paper-active: "rgb(20 22 26 / 0.07)"
+  signal-blue: "#2463c4"
+  signal-blue-hover: "#1f56ab"
+  signal-blue-ink: "#ffffff"
+  run-green: "#2e8a55"
+  build-yellow: "#9a6b00"
+  fail-red: "#c23b46"
 typography:
   headline:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "22px"
     fontWeight: 600
     lineHeight: "28px"
     letterSpacing: "-0.015em"
   title:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
-    fontSize: "14px"
-    fontWeight: 600
-    letterSpacing: "-0.005em"
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "20px"
+    fontWeight: 700
+    lineHeight: "26px"
+    letterSpacing: "-0.01em"
   body:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "14px"
     fontWeight: 400
-  status:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
+    lineHeight: "20px"
+  ui:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "13px"
     fontWeight: 500
-  label:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
+  meta:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
-    fontWeight: 600
-    fontFeature: "tnum"
+    fontWeight: 400
+  panel-label:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "11px"
+    fontWeight: 700
+    lineHeight: "16px"
+    letterSpacing: "0.06em"
   nav-group:
-    fontFamily: "Hanken Grotesk, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "10.5px"
     fontWeight: 600
     letterSpacing: "0.06em"
-  mono:
-    fontFamily: "Geist Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace"
+  log:
+    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1.6
+  key-cap:
+    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontSize: "10.5px"
+    fontWeight: 500
+    lineHeight: 1
 rounded:
+  key-cap: "4px"
+  chip: "5px"
   control: "6px"
-  well: "8px"
+  panel: "8px"
   dialog: "10px"
   lamp: "999px"
 spacing:
-  section-head: "10px"
-  dialog-head: "12px"
-  dialog-head-inline: "16px"
-  lamp-gap: "8px"
+  hairline: "1px"
+  xs: "4px"
+  sm: "8px"
+  md: "12px"
+  lg: "16px"
+  xl: "24px"
+  panel-header: "40px"
+  status-bar: "28px"
+  top-bar: "48px"
+  resource-rail: "232px"
+  sidebar: "224px"
+  sidebar-rail: "64px"
 components:
-  button:
-    backgroundColor: "{colors.off-white-surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-    height: "32px"
-  button-hover:
-    backgroundColor: "{colors.control-hover}"
-  button-active:
-    backgroundColor: "{colors.control-press}"
-  button-dark:
-    backgroundColor: "{colors.graphite-raised}"
-    textColor: "{colors.graphite-fg}"
-  button-dark-hover:
-    backgroundColor: "{colors.graphite-selected}"
   button-primary:
-    backgroundColor: "{colors.primary-key}"
-    textColor: "{colors.off-white-surface}"
+    backgroundColor: "{colors.signal-blue-dark}"
+    textColor: "{colors.signal-blue-dark-ink}"
     rounded: "{rounded.control}"
-    height: "32px"
   button-primary-hover:
-    backgroundColor: "{colors.primary-key-hover}"
-  button-primary-dark:
-    backgroundColor: "{colors.primary-key-dark}"
-    textColor: "{colors.ink}"
-  input:
-    backgroundColor: "{colors.off-white-surface}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.signal-blue-dark-hover}"
+  button-primary-light:
+    backgroundColor: "{colors.signal-blue}"
+    textColor: "{colors.signal-blue-ink}"
     rounded: "{rounded.control}"
-    height: "32px"
-  input-dark:
+  button-primary-light-hover:
+    backgroundColor: "{colors.signal-blue-hover}"
+  button-secondary:
     backgroundColor: "{colors.graphite-raised}"
     textColor: "{colors.graphite-fg}"
-  input-readonly:
-    backgroundColor: "{colors.surface-sunk}"
-    textColor: "{colors.ink-dim}"
-  section-well:
-    backgroundColor: "{colors.off-white-surface}"
-    rounded: "{rounded.well}"
-  section-well-dark:
-    backgroundColor: "{colors.graphite-surface}"
-  dialog:
-    backgroundColor: "{colors.off-white-surface}"
-    rounded: "{rounded.dialog}"
-  status-lamp:
-    size: "8px"
-    rounded: "{rounded.lamp}"
-  status-lamp-running:
-    backgroundColor: "{colors.lamp-green}"
-  status-lamp-building:
-    backgroundColor: "{colors.lamp-amber}"
-  status-lamp-failed:
-    backgroundColor: "{colors.lamp-red}"
-  table-header:
-    textColor: "{colors.ink-faint}"
-    typography: "{typography.label}"
+    rounded: "{rounded.control}"
+  button-secondary-hover:
+    backgroundColor: "{colors.graphite-selected}"
+  button-secondary-light:
+    backgroundColor: "{colors.paper-panel}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+  button-secondary-light-hover:
+    backgroundColor: "{colors.paper-control-hover}"
+  input:
+    backgroundColor: "{colors.graphite-raised}"
+    textColor: "{colors.graphite-fg}"
+    rounded: "{rounded.control}"
+  input-light:
+    backgroundColor: "{colors.paper-panel}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+  panel:
+    backgroundColor: "{colors.graphite-panel}"
+    rounded: "{rounded.panel}"
+  panel-header:
+    backgroundColor: "{colors.graphite-sunk}"
+    textColor: "{colors.graphite-fg-dim}"
+    typography: "{typography.panel-label}"
+    height: "40px"
+    padding: "8px 10px 8px 16px"
+  log-panel-body:
+    backgroundColor: "{colors.graphite-log}"
+    textColor: "{colors.graphite-fg}"
+    typography: "{typography.log}"
+  resource-rail-item:
+    textColor: "{colors.graphite-fg}"
+    padding: "10px 16px"
+  resource-rail-item-active:
+    backgroundColor: "{colors.graphite-panel}"
+  summary-chip:
+    textColor: "{colors.graphite-fg-dim}"
+    rounded: "{rounded.chip}"
+    padding: "1px 7px"
+  topbar-search:
+    backgroundColor: "{colors.graphite-panel}"
+    textColor: "{colors.graphite-fg-faint}"
+    rounded: "{rounded.control}"
+    width: "240px"
+    height: "30px"
+  status-bar:
+    backgroundColor: "{colors.graphite-ground}"
+    textColor: "{colors.graphite-fg-dim}"
+    typography: "{typography.meta}"
+    height: "28px"
+    padding: "0 16px"
 ---
 
-# Design System: Coolify (icto-ui "Appliance")
+# Design System: Coolify (icto-ui "Graphite Panels")
 
-> **This fork layers a visual skin over upstream Coolify.** `resources/css/appliance.css` (imported from `resources/css/app.css`) re-points upstream's tokens and restyles upstream's shared classes. Upstream markup, Tailwind classes and `resources/css/app.css` / `utilities.css` stay as upstream ships them.
->
-> - **Make visual changes in `resources/css/appliance.css`**, not in upstream Blade views or upstream CSS, so upstream merges stay clean. The only view edits are `components/status-badge.blade.php` (status lamps) and `layouts/base.blade.php` (flat nav items by default); keep any further view edit that small.
-> - **On an upstream merge conflict in this file, the fork's version wins.** Upstream's design doc (purple `#6b16ed`, tactile 3D buttons, card-in-well) no longer describes this UI. For upstream's structural conventions (page shells, Livewire dropdown state, table controls), read it with `git show v4.5.0:DESIGN.md`, and ignore its visual values.
->
-> **How appliance.css wins without touching upstream:** tokens sit on `html:root` / `html.dark` (beats upstream `:root` / `.dark` and the Tailwind theme layer); component rules nest under `html:not(#icto-ui)` (ID-level specificity beats upstream chains such as `.button:not(:disabled)` with no `!important`). Upstream `!important` rules inside `@layer utilities` can only be answered from the same layer, so those overrides live in the `@layer utilities` block at the end of the file. Tailwind inlines `shadow-*` values at build time, so the file re-points `--tw-shadow` on those classes instead of the theme. Follow the same three patterns for new overrides.
+> **Fork note.** This is the `icto-ui` fork of upstream Coolify v4.5.0. The design is a layer, `resources/css/graphite.css`, imported by `resources/css/app.css` and winning over upstream by specificity: tokens on `html:root` (light) and `html.dark` (dark, the native world); component rules nested under `html:not(#icto-ui)`; an `@layer utilities` block only where upstream uses layered `!important` utilities. Templates edited by the fork: `layouts/app.blade.php`, `layouts/base.blade.php`, `components/navbar.blade.php`, `components/section-heading.blade.php`, `components/status-badge.blade.php`, `livewire/dashboard/active-deployments.blade.php`, `livewire/project/application/configuration.blade.php`, `livewire/project/application/general.blade.php`, `livewire/project/resource/index.blade.php`; new: `components/status-bar.blade.php`, `components/resource-rail.blade.php`, `livewire/project/application/log-panel.blade.php` (+ `app/Livewire/Project/Application/LogPanel.php`). Fonts are self-hosted woff2 in `resources/fonts` (OFL files alongside). **Prefer changes in `graphite.css` and the listed components**; edit other upstream templates only when structure must change. On an upstream merge conflict in this file, the fork's version wins.
 
 ## Overview
 
-**Creative North Star: "The Appliance"**
+**Creative North Star: "The Graphite Console"**
 
-Coolify as a Braun appliance (Dieter Rams): as little design as possible, every control obviously what it is. A warm light-grey body carries off-white working surfaces and charcoal type; dark mode is a graphite body, not black. Surfaces are flat colour, separated by hairline rules rather than nested boxes. The primary action is a charcoal key (an off-white key in dark mode). Colour appears only where it does a job: status lamps, focus, links, selection.
+Coolify reads as a working surface of persistent panels on a graphite ground. The layout stays put; navigation changes what the panels hold. On wide screens an application is a tiled workspace edge to edge between the top bar and the status bar: the environment's resources on the left, the selected application in the centre, and its deployment log docked on the right, following the live build. Density is upstream's: 13 to 14px interface type, 40px panel headers, 8px rows of rhythm.
 
-Density is upstream's: 14px UI text, 32px controls, compact rows. The skin changes how the screen looks, never what it does or says. It rejects the purple admin look of stacked card-in-well boxes and the near-black dev dashboard with one neon accent.
+Depth is structural, not atmospheric. Panels sit one tonal step above the ground and are divided by 1px seams; nothing floats, nothing glows, nothing lifts on hover. Colour is reserved for state, in an editor-syntax palette: green running, yellow building, red failed, blue for links, focus, checked controls and the one primary key. Dark is the native theme; light is the same structure translated onto paper-grey.
 
 **Key Characteristics:**
-- Warm grey, never beige (chroma under 0.01 on every neutral, hue 70 to 85).
-- Charcoal primary key; orange is a signal, never a control fill.
-- One hairline surface per section; a section inside a section is a group on the same surface.
-- No gradients, glows, blur or soft shadows; overlays get a 1px hairline ring.
-- Status as indicator lamps: lit only when live.
+- Dark-first graphite ground with panels one step up, divided by 1px seams.
+- Every top-level section is a panel with a 40px header bar carrying its small uppercase title and its actions.
+- Persistent deployment log panel docked beside the application (the signature).
+- Colour carries state only; one blue primary key per view.
+- Manrope for the interface, JetBrains Mono for anything a machine wrote.
 
 ## Colors
 
-A warm-grey neutral ramp with one functional orange and three lamp colours.
+A near-neutral graphite (or paper-grey) structure with an editor-syntax signal set used only where something is live or actionable.
 
 ### Primary
-- **Charcoal Key** (primary-key; hover primary-key-hover): the primary action (`.button-highlighted`, the Deploy split action), checked checkboxes, selected view-toggle and `.control-selected`. In dark mode it inverts to the **Off-White Key** (primary-key-dark) with ink text.
+- **Signal Blue** (dark `signal-blue-dark`, light `signal-blue`): the one primary key (Deploy split action, the highlighted button), links, focus rings, checked checkboxes and toggles, the selected segment of a view toggle, the active resource's 2px inset edge, and command lines in the log. Ink on the dark key is near-black `signal-blue-dark-ink`; on the light key, white.
 
-### Secondary
-- **Braun Signal Orange** (signal-orange; signal-orange-dark in dark mode): the focus outline, caret colour, and selection tint (22% light, 30% dark). It is the token behind upstream's `coollabs` / `brand` / `accent` names, so anything upstream colours "brand" now resolves to orange.
-- **Link Orange** (link-orange / link-orange-dark): link and `.text-helper` text, one step darker (light) or lighter (dark) than the signal for reading contrast.
-
-### Tertiary (status lamps)
-- **Running Green** (lamp-green), **In-Progress Amber** (lamp-amber), **Failed Red** (lamp-red): only on status lamps, error buttons and error focus. A stopped or unknown resource gets no colour: the unlit lamp housing.
+### Secondary (state)
+- **Run Green** (`run-green-dark` / `run-green`): running, healthy, finished, server online.
+- **Build Yellow** (`build-yellow-dark` / `build-yellow`): queued, building, starting, restarting, degraded, unhealthy; warning lines in the log.
+- **Fail Red** (`fail-red-dark` / `fail-red`): exited, failed, unreachable; stderr lines; the destructive focus ring.
 
 ### Neutral
-- **Warm Grey Canvas** (warm-grey-canvas): page body, sidebar, top bar, auth shell; one flat canvas behind all chrome.
-- **Off-White Surface** (off-white-surface): section wells, dialogs, popovers, buttons and inputs.
-- **Sunk Surface** (surface-sunk): read-only inputs.
-- **Control Hover / Press** (control-hover, control-press): secondary button hover and active fills.
-- **Ink / Ink Dim / Ink Faint** (ink, ink-dim, ink-faint): body and headings; secondary text and nav items; table headers, placeholders, nav glyphs.
-- **Rule / Rule Strong** (rule, rule-strong): ink at 10% and 17%. Rule separates sections and rows; Rule Strong outlines controls and overlays.
-- **Graphite** (graphite-canvas, -surface, -raised, -selected): the dark-mode steps for canvas, wells, controls, hover/selected. Dark body text is graphite-fg-dim; headings and active items graphite-fg. Logs sit on graphite-log.
+- **Graphite Ground** (`graphite-ground`): page canvas, sidebar, top bar, status bar, resource column. One flat canvas behind all chrome.
+- **Graphite Panel** (`graphite-panel`): panel bodies, the summary strip, the active rail item, the search field.
+- **Graphite Sunk** (`graphite-sunk`): panel header bars; read-only inputs.
+- **Graphite Raised / Selected** (`graphite-raised`, `graphite-selected`): secondary buttons, inputs, view toggles at rest / on hover.
+- **Graphite Log** (`graphite-log`): the log body, one step below the ground.
+- **Graphite Text** (`graphite-fg`, `graphite-fg-dim`, `graphite-fg-faint`): headings and values; body copy (dark body text is the dim step); timestamps, meta, placeholders.
+- **Seams** (`graphite-rule`, `graphite-rule-strong`): panel borders and dividers; control borders and overlay edges.
+- **Washes** (`graphite-hover`, `graphite-active`): row and menu hover; active nav item, active tab, active log filter.
+- Light equivalents: `paper-canvas`, `paper-panel`, `paper-sunk`, `paper-log`, `ink`, `ink-dim`, `ink-faint`, `paper-rule`, `paper-rule-strong`, `paper-hover`, `paper-active`.
 
 ### Named Rules
-**The Signal Rule.** Orange marks attention (focus, links, selection, caret) and never fills a control. Beta and "Try it" badges become a hairline outline in dim ink, not an orange chip.
+**The State-Only Colour Rule.** Green, yellow and red appear only to report the live state of a resource, deployment, server or log line. They never decorate, never fill a control, never mark a category.
 
-**The Lit-Only-When-Live Rule.** Green, amber and red appear only as lamp states. Navigation chevrons, sidebar badges and the Coolify logo stay in ink (the logo is greyscale: `brightness(0.3)` light, `brightness(2.4)` dark).
+**The One Key Rule.** A view has one filled blue key. Everything else is a neutral key on the raised step. The Coolify logo is rendered greyscale so brand purple never competes with it.
 
 ## Typography
 
-**Body Font:** Hanken Grotesk, self-hosted variable WOFF2 (`resources/fonts`, latin and latin-ext), with Helvetica Neue, Arial fallback. It also replaces upstream's Geist Sans through `--font-geist-sans`.
-**Mono Font:** upstream's `--font-mono` stack, unchanged, for logs, commits and paths.
+**Display Font:** none; the system has no display role.
+**Body Font:** Manrope (with ui-sans-serif, system-ui)
+**Label/Mono Font:** JetBrains Mono (with ui-monospace, SFMono-Regular, Menlo)
 
-**Character:** a plain Helvetica-family grotesk at small sizes, with weight (600) rather than size carrying hierarchy. Figures are tabular in tables, `time`, `.tabular`, `.tabular-nums` and `.font-mono`.
+**Character:** A compact, slightly geometric grotesque for the interface against a programmer's mono for logs, SHAs, UUIDs and versions; the pairing reads as a developer console without costume.
 
 ### Hierarchy
-- **Headline** (600, 22px / 28px, -0.015em): page `h1`.
-- **Title** (600, 14px, -0.005em): section headings above a well; `h2`/`h3` take ink and the slight negative tracking.
-- **Body** (400, 14px): upstream's `text-sm` body.
-- **Status** (500, 13px): the text beside a status lamp.
-- **Label** (600, 12px, ink-faint, sentence case): data-table column headers.
-- **Nav group** (600, 10.5px, 0.06em, uppercase): sidebar section group names only (e.g. "Infrastructure", "Manage").
+- **Headline** (600, 22px/28px, -0.015em): page `h1`.
+- **Title** (700, 20px/26px, -0.01em): the resource name in the workspace summary strip.
+- **Body** (400, 14px/20px): default copy and form text. Manrope gets `word-spacing: 0.1em` on body; mono contexts reset it to normal.
+- **UI** (500 to 600, 13px): nav items, rail names (600), status badges.
+- **Meta** (400 to 600, 12px): table headers, facts, filters, status bar, log meta.
+- **Panel label** (700, 11px/16px, 0.06em, uppercase, dim): the title in every panel header bar, the log panel title, the Resources column title.
+- **Nav group** (600, 10.5px, 0.06em, uppercase, faint): sidebar group names.
+- **Log** (JetBrains Mono 400, 12px/1.6): log lines; timestamps faint and tabular.
+- **Key cap** (JetBrains Mono 500, 10.5px): `kbd` hints (Ctrl B, Ctrl K).
 
 ### Named Rules
-**The Sentence-Case Rule.** Buttons and table headers are sentence case (`text-transform: none` on `.button`). Uppercase tracking is reserved for the sidebar's navigation group names.
+**The Machine-Text Rule.** Anything a machine wrote (log lines, commit SHAs, UUIDs, repo paths, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.
+
+**The Tabular Rule.** Tables, times, counts and the status bar use tabular numerals.
 
 ## Layout
 
-Layout, navigation and page structure are upstream's and unchanged: sidebar plus top bar shell, centered content, upstream breakpoints and mobile sheet. The skin flattens the shell: sidebar, top bar, brand cell and the mobile sticky header all paint the canvas colour, with no blur, no gradient and no shadow when scrolled; the scrolled top bar gains only a hairline bottom rule. Section headers sit 10px above their well; dialog headers pad 12px (16px leading edge) above a hairline.
+The shell is fixed chrome around a content area: a 48px top bar (brand cell tracks the sidebar width, then breadcrumbs, page toolbar slot, a 240px search field with Cmd/Ctrl+K hint, resource actions), a sidebar of 224px that collapses to a 64px rail (toggle beside the wordmark, Cmd/Ctrl+B, remembered), and from `lg` (1024px) a 28px status bar fixed along the bottom with up to four servers, their state and proxy, and the version at the right.
+
+From `xl` (1280px) an application page becomes a tiled workspace with no outer padding: a 232px resources column, the centre pane, and, when the log is open, a log column of `minmax(340px, 34%)`. Rail and log columns are sticky and fill the height between top bar and status bar; columns meet at 1px seams. In the centre pane, panels stack edge to edge, separated by their bottom seam, with 24px side insets. Below 1280px the log opens as an overlay docked to the right edge (`min(440px, 90vw)`, Escape closes) and a vertical "Log" tab on the right edge reopens it. Open/closed state is remembered on wide screens.
+
+Elsewhere content is panels in upstream's page grid. Rhythm: 4, 8, 12, 16, 24px; panel headers 40px tall; rows 10px by 16px; card grids inside a panel get 12px padding.
+
+**The Panels Stay Put Rule.** Navigation changes what the panels contain, never where they are. The log panel stays docked while the operator edits configuration in the centre.
 
 ## Elevation & Depth
 
-Flat. Depth is tonal (canvas, surface, raised) plus hairlines; there are no drop shadows anywhere.
+Flat by construction. Depth is one tonal step (ground, panel, raised, selected; the log one step below ground) plus 1px seams. Tailwind's shadow utilities are re-pointed to a hairline ring, buttons have no raised edge and no hover lift, and the top bar has no blur.
 
 ### Shadow Vocabulary
-- **Hairline ring** (`box-shadow: 0 0 0 1px var(--appliance-rule-strong)`): dropdowns, modals, popovers, tooltips, dark toasts, the command palette, and every Tailwind `shadow-*` utility (re-pointed through `--tw-shadow`).
-- **Focus ring on inputs** (`box-shadow: 0 0 0 1px var(--appliance-focus)`) with the border also turning orange.
-- **Lamp housing** (`inset 0 0 0 1px` ink at 18% light / white at 12% dark; `1.5px` neutral-400 / coolgray-500 when unlit).
+- **Hairline ring** (`box-shadow: 0 0 0 1px var(--gp-rule-strong)`): popovers, menus, the command palette, toasts, tooltips, dialogs; the only "shadow" in the system.
+- **Inset edge** (`box-shadow: inset 0 0 0 1px var(--gp-rule-strong)`): the search field and outlined badges.
+- **Active edge** (`box-shadow: inset 2px 0 0 var(--gp-primary)`): the selected resource in the Resources column.
+- **Focus ring** (`outline: 2px solid var(--gp-focus); outline-offset: 2px`; inputs instead shift their border to blue plus `0 0 0 1px` blue).
 
 ### Named Rules
-**The Hairline Rule.** Anything that floats gets a 1px ring at Rule Strong, never a blur shadow. Buttons have no raised edge, lift or press translation.
+**The Seam Rule.** Panels are separated by 1px seams and one tonal step, never by drop shadows. If something needs to stand above the page, it gets the hairline ring.
 
 ## Shapes
 
-Small, consistent corners: 6px on buttons, inputs and selects; 8px on section wells; 10px on dialogs; full round only on lamps. Outer section wrappers have no border, padding or radius: the heading sits directly on the canvas above one hairline well. Inner wells and row cards inside a well lose their border and fill and become hairline-separated groups.
+Small, consistent radii: key caps 4px, chips and log filters 5px, buttons, inputs, search and menu items 6px, panels 8px, dialogs 10px, status lamps round. Inside the tiled workspace the radius goes to zero: the workspace is a grid of seams, not rounded cards. A box never sits inside another box: nested section bodies and rows inside a panel lose their frames and become hairline-divided groups.
 
 ## Components
 
 ### Buttons
-Flat keys.
-- **Shape:** gently squared (6px), 32px tall, 1px Rule Strong border.
-- **Secondary (default):** off-white surface, ink text; hover Control Hover, active Control Press. Dark: graphite-raised, hover graphite-selected, icons at 80% opacity.
-- **Primary:** Charcoal Key with off-white text, hover one step lighter; dark mode Off-White Key with ink text. The Deploy split action is the same key, with a 22% foreground divider before the caret.
-- **Error:** upstream's red button; its focus outline is red instead of orange.
-- **Focus:** 2px solid orange outline, 2px offset, no box-shadow. Shared by buttons, icon buttons, tabs, menu items, links and `[role="button"]`.
+- **Shape:** gently squared (6px), 1px `rule-strong` border, sentence case.
+- **Primary:** Signal Blue fill and border, dark ink on dark / white on light; hover steps to the hover blue. The Deploy split action uses the same key, its caret divided by a 22% ink seam.
+- **Secondary:** raised graphite (dark) or paper panel (light), text in full foreground, icons at 80% opacity; hover to the selected step / control-hover, press to control-press.
+- **Hover / Focus:** no transform, no shadow. Focus is a 2px blue outline offset 2px; destructive buttons take a red ring.
+
+### Status
+- **Status lamp:** 8px round lamp lit in the state colour with a 1px inset rim; stopped or unknown is an empty housing (1.5px ring). In-progress states pulse at 1.6s (disabled under reduced motion). The badge around it is bare text at 13px, no pill.
+- **Dots:** rail and log status use a 6 to 7px dot in `currentColor` beside a 12px 600 label tinted in the state colour.
+
+### Cards / Containers (Panels)
+- **Corner Style:** 8px; 0 inside the tiled workspace.
+- **Background:** panel step; header bar on the sunk step.
+- **Shadow Strategy:** none; see Elevation.
+- **Border:** 1px `rule`; header separated by a 1px bottom seam.
+- **Header:** 40px min height, title as Panel label on the left, actions on the right, padding 8px 10px 8px 16px (24px left in the workspace).
+- Applies to settings sections, `section-heading` sections (dashboard, shared variables) and the environment resource list (toolbar as header bar, table or card grid as body, pagination behind a top seam).
 
 ### Inputs / Fields
-- **Style:** off-white (dark: graphite-raised), 1px Rule Strong border, 6px radius.
-- **Focus:** border and a 1px ring in the focus orange.
-- **Read-only:** Sunk Surface with dim ink.
-- **Checkboxes:** checked fill is the primary key (`accent-color` too), with a primary-fg check mark.
+- **Style:** 6px, 1px `rule-strong` border, raised graphite (dark) or paper panel (light).
+- **Focus:** border turns blue plus a 1px blue ring.
+- **Read-only:** sunk step, dim text.
 
-### Cards / Containers (settings sections)
-- **Structure:** a 14px/600 heading on the canvas, then one well.
-- **Well:** off-white (dark: graphite-surface), 1px Rule border, 8px radius, no shadow.
-- **Nesting:** a section body inside a section body is transparent and borderless.
-- **Dialogs** (`.application-settings-form`): one surface, 10px radius, Rule Strong border and hairline ring, header ruled off from the body.
+### Chips
+- **Summary chip:** 12px 600 dim text, 1px `rule-strong` outline, 5px radius (build pack in the summary strip). Beta / "Try it" badges are the same outline, never a fill.
 
 ### Navigation
-- **Sidebar:** canvas background, Rule right edge; items in ink-dim, hover a 4.5% ink wash, active an 8% ink wash with ink text at 600. Flat nav items are the default (`navItems: 'flat'`).
-- **Tabs:** active tab takes the 8% ink wash, no ring.
-- **View toggle:** selected segment is the primary key.
-- **Search / palette (dark):** graphite-raised with an inset hairline.
+- **Sidebar:** flat ground, 1px right seam. Items 32px tall, 13px 500, 6px radius; hover is the 4% wash, active the 7% wash at 600 weight in full foreground; no accent rail. Group names as Nav group type. Chevrons and badges stay muted.
+- **Collapse toggle:** beside the wordmark, 28px, with a Cmd/Ctrl+B key cap; on the collapsed rail it replaces the logo on hover; tooltip after 400ms.
+- **Top bar:** flat ground, bottom seam on scroll, search field 240px by 30px with inset edge and key cap.
+- **Status bar:** 28px, ground, top seam, 12px dim text, servers as 7px dot + name + state, 1px separators.
+- **Resources column:** 40px header (Panel label + mono count), items as name (13px 600) / state dot and label / build type (12px faint), bottom seams, hover wash, active item on the panel step with the 2px blue inset edge; footer link to the full environment.
 
-### Tables
-Header row 12px/600 in ink-faint, sentence case; rows hover with the 4.5% ink wash; figures tabular.
+### Deployment Log Panel (signature)
+The latest deployment's log, docked beside the application and following it live (polls every 2s while live, 20s otherwise). Structure, top to bottom, each band divided by a seam: header (Panel label title, state dot and label, "Full log" and hide actions), meta row (mono short SHA, commit message, relative time), filter row (All / Warnings / Errors as 24px segments with mono counts, active segment on the active wash with a hairline ring; Follow checkbox), body, footer (line count, "following", SHA). The body is JetBrains Mono 12px/1.6 on the log step; lines never wrap, the body scrolls sideways while the 5.4rem timestamp column stays pinned; command lines are blue 600 with a `$` prefix, stderr red, warnings and hidden lines yellow. Follow turns off when the operator scrolls up and back on at the bottom.
 
-### Status Lamp (signature)
-An 8px round lamp beside 13px status text, replacing upstream's pill badge (`<x-status-badge>`, classes `status-lamp status-lamp-{success|warning|error|neutral}`).
-- **Running:** steady green. **In progress:** amber with a slow pulse (opacity 1 to 0.35, 1.6s, `cubic-bezier(0.45, 0, 0.55, 1)`). **Failed:** red. **Stopped / unknown:** unlit housing, no fill.
-- **Reduced motion:** the pulse stops; every lamp holds steady.
-- The badge itself has no pill: no border, fill or padding, 8px gap.
+### Summary Strip
+Top of the workspace centre: resource name (Title), status, build-pack chip, then a facts row (Domain, Source, Server, UUID) at 12.5px with faint terms and mono values; on the panel step with a bottom seam.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put every visual change in `resources/css/appliance.css`, using `html:root` / `html.dark` for tokens, `html:not(#icto-ui)` for components, and the `@layer utilities` block only to answer upstream `!important`.
-- **Do** re-point upstream tokens (`--color-coollabs*`, `--coollabs-*`, `--color-nav-*`, `--shadow-*`) rather than introducing parallel ones; use the `--appliance-*` semantic tokens in new rules.
-- **Do** give every overlay the hairline ring and every focusable element the 2px orange outline at 2px offset.
-- **Do** show status with the lamp, keeping colour for live states and leaving stopped resources unlit.
-- **Do** check both themes; dark is graphite (canvas oklch 21%), never black.
+- **Do** put new tokens and component rules in `graphite.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.
+- **Do** make every new top-level section a panel: 8px, 1px seam, 40px header bar on the sunk step with an 11px uppercase panel title and right-aligned actions.
+- **Do** use JetBrains Mono for logs, SHAs, UUIDs, versions, counts and key caps, with tabular numerals.
+- **Do** keep one blue primary key per view; everything else is a neutral key.
+- **Do** design dark first and translate to light through the same `--gp-*` tokens.
+- **Do** respect reduced motion for every pulse.
 
 ### Don't:
-- **Don't** edit upstream Blade views or upstream CSS for a visual change when an override in appliance.css can do it.
-- **Don't** fill a control, badge or chip with orange; checked and selected states use the primary key.
-- **Don't** use gradients, glows, backdrop blur, soft or offset drop shadows, or hover lift on buttons.
-- **Don't** box a box: no well inside a well, no bordered row card inside a section body.
-- **Don't** reintroduce upstream purple (`#6b16ed`) or a brand-coloured logo.
+- **Don't** use drop shadows, blur, glow or hover lift; overlays get the 1px hairline ring.
+- **Don't** use green, yellow or red for anything but live state, and don't fill controls with them.
+- **Don't** put a box inside a box; inner sections and rows become seam-divided groups.
+- **Don't** bring back brand purple or the stacked-card admin look; the logo stays greyscale.
+- **Don't** move docked panels on navigation or let the log panel cover the centre on wide screens.

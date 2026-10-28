@@ -226,11 +226,11 @@ html:not(#icto-ui) {
 
     /* Browser surfaces */
     & ::selection {
-        background: oklch(57% 0.18 44 / 0.22);
+        background: color-mix(in srgb, var(--gp-primary) 22%, transparent);
     }
 
     &.dark ::selection {
-        background: oklch(70% 0.16 50 / 0.3);
+        background: color-mix(in srgb, var(--gp-primary) 30%, transparent);
     }
 
     & * {
@@ -306,7 +306,7 @@ html:not(#icto-ui) {
         opacity: 0.8;
     }
 
-    /* Primary: the charcoal key (light), the off-white key (dark). */
+    /* Primary: the one blue key. */
     & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled),
     & .button-highlighted {
         background: var(--gp-primary);
@@ -324,7 +324,7 @@ html:not(#icto-ui) {
         color: var(--gp-primary-fg);
     }
 
-    /* One focus language: a 2px orange outline with a small gap. */
+    /* One focus language: a 2px blue outline with a small gap. */
     & :is(.button, .icon-button, .app-tab, .menu-item, .menu-subitem, a, [role="button"]):focus-visible,
     & .button:not(:disabled):hover:focus-visible {
         box-shadow: none;
@@ -491,7 +491,7 @@ html:not(#icto-ui) {
         border: 1px solid var(--gp-rule-strong);
         border-radius: 10px;
         padding: 0;
-        box-shadow: 0 0 0 1px var(--gp-rule-strong) !important;
+        box-shadow: none !important;
     }
 
     /* Dialogs are one surface: a ruled header over the body, not a panel in a frame. */
@@ -583,7 +583,7 @@ html:not(#icto-ui) {
         box-shadow: 0 0 0 1px var(--gp-rule-strong);
     }
 
-    /* Status lamps (the signature move): lit only when live. */
+    /* Status dots: coloured only by state; pulse while in progress. */
     & .status-lamp {
         position: relative;
         display: inline-block;
@@ -657,7 +657,7 @@ html:not(#icto-ui) {
         border-left: 1px solid color-mix(in oklab, var(--gp-primary-fg) 22%, transparent);
     }
 
-    /* Beta / "Try it" badges: an outline, not an orange fill. */
+    /* Beta / "Try it" badges: an outline, not a coloured fill. */
     & :is(.bg-coollabs, .dark\:bg-coollabs):not(.button, .status-lamp) {
         background-color: transparent;
         color: var(--gp-fg-dim);

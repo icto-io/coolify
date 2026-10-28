@@ -1,188 +1,233 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T01:31:28+00:00",
-  "title": "Design System: Coolify (icto-ui \"Appliance\")",
+  "generatedAt": "2026-10-28T03:24:48+00:00",
+  "title": "Design System: Coolify (icto-ui \"Graphite Panels\")",
   "extensions": {
     "colorMeta": {
-      "primary-key": {
-        "role": "primary",
-        "displayName": "Charcoal Key",
-        "canonical": "oklch(23% 0.006 70)",
-        "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(22% 0.005 70)",
-          "oklch(36.5% 0.007 70)",
-          "oklch(52.5% 0.008 72)",
-          "oklch(68.5% 0.008 74)",
-          "oklch(83.5% 0.007 76)",
-          "oklch(93.8% 0.005 80)",
-          "oklch(96.4% 0.004 80)"
-        ]
-      },
-      "primary-key-dark": {
-        "role": "primary",
-        "displayName": "Off-White Key (dark mode)",
-        "canonical": "oklch(93% 0.005 80)",
-        "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(22% 0.005 70)",
-          "oklch(36.5% 0.007 70)",
-          "oklch(52.5% 0.008 72)",
-          "oklch(68.5% 0.008 74)",
-          "oklch(83.5% 0.007 76)",
-          "oklch(93.8% 0.005 80)",
-          "oklch(96.4% 0.004 80)"
-        ]
-      },
-      "signal-orange": {
-        "role": "secondary",
-        "displayName": "Braun Signal Orange",
-        "canonical": "oklch(57% 0.18 44)",
-        "tonalRamp": [
-          "oklch(30% 0.1 44)",
-          "oklch(42% 0.14 44)",
-          "oklch(48% 0.16 44)",
-          "oklch(53% 0.17 44)",
-          "oklch(57% 0.18 44)",
-          "oklch(70% 0.16 50)",
-          "oklch(85% 0.08 55)",
-          "oklch(96.5% 0.02 60)"
-        ]
-      },
-      "link-orange": {
-        "role": "secondary",
-        "displayName": "Link Orange",
-        "canonical": "oklch(50% 0.16 44)",
-        "tonalRamp": [
-          "oklch(30% 0.1 44)",
-          "oklch(42% 0.14 44)",
-          "oklch(48% 0.16 44)",
-          "oklch(53% 0.17 44)",
-          "oklch(57% 0.18 44)",
-          "oklch(70% 0.16 50)",
-          "oklch(85% 0.08 55)",
-          "oklch(96.5% 0.02 60)"
-        ]
-      },
-      "lamp-green": {
-        "role": "tertiary",
-        "displayName": "Running Green",
-        "canonical": "oklch(60% 0.14 148)",
-        "tonalRamp": [
-          "oklch(18% 0.07 148)",
-          "oklch(30% 0.098 148)",
-          "oklch(42% 0.126 148)",
-          "oklch(52% 0.14 148)",
-          "oklch(62% 0.14 148)",
-          "oklch(74% 0.112 148)",
-          "oklch(86% 0.07 148)",
-          "oklch(95% 0.028 148)"
-        ]
-      },
-      "lamp-amber": {
-        "role": "tertiary",
-        "displayName": "In-Progress Amber",
-        "canonical": "oklch(79% 0.15 78)",
-        "tonalRamp": [
-          "oklch(18% 0.075 78)",
-          "oklch(30% 0.105 78)",
-          "oklch(42% 0.135 78)",
-          "oklch(52% 0.15 78)",
-          "oklch(62% 0.15 78)",
-          "oklch(74% 0.12 78)",
-          "oklch(86% 0.075 78)",
-          "oklch(95% 0.03 78)"
-        ]
-      },
-      "lamp-red": {
-        "role": "tertiary",
-        "displayName": "Failed Red",
-        "canonical": "oklch(56% 0.2 27)",
-        "tonalRamp": [
-          "oklch(18% 0.1 27)",
-          "oklch(30% 0.14 27)",
-          "oklch(42% 0.18 27)",
-          "oklch(52% 0.2 27)",
-          "oklch(62% 0.2 27)",
-          "oklch(74% 0.16 27)",
-          "oklch(86% 0.1 27)",
-          "oklch(95% 0.04 27)"
-        ]
-      },
-      "warm-grey-canvas": {
+      "graphite-ground": {
         "role": "neutral",
-        "displayName": "Warm Grey Canvas",
-        "canonical": "oklch(96.4% 0.004 80)",
+        "displayName": "Graphite Ground",
+        "canonical": "#17181b",
         "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(22% 0.005 70)",
-          "oklch(36.5% 0.007 70)",
-          "oklch(52.5% 0.008 72)",
-          "oklch(68.5% 0.008 74)",
-          "oklch(83.5% 0.007 76)",
-          "oklch(93.8% 0.005 80)",
-          "oklch(96.4% 0.004 80)"
+          "#141518",
+          "#17181b",
+          "#1d1f23",
+          "#24262b",
+          "#2b2e34",
+          "#3d4048",
+          "#8e939c",
+          "#e8e9ec"
         ]
       },
-      "off-white-surface": {
+      "graphite-panel": {
         "role": "neutral",
-        "displayName": "Off-White Surface",
-        "canonical": "oklch(99.3% 0.002 85)",
+        "displayName": "Graphite Panel",
+        "canonical": "#1d1f23",
         "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(22% 0.005 70)",
-          "oklch(36.5% 0.007 70)",
-          "oklch(52.5% 0.008 72)",
-          "oklch(68.5% 0.008 74)",
-          "oklch(83.5% 0.007 76)",
-          "oklch(93.8% 0.005 80)",
-          "oklch(96.4% 0.004 80)"
+          "#141518",
+          "#17181b",
+          "#1d1f23",
+          "#24262b",
+          "#2b2e34",
+          "#3d4048",
+          "#8e939c",
+          "#e8e9ec"
+        ]
+      },
+      "graphite-log": {
+        "role": "neutral",
+        "displayName": "Graphite Log",
+        "canonical": "#141518"
+      },
+      "graphite-fg": {
+        "role": "neutral",
+        "displayName": "Graphite Text",
+        "canonical": "#e8e9ec"
+      },
+      "graphite-fg-dim": {
+        "role": "neutral",
+        "displayName": "Graphite Text Dim",
+        "canonical": "#a3a7b0"
+      },
+      "graphite-fg-faint": {
+        "role": "neutral",
+        "displayName": "Graphite Text Faint",
+        "canonical": "#8e939c"
+      },
+      "graphite-rule": {
+        "role": "neutral",
+        "displayName": "Seam",
+        "canonical": "rgb(255 255 255 / 0.07)"
+      },
+      "graphite-rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Seam",
+        "canonical": "rgb(255 255 255 / 0.12)"
+      },
+      "signal-blue-dark": {
+        "role": "primary",
+        "displayName": "Signal Blue (dark)",
+        "canonical": "oklch(73.0% 0.121 245)",
+        "tonalRamp": [
+          "oklch(15% 0.018 245)",
+          "oklch(26% 0.031 245)",
+          "oklch(38% 0.053 245)",
+          "oklch(49% 0.075 245)",
+          "oklch(61% 0.097 245)",
+          "oklch(72% 0.120 245)",
+          "oklch(84% 0.101 245)",
+          "oklch(95% 0.079 245)"
+        ]
+      },
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue (light)",
+        "canonical": "oklch(51.5% 0.165 259)",
+        "tonalRamp": [
+          "oklch(15% 0.068 259)",
+          "oklch(26% 0.099 259)",
+          "oklch(38% 0.129 259)",
+          "oklch(49% 0.159 259)",
+          "oklch(61% 0.141 259)",
+          "oklch(72% 0.110 259)",
+          "oklch(84% 0.080 259)",
+          "oklch(95% 0.050 259)"
+        ]
+      },
+      "run-green-dark": {
+        "role": "secondary",
+        "displayName": "Run Green (dark)",
+        "canonical": "oklch(76.7% 0.097 156)",
+        "tonalRamp": [
+          "oklch(15% 0.015 156)",
+          "oklch(26% 0.019 156)",
+          "oklch(38% 0.037 156)",
+          "oklch(49% 0.055 156)",
+          "oklch(61% 0.073 156)",
+          "oklch(72% 0.090 156)",
+          "oklch(84% 0.087 156)",
+          "oklch(95% 0.069 156)"
+        ]
+      },
+      "run-green": {
+        "role": "secondary",
+        "displayName": "Run Green (light)",
+        "canonical": "oklch(56.5% 0.119 154)",
+        "tonalRamp": [
+          "oklch(15% 0.040 154)",
+          "oklch(26% 0.062 154)",
+          "oklch(38% 0.084 154)",
+          "oklch(49% 0.105 154)",
+          "oklch(61% 0.111 154)",
+          "oklch(72% 0.089 154)",
+          "oklch(84% 0.068 154)",
+          "oklch(95% 0.046 154)"
+        ]
+      },
+      "build-yellow-dark": {
+        "role": "secondary",
+        "displayName": "Build Yellow (dark)",
+        "canonical": "oklch(82.6% 0.097 82)",
+        "tonalRamp": [
+          "oklch(15% 0.015 82)",
+          "oklch(26% 0.015 82)",
+          "oklch(38% 0.028 82)",
+          "oklch(49% 0.046 82)",
+          "oklch(61% 0.063 82)",
+          "oklch(72% 0.081 82)",
+          "oklch(84% 0.096 82)",
+          "oklch(95% 0.078 82)"
+        ]
+      },
+      "build-yellow": {
+        "role": "secondary",
+        "displayName": "Build Yellow (light)",
+        "canonical": "oklch(56.2% 0.117 78)",
+        "tonalRamp": [
+          "oklch(15% 0.040 78)",
+          "oklch(26% 0.061 78)",
+          "oklch(38% 0.083 78)",
+          "oklch(49% 0.104 78)",
+          "oklch(61% 0.109 78)",
+          "oklch(72% 0.087 78)",
+          "oklch(84% 0.066 78)",
+          "oklch(95% 0.044 78)"
+        ]
+      },
+      "fail-red-dark": {
+        "role": "secondary",
+        "displayName": "Fail Red (dark)",
+        "canonical": "oklch(67.1% 0.145 17)",
+        "tonalRamp": [
+          "oklch(15% 0.024 17)",
+          "oklch(26% 0.051 17)",
+          "oklch(38% 0.077 17)",
+          "oklch(49% 0.104 17)",
+          "oklch(61% 0.130 17)",
+          "oklch(72% 0.133 17)",
+          "oklch(84% 0.107 17)",
+          "oklch(95% 0.080 17)"
+        ]
+      },
+      "fail-red": {
+        "role": "secondary",
+        "displayName": "Fail Red (light)",
+        "canonical": "oklch(55.3% 0.171 20)",
+        "tonalRamp": [
+          "oklch(15% 0.061 20)",
+          "oklch(26% 0.092 20)",
+          "oklch(38% 0.123 20)",
+          "oklch(49% 0.154 20)",
+          "oklch(61% 0.156 20)",
+          "oklch(72% 0.125 20)",
+          "oklch(84% 0.094 20)",
+          "oklch(95% 0.062 20)"
+        ]
+      },
+      "paper-canvas": {
+        "role": "neutral",
+        "displayName": "Paper Canvas",
+        "canonical": "#eeeeeb",
+        "tonalRamp": [
+          "#17181b",
+          "#2a2c31",
+          "#4f535b",
+          "#6b7079",
+          "#9a9da3",
+          "#c6c7c3",
+          "#eaeae6",
+          "#f3f3f0"
+        ]
+      },
+      "paper-panel": {
+        "role": "neutral",
+        "displayName": "Paper Panel",
+        "canonical": "#fafaf8",
+        "tonalRamp": [
+          "#17181b",
+          "#2a2c31",
+          "#4f535b",
+          "#6b7079",
+          "#9a9da3",
+          "#c6c7c3",
+          "#eaeae6",
+          "#f3f3f0"
         ]
       },
       "ink": {
         "role": "neutral",
         "displayName": "Ink",
-        "canonical": "oklch(19% 0.005 70)",
-        "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(22% 0.005 70)",
-          "oklch(36.5% 0.007 70)",
-          "oklch(52.5% 0.008 72)",
-          "oklch(68.5% 0.008 74)",
-          "oklch(83.5% 0.007 76)",
-          "oklch(93.8% 0.005 80)",
-          "oklch(96.4% 0.004 80)"
-        ]
+        "canonical": "#1b1d21"
       },
-      "graphite-canvas": {
+      "ink-dim": {
         "role": "neutral",
-        "displayName": "Graphite Canvas (dark mode)",
-        "canonical": "oklch(21% 0.004 70)",
-        "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(18% 0.003 70)",
-          "oklch(21% 0.004 70)",
-          "oklch(24.5% 0.004 70)",
-          "oklch(27.5% 0.005 70)",
-          "oklch(31% 0.005 70)",
-          "oklch(34% 0.006 70)",
-          "oklch(44% 0.008 70)"
-        ]
+        "displayName": "Ink Dim",
+        "canonical": "#4f535b"
       },
-      "graphite-surface": {
+      "ink-faint": {
         "role": "neutral",
-        "displayName": "Graphite Surface (dark mode)",
-        "canonical": "oklch(24.5% 0.004 70)",
-        "tonalRamp": [
-          "oklch(16.5% 0.004 70)",
-          "oklch(18% 0.003 70)",
-          "oklch(21% 0.004 70)",
-          "oklch(24.5% 0.004 70)",
-          "oklch(27.5% 0.005 70)",
-          "oklch(31% 0.005 70)",
-          "oklch(34% 0.006 70)",
-          "oklch(44% 0.008 70)"
-        ]
+        "displayName": "Ink Faint",
+        "canonical": "#6b7079"
       }
     },
     "typographyMeta": {
@@ -192,173 +237,227 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Section headings above a well; h2/h3."
+        "purpose": "Resource name in the workspace summary strip."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Upstream text-sm body copy."
+        "purpose": "Default copy and form text; word-spacing 0.1em on Manrope."
       },
-      "status": {
-        "displayName": "Status",
-        "purpose": "Text beside a status lamp."
+      "ui": {
+        "displayName": "UI",
+        "purpose": "Nav items, rail names (600), status badges."
       },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Data-table column headers, sentence case, tabular figures."
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Table headers, facts, filters, status bar, log meta."
+      },
+      "panel-label": {
+        "displayName": "Panel label",
+        "purpose": "Uppercase title in every panel header bar, the log panel and the Resources column."
       },
       "nav-group": {
         "displayName": "Nav group",
-        "purpose": "Sidebar navigation group names only; uppercase."
+        "purpose": "Sidebar group names, uppercase."
       },
-      "mono": {
-        "displayName": "Mono",
-        "purpose": "Logs, commits, paths (upstream stack, unchanged)."
+      "log": {
+        "displayName": "Log",
+        "purpose": "Log lines; JetBrains Mono, never wrapped."
+      },
+      "key-cap": {
+        "displayName": "Key cap",
+        "purpose": "kbd shortcut hints."
       }
     },
     "shadows": [
       {
         "name": "hairline-ring",
-        "value": "0 0 0 1px var(--appliance-rule-strong)",
-        "purpose": "Every overlay: dropdowns, modals, popovers, tooltips, toasts, command palette, and all re-pointed Tailwind shadow-* utilities."
+        "value": "0 0 0 1px var(--gp-rule-strong)",
+        "purpose": "Popovers, menus, command palette, toasts, tooltips, dialogs; Tailwind shadow utilities are re-pointed to it."
       },
       {
-        "name": "input-focus-ring",
-        "value": "0 0 0 1px var(--appliance-focus)",
-        "purpose": "Focused input, paired with an orange border."
+        "name": "inset-edge",
+        "value": "inset 0 0 0 1px var(--gp-rule-strong)",
+        "purpose": "Top-bar search field and outlined badges."
       },
       {
-        "name": "lamp-housing",
-        "value": "inset 0 0 0 1px oklch(0% 0 0 / 0.18)",
-        "purpose": "Status lamp rim (dark: oklch(100% 0 0 / 0.12)); unlit lamps use inset 1.5px neutral-400 / coolgray-500."
+        "name": "active-edge",
+        "value": "inset 2px 0 0 var(--gp-primary)",
+        "purpose": "Selected resource in the Resources column."
       },
       {
-        "name": "focus-outline",
-        "value": "outline: 2px solid var(--appliance-focus); outline-offset: 2px",
-        "purpose": "Keyboard focus on buttons, tabs, menu items, links, [role=button]; red on error buttons."
+        "name": "input-focus",
+        "value": "0 0 0 1px var(--gp-focus)",
+        "purpose": "With a blue border on focused inputs."
+      },
+      {
+        "name": "lamp-rim",
+        "value": "inset 0 0 0 1px oklch(100% 0 0 / 0.12)",
+        "purpose": "Status lamp rim (dark); oklch(0% 0 0 / 0.18) in light."
       }
     ],
     "motion": [
       {
-        "name": "lamp-pulse",
-        "value": "opacity 1 to 0.35, 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite",
-        "purpose": "In-progress status lamp; disabled under prefers-reduced-motion."
+        "name": "control-state",
+        "value": "120ms ease-out",
+        "purpose": "Background and colour of the collapse toggle."
       },
       {
-        "name": "control-transition",
-        "value": "120ms var(--ease-out) on color, background, border (upstream)",
-        "purpose": "Buttons and tabs; transform is neutralised so keys do not lift or press."
+        "name": "tooltip",
+        "value": "opacity 100ms ease-out, 400ms delay",
+        "purpose": "Collapse toggle tooltip."
+      },
+      {
+        "name": "sidebar",
+        "value": "200ms",
+        "purpose": "Sidebar width, main margin and status bar left edge on collapse."
+      },
+      {
+        "name": "live-pulse",
+        "value": "1.6s ease-in-out infinite, opacity 1 to 0.35",
+        "purpose": "In-progress status lamps and the building log dot; off under prefers-reduced-motion."
       }
     ],
     "breakpoints": [
       {
         "name": "lg",
         "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
       }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary Key",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The charcoal key: the one primary action on a screen (Deploy, Save).",
+      "description": "The one filled blue action per view (Deploy, the highlighted button).",
       "html": "<button class=\"ds-btn-primary\">Deploy</button>",
-      "css": ".ds-btn-primary{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;font-size:13px;font-weight:500;height:32px;padding:0 10px;border-radius:6px;border:1px solid var(--appliance-primary,oklch(23% 0.006 70));background:var(--appliance-primary,oklch(23% 0.006 70));color:var(--appliance-primary-fg,oklch(99.3% 0.002 85));cursor:pointer;transition:background-color 120ms,border-color 120ms}.ds-btn-primary:hover{background:var(--appliance-primary-hover,oklch(31% 0.006 70));border-color:var(--appliance-primary-hover,oklch(31% 0.006 70))}.ds-btn-primary:focus-visible{outline:2px solid var(--appliance-focus,oklch(57% 0.18 44));outline-offset:2px}"
+      "css": ".ds-btn-primary { font: 500 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--gp-primary, #61afef); background: var(--gp-primary, #61afef); color: var(--gp-primary-fg, #0f1420); cursor: pointer; } .ds-btn-primary:hover { background: var(--gp-primary-hover, #7dbdf2); border-color: var(--gp-primary-hover, #7dbdf2); } .ds-btn-primary:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
     },
     {
-      "name": "Secondary Button",
+      "name": "Secondary Key",
       "kind": "button",
-      "refersTo": "button",
-      "description": "Default flat key on the off-white surface.",
+      "refersTo": "button-secondary",
+      "description": "Every other action: a neutral key on the raised step, no lift.",
       "html": "<button class=\"ds-btn\">Reload compose</button>",
-      "css": ".ds-btn{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;font-size:13px;font-weight:500;height:32px;padding:0 10px;border-radius:6px;border:1px solid var(--appliance-rule-strong,oklch(19% 0.005 70 / 0.17));background:var(--appliance-surface,oklch(99.3% 0.002 85));color:var(--appliance-fg,oklch(19% 0.005 70));cursor:pointer;transition:background-color 120ms}.ds-btn:hover{background:var(--color-neutral-100,oklch(93.8% 0.005 80))}.ds-btn:active{background:var(--color-neutral-200,oklch(89.6% 0.006 78))}.ds-btn:focus-visible{outline:2px solid var(--appliance-focus,oklch(57% 0.18 44));outline-offset:2px}"
+      "css": ".ds-btn { font: 500 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); cursor: pointer; } .ds-btn:hover { background: var(--color-selected, #2b2e34); } .ds-btn:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
     },
     {
       "name": "Text Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Off-white field with a strong hairline; orange border and ring on focus.",
+      "description": "Form field on the raised step; focus turns the border blue with a 1px ring.",
       "html": "<input class=\"ds-input\" value=\"linerx\" aria-label=\"Name\">",
-      "css": ".ds-input{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;font-size:14px;height:32px;padding:6px 12px;width:280px;border-radius:6px;border:1px solid var(--appliance-rule-strong,oklch(19% 0.005 70 / 0.17));background:var(--appliance-surface,oklch(99.3% 0.002 85));color:var(--appliance-fg,oklch(19% 0.005 70));caret-color:var(--color-accent,oklch(57% 0.18 44))}.ds-input:focus-visible{outline:none;border-color:var(--appliance-focus,oklch(57% 0.18 44));box-shadow:0 0 0 1px var(--appliance-focus,oklch(57% 0.18 44))}"
+      "css": ".ds-input { font: 400 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; width: 280px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); outline: none; } .ds-input:focus-visible { border-color: var(--gp-focus, #61afef); box-shadow: 0 0 0 1px var(--gp-focus, #61afef); }"
     },
     {
-      "name": "Settings Section",
+      "name": "Panel",
       "kind": "card",
-      "refersTo": "section-well",
-      "description": "A heading on the canvas over one hairline well; never a box in a box.",
-      "html": "<section class=\"ds-section\"><h3 class=\"ds-section-title\">Application details</h3><div class=\"ds-well\"><div class=\"ds-row\">Name<span>linerx</span></div><div class=\"ds-row\">Build pack<span>Compose</span></div></div></section>",
-      "css": ".ds-section{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;background:var(--appliance-canvas,oklch(96.4% 0.004 80));padding:16px;color:var(--appliance-fg,oklch(19% 0.005 70))}.ds-section-title{font-size:14px;font-weight:600;letter-spacing:-0.005em;margin:0;padding:0 0 10px}.ds-well{background:var(--appliance-surface,oklch(99.3% 0.002 85));border:1px solid var(--appliance-rule,oklch(19% 0.005 70 / 0.1));border-radius:8px}.ds-row{display:flex;justify-content:space-between;font-size:14px;padding:12px 16px}.ds-row+.ds-row{border-top:1px solid var(--appliance-rule,oklch(19% 0.005 70 / 0.1))}.ds-row span{color:var(--appliance-fg-dim,oklch(44% 0.008 70))}"
-    },
-    {
-      "name": "Status Lamp",
-      "kind": "custom",
-      "refersTo": "status-lamp",
-      "description": "Signature: an 8px lamp lit only when live; steady running, pulsing in progress, red failed, unlit stopped.",
-      "html": "<div class=\"ds-lamps\"><span class=\"ds-status\"><span class=\"ds-lamp ds-lamp-ok\"></span>Running</span><span class=\"ds-status\"><span class=\"ds-lamp ds-lamp-warn ds-pulse\"></span>Building</span><span class=\"ds-status\"><span class=\"ds-lamp ds-lamp-err\"></span>Failed</span><span class=\"ds-status\"><span class=\"ds-lamp ds-lamp-off\"></span>Stopped</span></div>",
-      "css": ".ds-lamps{display:flex;gap:20px}.ds-status{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--appliance-fg,oklch(19% 0.005 70))}.ds-lamp{display:inline-block;width:8px;height:8px;border-radius:999px;box-shadow:inset 0 0 0 1px oklch(0% 0 0 / 0.18)}.ds-lamp-ok{background:var(--color-success,oklch(60% 0.14 148))}.ds-lamp-warn{background:var(--color-warning,oklch(79% 0.15 78))}.ds-lamp-err{background:var(--color-error,oklch(56% 0.2 27))}.ds-lamp-off{background:transparent;box-shadow:inset 0 0 0 1.5px var(--color-neutral-400,oklch(68.5% 0.008 74))}.ds-pulse{animation:ds-lamp-pulse 1.6s cubic-bezier(0.45,0,0.55,1) infinite}@keyframes ds-lamp-pulse{0%,100%{opacity:1}50%{opacity:.35}}@media (prefers-reduced-motion:reduce){.ds-pulse{animation:none}}"
+      "refersTo": "panel",
+      "description": "Every top-level section: a 40px header bar with the panel title and actions over one seamed surface.",
+      "html": "<section class=\"ds-panel\"><header class=\"ds-panel-head\"><h3>Application details</h3><button class=\"ds-panel-act\">Reload compose</button></header><div class=\"ds-panel-body\">Name, description and build settings.</div></section>",
+      "css": ".ds-panel { width: 420px; background: var(--gp-surface, #1d1f23); border: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); border-radius: 8px; overflow: clip; font: 400 14px/20px Manrope, ui-sans-serif, sans-serif; color: var(--gp-fg-dim, #a3a7b0); } .ds-panel-head { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 8px 10px 8px 16px; box-sizing: border-box; background: var(--gp-surface-sunk, #1a1c1f); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-panel-head h3 { margin: 0; font-size: 11px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-panel-act { font: 500 13px Manrope, sans-serif; height: 28px; padding: 0 10px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); } .ds-panel-act:hover { background: var(--color-selected, #2b2e34); } .ds-panel-body { padding: 16px; }"
     },
     {
       "name": "Sidebar Navigation",
       "kind": "nav",
-      "refersTo": "",
-      "description": "Flat rail on the canvas; ink washes for hover and active, uppercase only on group names.",
-      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-group\">Infrastructure</div><a class=\"ds-nav-item ds-active\" href=\"#\">Servers</a><a class=\"ds-nav-item\" href=\"#\">Integrations</a><a class=\"ds-nav-item\" href=\"#\">Shared Variables</a></nav>",
-      "css": ".ds-nav{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;width:200px;padding:12px;background:var(--appliance-canvas,oklch(96.4% 0.004 80));border-right:1px solid var(--appliance-rule,oklch(19% 0.005 70 / 0.1))}.ds-nav-group{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--appliance-fg-faint,oklch(52.5% 0.008 72));padding:8px 10px 4px}.ds-nav-item{display:block;padding:7px 10px;border-radius:6px;font-size:13px;color:var(--color-nav-text,oklch(44% 0.008 70));text-decoration:none}.ds-nav-item:hover{background:var(--appliance-hover,oklch(19% 0.005 70 / 0.045))}.ds-nav-item.ds-active{background:var(--appliance-active,oklch(19% 0.005 70 / 0.08));color:var(--color-nav-active,oklch(19% 0.005 70));font-weight:600}.ds-nav-item:focus-visible{outline:2px solid var(--appliance-focus,oklch(57% 0.18 44));outline-offset:2px}"
+      "refersTo": "nav",
+      "description": "Flat sidebar items: 4% wash on hover, 7% wash and 600 weight when active, no accent rail.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-group\">Infrastructure</div><a class=\"ds-nav-item is-active\" href=\"#\">Projects</a><a class=\"ds-nav-item\" href=\"#\">Servers</a><a class=\"ds-nav-item\" href=\"#\">Integrations</a></nav>",
+      "css": ".ds-nav { width: 200px; padding: 8px; background: var(--gp-canvas, #17181b); display: flex; flex-direction: column; gap: 2px; font-family: Manrope, sans-serif; } .ds-nav-group { padding: 8px 10px 4px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-fg-faint, #8e939c); } .ds-nav-item { display: flex; align-items: center; height: 32px; padding: 0 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--color-nav-text, #a3a7b0); text-decoration: none; } .ds-nav-item:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); color: var(--gp-fg, #e8e9ec); } .ds-nav-item.is-active { background: var(--gp-active, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); font-weight: 600; } .ds-nav-item:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
     },
     {
-      "name": "Data Table",
+      "name": "Summary Chip",
+      "kind": "chip",
+      "refersTo": "summary-chip",
+      "description": "Outlined fact chip (build pack); badges are outlines, never fills.",
+      "html": "<span class=\"ds-chip\">Docker Compose</span>",
+      "css": ".ds-chip { display: inline-block; font: 600 12px/18px Manrope, sans-serif; padding: 1px 7px; border-radius: 5px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); color: var(--gp-fg-dim, #a3a7b0); }"
+    },
+    {
+      "name": "Resources Column",
       "kind": "custom",
-      "refersTo": "table-header",
-      "description": "Sentence-case 12px headers, hairline rows, tabular figures, ink-wash hover.",
-      "html": "<table class=\"ds-table\"><thead><tr><th>Source</th><th>Commit</th><th>Duration</th></tr></thead><tbody><tr><td>API</td><td class=\"ds-mono\">3bf55d9</td><td>03m 23s</td></tr><tr><td>Webhook</td><td class=\"ds-mono\">a41c0e2</td><td>01m 08s</td></tr></tbody></table>",
-      "css": ".ds-table{font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;border-collapse:collapse;width:420px;font-variant-numeric:tabular-nums;background:var(--appliance-surface,oklch(99.3% 0.002 85));color:var(--appliance-fg,oklch(19% 0.005 70))}.ds-table th{font-size:12px;font-weight:600;text-align:left;color:var(--appliance-fg-faint,oklch(52.5% 0.008 72));padding:10px 16px;border-bottom:1px solid var(--appliance-rule,oklch(19% 0.005 70 / 0.1))}.ds-table td{font-size:14px;padding:10px 16px;border-bottom:1px solid var(--appliance-rule,oklch(19% 0.005 70 / 0.1))}.ds-table tbody tr:hover{background:var(--appliance-hover,oklch(19% 0.005 70 / 0.045))}.ds-mono{font-family:'Geist Mono',SFMono-Regular,Consolas,Menlo,monospace;font-size:13px}"
+      "refersTo": "resource-rail-item",
+      "description": "Left column of the tiled workspace: each resource with its state; the active one carries a 2px blue inset edge.",
+      "html": "<nav class=\"ds-rail\"><header class=\"ds-rail-head\"><span>Resources</span><b>3</b></header><a class=\"ds-rail-item\" href=\"#\"><span class=\"ds-rail-name\">icto</span><span class=\"ds-rail-st is-ok\"><i></i>Running</span><span class=\"ds-rail-meta\">Dockerfile</span></a><a class=\"ds-rail-item is-active\" href=\"#\"><span class=\"ds-rail-name\">linerx</span><span class=\"ds-rail-st is-bad\"><i></i>Exited</span><span class=\"ds-rail-meta\">Docker Compose</span></a></nav>",
+      "css": ".ds-rail { width: 232px; background: var(--gp-canvas, #17181b); border-right: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); font-family: Manrope, sans-serif; } .ds-rail-head { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 16px; border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-rail-head span { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-rail-head b { font: 500 11px/1 'JetBrains Mono', monospace; color: var(--gp-fg-faint, #8e939c); } .ds-rail-item { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2px 8px; padding: 10px 16px; border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); text-decoration: none; } .ds-rail-item:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); } .ds-rail-item.is-active { background: var(--gp-surface, #1d1f23); box-shadow: inset 2px 0 0 var(--gp-primary, #61afef); } .ds-rail-item:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: -2px; } .ds-rail-name { font-size: 13px; font-weight: 600; } .ds-rail-st { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--gp-fg-faint, #8e939c); } .ds-rail-st i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; } .ds-rail-st.is-ok { color: var(--gp-ok, #7ec699); } .ds-rail-st.is-bad { color: var(--gp-bad, #e06c75); } .ds-rail-meta { grid-column: 1 / -1; font-size: 12px; color: var(--gp-fg-faint, #8e939c); }"
+    },
+    {
+      "name": "Deployment Log Panel",
+      "kind": "custom",
+      "refersTo": "log-panel-body",
+      "description": "Signature: the live deployment log docked beside the application; unwrapped mono lines with a pinned time column.",
+      "html": "<section class=\"ds-log\"><header class=\"ds-log-head\"><span class=\"ds-log-title\">Deployment log</span><span class=\"ds-log-st\"><i></i>Building</span></header><div class=\"ds-log-filters\"><button class=\"is-active\">All</button><button>Warnings <small>2</small></button><button>Errors <small>0</small></button></div><div class=\"ds-log-body\"><div class=\"ds-line is-cmd\"><span class=\"t\">01:08:54</span><span>$ docker compose up -d</span></div><div class=\"ds-line\"><span class=\"t\">01:08:59</span><span>Removing old containers.</span></div><div class=\"ds-line is-warn\"><span class=\"t\">01:09:22</span><span>WARN healthcheck slow</span></div><div class=\"ds-line is-err\"><span class=\"t\">01:09:26</span><span>Error: port 3000 already in use</span></div></div></section>",
+      "css": ".ds-log { width: 420px; display: flex; flex-direction: column; background: var(--gp-log-bg, #141518); border: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); border-radius: 8px; overflow: hidden; font-family: Manrope, sans-serif; } .ds-log-head { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 8px 0 14px; background: var(--gp-surface, #1d1f23); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-log-title { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-log-st { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--gp-busy, #e6c07b); } .ds-log-st i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: ds-pulse 1.6s ease-in-out infinite; } @keyframes ds-pulse { 50% { opacity: 0.35; } } @media (prefers-reduced-motion: reduce) { .ds-log-st i { animation: none; } } .ds-log-filters { display: flex; gap: 4px; padding: 6px 14px 6px 10px; background: var(--gp-surface, #1d1f23); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-log-filters button { height: 24px; padding: 0 10px; border: 0; border-radius: 5px; background: transparent; font: 600 12px Manrope, sans-serif; color: var(--gp-fg-dim, #a3a7b0); cursor: pointer; } .ds-log-filters button:hover { color: var(--gp-fg, #e8e9ec); } .ds-log-filters button.is-active { background: var(--gp-active, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); box-shadow: 0 0 0 1px var(--gp-rule-strong, rgb(255 255 255 / 0.12)); } .ds-log-filters button:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; } .ds-log-filters small { font: 500 11px/1 'JetBrains Mono', monospace; color: var(--gp-fg-faint, #8e939c); } .ds-log-body { padding: 8px 0; overflow: auto; font: 12px/1.6 'JetBrains Mono', ui-monospace, monospace; color: var(--gp-fg, #e8e9ec); } .ds-line { display: flex; width: max-content; min-width: 100%; padding-right: 14px; } .ds-line:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); } .ds-line .t { position: sticky; left: 0; flex: none; width: 5.4rem; padding-left: 14px; background: var(--gp-log-bg, #141518); color: var(--gp-fg-faint, #8e939c); font-variant-numeric: tabular-nums; } .ds-line span:last-child { white-space: pre; } .ds-line.is-cmd { margin-top: 6px; font-weight: 600; color: var(--gp-link, #61afef); } .ds-line.is-warn span:last-child { color: var(--gp-busy, #e6c07b); } .ds-line.is-err span:last-child { color: var(--gp-bad, #e06c75); }"
+    },
+    {
+      "name": "Status Bar",
+      "kind": "custom",
+      "refersTo": "status-bar",
+      "description": "28px bar along the bottom: servers with state dot, proxy state, version.",
+      "html": "<footer class=\"ds-sb\"><a href=\"#\"><i class=\"is-bad\"></i><b>Oracle VPS</b>Unreachable<span class=\"sep\"></span>Proxy starting</a><span class=\"ver\">v4.5.0</span></footer>",
+      "css": ".ds-sb { display: flex; align-items: center; gap: 18px; height: 28px; padding: 0 16px; width: 640px; font: 12px Manrope, sans-serif; color: var(--gp-fg-dim, #a3a7b0); background: var(--gp-canvas, #17181b); border-top: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); font-variant-numeric: tabular-nums; } .ds-sb a { display: inline-flex; align-items: center; gap: 6px; color: inherit; text-decoration: none; } .ds-sb a:hover { color: var(--gp-fg, #e8e9ec); } .ds-sb a:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; } .ds-sb b { font-weight: 500; color: var(--gp-fg, #e8e9ec); } .ds-sb i { width: 7px; height: 7px; border-radius: 50%; background: var(--gp-fg-faint, #8e939c); } .ds-sb i.is-ok { background: var(--gp-ok, #7ec699); } .ds-sb i.is-bad { background: var(--gp-bad, #e06c75); } .ds-sb .sep { width: 1px; height: 12px; background: var(--gp-rule-strong, rgb(255 255 255 / 0.12)); } .ds-sb .ver { margin-left: auto; font-family: 'JetBrains Mono', monospace; }"
     }
   ],
   "narrative": {
-    "northStar": "The Appliance",
-    "overview": "Coolify as a Braun appliance (Dieter Rams): as little design as possible, every control obviously what it is. A warm light-grey body carries off-white working surfaces and charcoal type; dark mode is a graphite body, not black. Surfaces are flat colour, separated by hairline rules rather than nested boxes. The primary action is a charcoal key (an off-white key in dark mode). Colour appears only where it does a job: status lamps, focus, links, selection.\n\nDensity is upstream's: 14px UI text, 32px controls, compact rows. The skin changes how the screen looks, never what it does or says. It rejects the purple admin look of stacked card-in-well boxes and the near-black dev dashboard with one neon accent.",
+    "northStar": "The Graphite Console",
+    "overview": "**Creative North Star: \"The Graphite Console\"**\n\nCoolify reads as a working surface of persistent panels on a graphite ground. The layout stays put; navigation changes what the panels hold. On wide screens an application is a tiled workspace edge to edge between the top bar and the status bar: the environment's resources on the left, the selected application in the centre, and its deployment log docked on the right, following the live build. Density is upstream's: 13 to 14px interface type, 40px panel headers, 8px rows of rhythm.\n\nDepth is structural, not atmospheric. Panels sit one tonal step above the ground and are divided by 1px seams; nothing floats, nothing glows, nothing lifts on hover. Colour is reserved for state, in an editor-syntax palette: green running, yellow building, red failed, blue for links, focus, checked controls and the one primary key. Dark is the native theme; light is the same structure translated onto paper-grey.",
     "keyCharacteristics": [
-      "Warm grey, never beige (chroma under 0.01 on every neutral, hue 70 to 85).",
-      "Charcoal primary key; orange is a signal, never a control fill.",
-      "One hairline surface per section; a section inside a section is a group on the same surface.",
-      "No gradients, glows, blur or soft shadows; overlays get a 1px hairline ring.",
-      "Status as indicator lamps: lit only when live."
+      "Dark-first graphite ground with panels one step up, divided by 1px seams.",
+      "Every top-level section is a panel with a 40px header bar carrying its small uppercase title and its actions.",
+      "Persistent deployment log panel docked beside the application (the signature).",
+      "Colour carries state only; one blue primary key per view.",
+      "Manrope for the interface, JetBrains Mono for anything a machine wrote."
     ],
     "rules": [
       {
-        "name": "The Signal Rule",
-        "body": "Orange marks attention (focus, links, selection, caret) and never fills a control. Beta and \"Try it\" badges become a hairline outline in dim ink, not an orange chip.",
+        "name": "The State-Only Colour Rule",
+        "body": "Green, yellow and red appear only to report the live state of a resource, deployment, server or log line. They never decorate, never fill a control, never mark a category.",
         "section": "colors"
       },
       {
-        "name": "The Lit-Only-When-Live Rule",
-        "body": "Green, amber and red appear only as lamp states. Navigation chevrons, sidebar badges and the Coolify logo stay in ink (the logo is greyscale: `brightness(0.3)` light, `brightness(2.4)` dark).",
+        "name": "The One Key Rule",
+        "body": "A view has one filled blue key. Everything else is a neutral key on the raised step. The Coolify logo is rendered greyscale so brand purple never competes with it.",
         "section": "colors"
       },
       {
-        "name": "The Sentence-Case Rule",
-        "body": "Buttons and table headers are sentence case (`text-transform: none` on `.button`). Uppercase tracking is reserved for the sidebar's navigation group names.",
+        "name": "The Machine-Text Rule",
+        "body": "Anything a machine wrote (log lines, commit SHAs, UUIDs, repo paths, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.",
         "section": "typography"
       },
       {
-        "name": "The Hairline Rule",
-        "body": "Anything that floats gets a 1px ring at Rule Strong, never a blur shadow. Buttons have no raised edge, lift or press translation.",
+        "name": "The Tabular Rule",
+        "body": "Tables, times, counts and the status bar use tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Panels Stay Put Rule",
+        "body": "Navigation changes what the panels contain, never where they are. The log panel stays docked while the operator edits configuration in the centre.",
+        "section": "layout"
+      },
+      {
+        "name": "The Seam Rule",
+        "body": "Panels are separated by 1px seams and one tonal step, never by drop shadows. If something needs to stand above the page, it gets the hairline ring.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do put every visual change in `resources/css/appliance.css`, using `html:root` / `html.dark` for tokens, `html:not(#icto-ui)` for components, and the `@layer utilities` block only to answer upstream `!important`.",
-      "Do re-point upstream tokens (`--color-coollabs*`, `--coollabs-*`, `--color-nav-*`, `--shadow-*`) rather than introducing parallel ones; use the `--appliance-*` semantic tokens in new rules.",
-      "Do give every overlay the hairline ring and every focusable element the 2px orange outline at 2px offset.",
-      "Do show status with the lamp, keeping colour for live states and leaving stopped resources unlit.",
-      "Do check both themes; dark is graphite (canvas oklch 21%), never black."
+      "**Do** put new tokens and component rules in `graphite.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.",
+      "**Do** make every new top-level section a panel: 8px, 1px seam, 40px header bar on the sunk step with an 11px uppercase panel title and right-aligned actions.",
+      "**Do** use JetBrains Mono for logs, SHAs, UUIDs, versions, counts and key caps, with tabular numerals.",
+      "**Do** keep one blue primary key per view; everything else is a neutral key.",
+      "**Do** design dark first and translate to light through the same `--gp-*` tokens.",
+      "**Do** respect reduced motion for every pulse."
     ],
     "donts": [
-      "Don't edit upstream Blade views or upstream CSS for a visual change when an override in appliance.css can do it.",
-      "Don't fill a control, badge or chip with orange; checked and selected states use the primary key.",
-      "Don't use gradients, glows, backdrop blur, soft or offset drop shadows, or hover lift on buttons.",
-      "Don't box a box: no well inside a well, no bordered row card inside a section body.",
-      "Don't reintroduce upstream purple (`#6b16ed`) or a brand-coloured logo."
+      "**Don't** use drop shadows, blur, glow or hover lift; overlays get the 1px hairline ring.",
+      "**Don't** use green, yellow or red for anything but live state, and don't fill controls with them.",
+      "**Don't** put a box inside a box; inner sections and rows become seam-divided groups.",
+      "**Don't** bring back brand purple or the stacked-card admin look; the logo stays greyscale.",
+      "**Don't** move docked panels on navigation or let the log panel cover the centre on wide screens."
     ]
   }
 }
