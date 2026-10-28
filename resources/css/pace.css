@@ -839,13 +839,26 @@ html:not(#icto-ui) {
         .pace-stat,
         .pace-card
     ) {
-        animation: pace-rise 420ms var(--pace-spring) both;
+        animation: pace-rise 420ms var(--pace-spring) backwards;
     }
 
     & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(2) { animation-delay: 40ms; }
     & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(3) { animation-delay: 80ms; }
     & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(4) { animation-delay: 120ms; }
     & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(n + 5) { animation-delay: 160ms; }
+
+    /* A card with an open dropdown lets the panel out and sits above the cards after it. */
+    & .app-main :is(
+        .application-settings-section:not(.application-settings-section *):not(.application-settings-form),
+        section:has(> .section-heading),
+        .resource-panel,
+        .resource-summary,
+        .pace-card
+    ):has([aria-haspopup][aria-expanded="true"]) {
+        position: relative;
+        z-index: 20;
+        overflow: visible;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1105,11 +1118,11 @@ html:not(#icto-ui) {
             border-radius: var(--pace-radius-card);
             box-shadow: var(--pace-shadow-sm);
             overflow: hidden;
-            animation: pace-rise 420ms var(--pace-spring) both;
+            animation: pace-rise 420ms var(--pace-spring) backwards;
         }
 
         & .log-panel-dock .log-panel {
-            animation: pace-rise 420ms var(--pace-spring) 80ms both;
+            animation: pace-rise 420ms var(--pace-spring) 80ms backwards;
         }
 
         & .workspace-centre {
@@ -1612,7 +1625,7 @@ html:not(#icto-ui) {
         border: 1px solid var(--pace-border);
         border-radius: var(--pace-radius-card);
         box-shadow: var(--pace-shadow-sm);
-        animation: pace-rise 420ms var(--pace-spring) both;
+        animation: pace-rise 420ms var(--pace-spring) backwards;
     }
 
     & .resource-summary-name {
