@@ -40,7 +40,7 @@ class LogPanel extends Component
     public function polling(): void
     {
         $this->loadLatestDeployment();
-        unset($this->deployment, $this->logLines);
+        unset($this->deployment, $this->logLines, $this->lineCounts);
     }
 
     public function isLive(): bool
@@ -71,6 +71,28 @@ class LogPanel extends Component
     public function logLines(): Collection
     {
         return decode_remote_command_output($this->deployment)->take(-self::MAX_LINES)->values();
+    }
+
+    /**
+     * @return array{errors: int, warnings: int}
+     */
+    #[Computed]
+    public function lineCounts(): array
+    {
+        return [
+            'errors' => $this->logLines->filter(fn (array $line) => ! empty($line['stderr']))->count(),
+            'warnings' => $this->logLines->filter(fn (array $line) => self::isWarning($line))->count(),
+        ];
+    }
+
+    /**
+     * A standard-output line that reports a warning.
+     *
+     * @param  array<string, mixed>  $line
+     */
+    public static function isWarning(array $line): bool
+    {
+        return empty($line['stderr']) && preg_match('/\bwarn(ing)?\b/i', (string) ($line['line'] ?? '')) === 1;
     }
 
     public function render()

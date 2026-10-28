@@ -30,7 +30,10 @@
             <section id="public-access-section" @class([
                 'border-b border-neutral-200 pb-5 dark:border-white/[0.07]' => $buildPack !== 'dockercompose',
             ])>
-            <h3 class="mb-3 text-sm font-semibold text-black dark:text-fg">Public access</h3>
+            {{-- Only Compose apps have nothing else under Access, so the label would repeat the panel title. --}}
+            @if ($buildPack !== 'dockercompose')
+                <h3 class="mb-3 text-sm font-semibold text-black dark:text-fg">Public access</h3>
+            @endif
             @php
                 $domainCount = 0;
                 $primaryDomain = null;

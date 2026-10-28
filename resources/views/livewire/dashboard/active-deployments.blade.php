@@ -103,7 +103,11 @@
                 @if ($hasRecentDeployments)
                     <div
                         class="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <div class="border-b border-neutral-200 px-4 py-2.5 dark:border-white/[0.08]">
+                        {{-- The label separates Recent from Active; alone it would repeat the panel title, so only screen readers get it. --}}
+                        <div @class([
+                            'border-b border-neutral-200 px-4 py-2.5 dark:border-white/[0.08]' => $hasActiveDeployments,
+                            'sr-only' => ! $hasActiveDeployments,
+                        ])>
                             <h3 class="text-[11px]! leading-4! font-medium! text-neutral-500! dark:text-fg-faint!">
                                 Recent deployments
                             </h3>

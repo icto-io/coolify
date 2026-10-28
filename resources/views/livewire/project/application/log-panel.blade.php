@@ -28,7 +28,7 @@
     @if ($isLive) wire:poll.2000ms="polling" @else wire:poll.20s="polling" @endif
     x-data="{
         follow: true,
-        errorsOnly: false,
+        filter: 'all',
         scrollToEnd() {
             if (!this.follow) return;
             const body = this.$refs.body;
@@ -73,10 +73,12 @@
             <span class="ml-auto shrink-0">{{ $deployment->created_at->diffForHumans() }}</span>
         </div>
         <div class="log-panel-filters" role="group" aria-label="Filter log lines">
-            <button type="button" class="log-panel-filter" :class="!errorsOnly && 'is-active'" @click="errorsOnly = false"
-                :aria-pressed="(!errorsOnly).toString()">All</button>
-            <button type="button" class="log-panel-filter" :class="errorsOnly && 'is-active'" @click="errorsOnly = true"
-                :aria-pressed="errorsOnly.toString()">Errors</button>
+            <button type="button" class="log-panel-filter" :class="filter === 'all' && 'is-active'" @click="filter = 'all'"
+                :aria-pressed="(filter === 'all').toString()">All</button>
+            <button type="button" class="log-panel-filter" :class="filter === 'warnings' && 'is-active'" @click="filter = 'warnings'"
+                :aria-pressed="(filter === 'warnings').toString()">Warnings <span class="log-panel-count">{{ $this->lineCounts['warnings'] }}</span></button>
+            <button type="button" class="log-panel-filter" :class="filter === 'errors' && 'is-active'" @click="filter = 'errors'"
+                :aria-pressed="(filter === 'errors').toString()">Errors <span class="log-panel-count">{{ $this->lineCounts['errors'] }}</span></button>
             <label class="ml-auto inline-flex cursor-pointer items-center gap-1.5 text-[12px] text-[var(--gp-fg-dim)]">
                 <input type="checkbox" class="log-panel-follow" x-model="follow" @change="scrollToEnd()">
                 Follow
@@ -84,12 +86,13 @@
         </div>
     @endif
 
-    <div class="log-panel-body" x-ref="body" @scroll.passive="onScroll()" :class="errorsOnly && 'errors-only'">
+    <div class="log-panel-body" x-ref="body" @scroll.passive="onScroll()" :class="filter !== 'all' && 'only-' + filter">
         @forelse ($this->logLines as $line)
             <div @class([
                 'log-panel-line',
                 'is-command' => ! empty($line['command']),
                 'is-stderr' => ! empty($line['stderr']),
+                'is-warning' => \App\Livewire\Project\Application\LogPanel::isWarning($line),
                 'is-hidden' => ! empty($line['hidden']),
             ])>
                 <span class="log-panel-time">{{ str($line['timestamp'])->afterLast(' ')->before('.') }}</span>
@@ -108,8 +111,10 @@
 
     @if ($deployment)
         <footer class="log-panel-foot">
-            <span>{{ $this->logLines->count() }} {{ str('line')->plural($this->logLines->count()) }}@if ($this->logLines->count() >= \App\Livewire\Project\Application\LogPanel::MAX_LINES), latest shown @endif</span>
-            <span x-show="follow && {{ $isLive ? 'true' : 'false' }}">Following</span>
+            <span>{{ $this->logLines->count() }} {{ str('line')->plural($this->logLines->count()) }}@if ($this->logLines->count() >= \App\Livewire\Project\Application\LogPanel::MAX_LINES), latest shown @endif<span x-show="follow && {{ $isLive ? 'true' : 'false' }}"> · following</span></span>
+            @if ($deployment->commit && $deployment->commit !== 'HEAD')
+                <span class="font-mono">{{ str($deployment->commit)->limit(7, '') }}</span>
+            @endif
         </footer>
     @endif
 </section>

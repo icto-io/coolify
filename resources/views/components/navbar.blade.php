@@ -79,7 +79,8 @@
     }">
     {{-- Search is only useful when workspace resources are available --}}
     @if (isSubscribed() || ! isCloud())
-        <div class="px-1 pb-3" :class="collapsed && 'lg:px-0'">
+        {{-- Desktop search lives in the top bar; this copy serves the mobile sheet. --}}
+        <div @class(['px-1 pb-3', 'lg:hidden' => $desktop]) :class="collapsed && 'lg:px-0'">
             {{-- On pages with settings or sections the palette also searches the current page --}}
             <button @click="$dispatch('open-global-search')" type="button"
                 x-data="{ hasPageSearch: false }"

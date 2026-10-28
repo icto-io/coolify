@@ -947,32 +947,116 @@ html:not(#icto-ui) {
 
 /* ---- Persistent log panel (signature) ------------------------------------- */
 
-/* From xl the page's sub-navigation lives in the main sidebar, so the
-   workspace is two columns: the page and the log panel beside it. */
+/* From xl the application workspace is tiled edge to edge between the top bar
+   and the status bar: resources, the selected application, its log. Columns
+   are divided by 1px seams; nothing floats. (The page's own sub-navigation
+   lives in the main sidebar from xl.) */
 @media (min-width: 1280px) {
-    html:not(#icto-ui) .has-log-panel .workspace-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 34%);
-        gap: 1.5rem;
+    html:not(#icto-ui) {
+        & .app-main:has(.application-settings-workspace) {
+            padding: 3rem 0 28px;
 
-        & > :not(.log-panel-dock) {
-            grid-column: 1;
-            grid-row: 1;
+            & > div {
+                max-width: none;
+            }
         }
 
-        & > .log-panel-dock {
-            grid-column: 2;
-            grid-row: 1;
+        & .application-settings-workspace {
+            margin: 0;
+        }
+
+        & .application-settings-workspace .workspace-grid {
+            grid-template-columns: 232px minmax(0, 1fr);
+            gap: 0;
+
+            & > .resource-rail-dock {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            & > .workspace-centre {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            & > .log-panel-dock {
+                grid-column: 3;
+                grid-row: 1;
+            }
+        }
+
+        & .application-settings-workspace.has-log-panel .workspace-grid {
+            grid-template-columns: 232px minmax(0, 1fr) minmax(340px, 34%);
+        }
+
+        & :is(.resource-rail-dock, .log-panel-dock) {
+            position: sticky;
+            top: 3rem;
+            align-self: start;
+            height: calc(100dvh - 3rem - 28px);
+            min-width: 0;
+        }
+
+        & .resource-rail-dock {
+            border-right: 1px solid var(--gp-rule);
+            background: var(--gp-canvas);
+        }
+
+        & .log-panel-dock {
+            border-left: 1px solid var(--gp-rule);
+        }
+
+        & .log-panel-dock .log-panel {
+            border: 0;
+            border-radius: 0;
+        }
+
+        /* The centre is one pane: sections stack edge to edge, divided by rules. */
+        & .workspace-centre {
+            min-height: calc(100dvh - 3rem - 28px);
+            background: var(--gp-canvas);
+        }
+
+        & .workspace-centre :is(div, form):has(> .application-settings-section) {
+            gap: 0;
+
+            & > * + * {
+                margin-top: 0;
+            }
+        }
+
+        & .workspace-centre .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) {
+            border-width: 0 0 1px;
+            border-radius: 0;
+            margin: 0;
+        }
+
+        & .workspace-centre .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > .application-settings-section-body {
+            padding-inline: 24px;
+        }
+
+        & .workspace-centre .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) {
+            padding-left: 24px;
+            padding-right: 16px;
         }
     }
 }
 
 html:not(#icto-ui) {
-    & .log-panel-dock {
-        position: sticky;
-        top: calc(3rem + 1rem);
-        align-self: start;
-        height: calc(100dvh - 3rem - 1rem - 28px - 1rem);
-        min-width: 0;
+    /* Below xl the log opens as an overlay docked at the right edge. */
+    & .log-panel-dock.is-overlay {
+        position: fixed;
+        top: 3rem;
+        right: 0;
+        bottom: 28px;
+        z-index: 40;
+        width: min(440px, 90vw);
+        border-left: 1px solid var(--gp-rule-strong);
+    }
+
+    & .log-panel-dock.is-overlay .log-panel {
+        border: 0;
+        border-radius: 0;
     }
 
     & .log-panel {
@@ -1142,8 +1226,17 @@ html:not(#icto-ui) {
     & .log-panel-line.is-stderr .log-panel-text { color: var(--gp-bad); }
     & .log-panel-line.is-hidden .log-panel-text { color: var(--gp-busy); }
 
-    & .errors-only .log-panel-line:not(.is-stderr) {
+    & .log-panel-line.is-warning .log-panel-text { color: var(--gp-busy); }
+
+    & .only-errors .log-panel-line:not(.is-stderr),
+    & .only-warnings .log-panel-line:not(.is-warning) {
         display: none;
+    }
+
+    & .log-panel-count {
+        margin-left: 2px;
+        font: 500 11px/1 var(--font-mono);
+        color: var(--gp-fg-faint);
     }
 
     & .log-panel-empty {
@@ -1303,5 +1396,198 @@ html:not(#icto-ui) {
     & .resource-panel :is(.client-pagination, [class*="pagination"]) {
         margin: 0;
         border-top: 1px solid var(--gp-rule);
+    }
+}
+
+/* ---- Resources column and summary strip ------------------------------------ */
+
+html:not(#icto-ui) {
+    & .resource-rail {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+    }
+
+    & .resource-rail-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 40px;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--gp-rule);
+        font: 500 11px/1 var(--font-mono);
+        color: var(--gp-fg-faint);
+    }
+
+    & .resource-rail-head h2 {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--gp-fg-dim);
+    }
+
+    & .resource-rail-list {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    & .resource-rail-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2px 8px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--gp-rule);
+        color: var(--gp-fg);
+        text-decoration: none;
+    }
+
+    & .resource-rail-item:hover {
+        background: var(--gp-hover);
+    }
+
+    & .resource-rail-item.is-active {
+        background: var(--gp-surface);
+        box-shadow: inset 2px 0 0 var(--gp-primary);
+    }
+
+    & .resource-rail-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    & .resource-rail-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-faint);
+    }
+
+    & .resource-rail-status.is-ok { color: var(--gp-ok); }
+    & .resource-rail-status.is-busy { color: var(--gp-busy); }
+    & .resource-rail-status.is-bad { color: var(--gp-bad); }
+
+    & .resource-rail-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    & .resource-rail-meta {
+        grid-column: 1 / -1;
+        font-size: 12px;
+        color: var(--gp-fg-faint);
+    }
+
+    & .resource-rail-foot {
+        padding: 10px 16px;
+        border-top: 1px solid var(--gp-rule);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+    }
+
+    & .resource-rail-foot:hover {
+        color: var(--gp-fg);
+    }
+
+    & .resource-summary {
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px 24px 16px;
+        border-bottom: 1px solid var(--gp-rule);
+        background: var(--gp-surface);
+    }
+
+    & .resource-summary-name {
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--gp-fg);
+    }
+
+    & .resource-summary-chip {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+        border: 1px solid var(--gp-rule-strong);
+        border-radius: 5px;
+        padding: 1px 7px;
+    }
+
+    & .resource-summary-facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 28px;
+        margin: 0;
+        font-size: 12.5px;
+    }
+
+    & .resource-summary-facts > div {
+        display: flex;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    & .resource-summary-facts dt {
+        color: var(--gp-fg-faint);
+    }
+
+    & .resource-summary-facts dd {
+        margin: 0;
+        min-width: 0;
+        color: var(--gp-fg);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    & .resource-summary-facts a {
+        color: var(--gp-link);
+    }
+}
+
+html:not(#icto-ui) {
+    & .topbar-search {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: 240px;
+        height: 30px;
+        margin-right: 8px;
+        padding: 0 6px 0 10px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        color: var(--gp-fg-faint);
+        background: var(--gp-surface);
+        box-shadow: inset 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    & .topbar-search:hover {
+        color: var(--gp-fg-dim);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gp-fg) 22%, transparent);
+    }
+
+    & .topbar-search kbd {
+        margin-left: auto;
+        font: 500 10.5px/1 var(--font-mono);
+        color: var(--gp-fg-faint);
+        border: 1px solid var(--gp-rule-strong);
+        border-radius: 4px;
+        padding: 2px 4px;
     }
 }

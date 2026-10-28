@@ -96,6 +96,14 @@
                     </div>
                     {{-- Page toolbars (the canvases) dock here on desktop. --}}
                     <div id="page-toolbar-slot" class="flex shrink-0 items-center empty:hidden"></div>
+                    @if (isSubscribed() || ! isCloud())
+                        <button type="button" @click="$dispatch('open-global-search')" class="topbar-search"
+                            :title="'Search (Press / or ' + (navigator.platform.includes('Mac') ? '⌘' : 'Ctrl+') + 'K)'">
+                            <x-reicon name="search" class="size-3.5" />
+                            <span>Search</span>
+                            <kbd x-text="(navigator.platform.includes('Mac') ? '⌘' : 'Ctrl ') + 'K'"></kbd>
+                        </button>
+                    @endif
                     <div id="configuration-warning-hud-slot" class="relative shrink-0"></div>
                     <livewire:deployments-indicator variant="topbar" />
                     {{-- Resource actions dock here on desktop. --}}

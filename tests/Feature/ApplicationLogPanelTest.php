@@ -102,3 +102,23 @@ it('forbids users outside the application team', function () {
     Livewire::test(LogPanel::class, ['application' => $this->application])
         ->assertForbidden();
 });
+
+it('counts warning and error lines for the filters', function () {
+    ApplicationDeploymentQueue::create([
+        'application_id' => $this->application->id,
+        'deployment_uuid' => fake()->uuid(),
+        'commit' => 'abc1234',
+        'status' => ApplicationDeploymentStatus::FAILED->value,
+        'pull_request_id' => 0,
+        'logs' => json_encode([
+            ['command' => null, 'output' => "WARNING: Running pip as the 'root' user", 'type' => 'stdout', 'timestamp' => '2026-10-27T12:00:00Z', 'hidden' => false, 'batch' => 1, 'order' => 1],
+            ['command' => null, 'output' => 'Health check failed', 'type' => 'stderr', 'timestamp' => '2026-10-27T12:00:01Z', 'hidden' => false, 'batch' => 1, 'order' => 2],
+            ['command' => null, 'output' => 'exporting layers done', 'type' => 'stdout', 'timestamp' => '2026-10-27T12:00:02Z', 'hidden' => false, 'batch' => 1, 'order' => 3],
+        ]),
+    ]);
+
+    Livewire::test(LogPanel::class, ['application' => $this->application])
+        ->assertSet('status', 'failed')
+        ->assertSee('Failed')
+        ->tap(fn ($component) => expect($component->instance()->lineCounts)->toBe(['errors' => 1, 'warnings' => 1]));
+});
