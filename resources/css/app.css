@@ -5,7 +5,7 @@
 
 @import "./utilities.css";
 /* icto-ui: Graphite Panels design layer (wins by specificity, see the file header). */
-@import "./graphite.css";
+@import "./pace.css";
 
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';

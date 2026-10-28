@@ -1,87 +1,97 @@
 ---
-name: Coolify (icto-ui "Graphite Panels")
-description: Upstream Coolify v4.5.0 as a dark-first graphite console of persistent panels; seams instead of shadows, colour only for state.
+name: Coolify (icto-ui "Pace")
+description: Upstream Coolify v4.5.0 in PaceUI's shadcn neutral system; an inset shell of soft 14px cards, ink keys, blue charts, colour only for state.
 colors:
-  graphite-ground: "#17181b"
-  graphite-panel: "#1d1f23"
-  graphite-sunk: "#1a1c1f"
-  graphite-raised: "#24262b"
-  graphite-selected: "#2b2e34"
-  graphite-log: "#141518"
-  graphite-fg: "#e8e9ec"
-  graphite-fg-dim: "#a3a7b0"
-  graphite-fg-faint: "#8e939c"
-  graphite-rule: "rgb(255 255 255 / 0.07)"
-  graphite-rule-strong: "rgb(255 255 255 / 0.12)"
-  graphite-hover: "rgb(255 255 255 / 0.04)"
-  graphite-active: "rgb(255 255 255 / 0.07)"
-  signal-blue-dark: "#61afef"
-  signal-blue-dark-hover: "#7dbdf2"
-  signal-blue-dark-ink: "#0f1420"
-  run-green-dark: "#7ec699"
-  build-yellow-dark: "#e6c07b"
-  fail-red-dark: "#e06c75"
-  paper-canvas: "#eeeeeb"
-  paper-panel: "#fafaf8"
-  paper-sunk: "#f3f3f0"
-  paper-log: "#f6f6f3"
-  paper-control-hover: "#eaeae6"
-  paper-control-press: "#dcdcd8"
-  ink: "#1b1d21"
-  ink-dim: "#4f535b"
-  ink-faint: "#6b7079"
-  paper-rule: "rgb(20 22 26 / 0.09)"
-  paper-rule-strong: "rgb(20 22 26 / 0.15)"
-  paper-hover: "rgb(20 22 26 / 0.04)"
-  paper-active: "rgb(20 22 26 / 0.07)"
-  signal-blue: "#2463c4"
-  signal-blue-hover: "#1f56ab"
-  signal-blue-ink: "#ffffff"
-  run-green: "#2e8a55"
-  build-yellow: "#9a6b00"
-  fail-red: "#c23b46"
+  ink-primary: "#171717"
+  ink-primary-hover: "#333333"
+  ink-primary-fg: "#fafafa"
+  ink-primary-dark: "#e5e5e5"
+  ink-primary-dark-hover: "#cfcfcf"
+  ink-primary-dark-fg: "#171717"
+  link-blue: "#155dfc"
+  link-blue-dark: "#54a2ff"
+  chart-blue-light: "#92c5ff"
+  chart-blue: "#3a81f6"
+  state-ok: "#00a544"
+  state-busy: "#dd7400"
+  state-bad: "#e40014"
+  state-ok-dark: "#05df72"
+  state-busy-dark: "#fcbb00"
+  state-bad-dark: "#ff6568"
+  canvas: "#fafafa"
+  page: "#ffffff"
+  card: "#ffffff"
+  muted: "#f5f5f5"
+  border: "#e5e5e5"
+  ring: "#a1a1a1"
+  fg: "#0a0a0a"
+  fg-muted: "#737373"
+  fg-faint: "#8a8a8a"
+  log-bg: "#fafafa"
+  canvas-dark: "#121212"
+  page-dark: "#0a0a0a"
+  card-dark: "#171717"
+  muted-dark: "#262626"
+  hover-dark: "#1f1f1f"
+  border-dark: "#282828"
+  input-dark: "#343434"
+  ring-dark: "#737373"
+  fg-dark: "#fafafa"
+  fg-muted-dark: "#a1a1a1"
+  log-bg-dark: "#0d0d0d"
 typography:
+  stat-value:
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "30px"
+    fontWeight: 600
+    lineHeight: "36px"
+    letterSpacing: "-0.02em"
+    fontFeature: "tnum"
   headline:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "22px"
     fontWeight: 600
     lineHeight: "28px"
-    letterSpacing: "-0.015em"
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "20px"
-    fontWeight: 700
-    lineHeight: "26px"
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+    lineHeight: "20px"
+    letterSpacing: "-0.01em"
+  title-sm:
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 600
     letterSpacing: "-0.01em"
   body:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "14px"
     fontWeight: 400
     lineHeight: "20px"
   ui:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "13px"
     fontWeight: 500
-  meta:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+  label:
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
-    fontWeight: 400
-  panel-label:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontWeight: 500
+  axis:
+    fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "11px"
-    fontWeight: 700
-    lineHeight: "16px"
-    letterSpacing: "0.06em"
-  nav-group:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "10.5px"
-    fontWeight: 600
-    letterSpacing: "0.06em"
+    fontWeight: 400
+    fontFeature: "tnum"
   log:
     fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "12px"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.65
+  mono-meta:
+    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1
   key-cap:
     fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "10.5px"
@@ -89,245 +99,269 @@ typography:
     lineHeight: 1
 rounded:
   key-cap: "4px"
-  chip: "5px"
-  control: "6px"
-  panel: "8px"
-  dialog: "10px"
-  lamp: "999px"
+  inner: "6px"
+  control: "8px"
+  card: "14px"
+  pill: "999px"
 spacing:
-  hairline: "1px"
   xs: "4px"
   sm: "8px"
   md: "12px"
   lg: "16px"
-  xl: "24px"
-  panel-header: "40px"
-  status-bar: "28px"
+  xl: "20px"
+  gutter: "8px"
+  card-header: "52px"
   top-bar: "48px"
-  resource-rail: "232px"
+  status-bar: "36px"
   sidebar: "224px"
   sidebar-rail: "64px"
+  resource-rail: "240px"
 components:
   button-primary:
-    backgroundColor: "{colors.signal-blue-dark}"
-    textColor: "{colors.signal-blue-dark-ink}"
+    backgroundColor: "{colors.ink-primary}"
+    textColor: "{colors.ink-primary-fg}"
     rounded: "{rounded.control}"
   button-primary-hover:
-    backgroundColor: "{colors.signal-blue-dark-hover}"
-  button-primary-light:
-    backgroundColor: "{colors.signal-blue}"
-    textColor: "{colors.signal-blue-ink}"
+    backgroundColor: "{colors.ink-primary-hover}"
+  button-primary-dark:
+    backgroundColor: "{colors.ink-primary-dark}"
+    textColor: "{colors.ink-primary-dark-fg}"
     rounded: "{rounded.control}"
-  button-primary-light-hover:
-    backgroundColor: "{colors.signal-blue-hover}"
-  button-secondary:
-    backgroundColor: "{colors.graphite-raised}"
-    textColor: "{colors.graphite-fg}"
+  button-primary-dark-hover:
+    backgroundColor: "{colors.ink-primary-dark-hover}"
+  button-outline:
+    backgroundColor: "{colors.page}"
+    textColor: "{colors.fg}"
     rounded: "{rounded.control}"
-  button-secondary-hover:
-    backgroundColor: "{colors.graphite-selected}"
-  button-secondary-light:
-    backgroundColor: "{colors.paper-panel}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-  button-secondary-light-hover:
-    backgroundColor: "{colors.paper-control-hover}"
+  button-outline-hover:
+    backgroundColor: "{colors.muted}"
   input:
-    backgroundColor: "{colors.graphite-raised}"
-    textColor: "{colors.graphite-fg}"
+    textColor: "{colors.fg}"
     rounded: "{rounded.control}"
-  input-light:
-    backgroundColor: "{colors.paper-panel}"
-    textColor: "{colors.ink}"
+  card:
+    backgroundColor: "{colors.card}"
+    rounded: "{rounded.card}"
+  card-dark:
+    backgroundColor: "{colors.card-dark}"
+    rounded: "{rounded.card}"
+  card-header:
+    typography: "{typography.title}"
+    height: "52px"
+    padding: "12px 12px 12px 20px"
+  stat-card:
+    backgroundColor: "{colors.card}"
+    rounded: "{rounded.card}"
+    padding: "18px 20px"
+  stat-value:
+    textColor: "{colors.fg}"
+    typography: "{typography.stat-value}"
+  status-badge:
+    textColor: "{colors.fg}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    height: "22px"
+    padding: "0 8px"
+  nav-item-active:
+    backgroundColor: "{colors.muted}"
+    textColor: "{colors.fg}"
     rounded: "{rounded.control}"
-  panel:
-    backgroundColor: "{colors.graphite-panel}"
-    rounded: "{rounded.panel}"
-  panel-header:
-    backgroundColor: "{colors.graphite-sunk}"
-    textColor: "{colors.graphite-fg-dim}"
-    typography: "{typography.panel-label}"
-    height: "40px"
-    padding: "8px 10px 8px 16px"
-  log-panel-body:
-    backgroundColor: "{colors.graphite-log}"
-    textColor: "{colors.graphite-fg}"
-    typography: "{typography.log}"
   resource-rail-item:
-    textColor: "{colors.graphite-fg}"
-    padding: "10px 16px"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.control}"
+    padding: "8px 10px"
   resource-rail-item-active:
-    backgroundColor: "{colors.graphite-panel}"
-  summary-chip:
-    textColor: "{colors.graphite-fg-dim}"
-    rounded: "{rounded.chip}"
-    padding: "1px 7px"
+    backgroundColor: "{colors.muted}"
+  log-panel-body:
+    backgroundColor: "{colors.log-bg}"
+    textColor: "{colors.fg}"
+    typography: "{typography.log}"
   topbar-search:
-    backgroundColor: "{colors.graphite-panel}"
-    textColor: "{colors.graphite-fg-faint}"
+    textColor: "{colors.fg-muted}"
     rounded: "{rounded.control}"
     width: "240px"
     height: "30px"
   status-bar:
-    backgroundColor: "{colors.graphite-ground}"
-    textColor: "{colors.graphite-fg-dim}"
-    typography: "{typography.meta}"
-    height: "28px"
-    padding: "0 16px"
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.fg-muted}"
+    typography: "{typography.label}"
+    height: "36px"
+    padding: "6px 20px 0"
 ---
 
-# Design System: Coolify (icto-ui "Graphite Panels")
+# Design System: Coolify (icto-ui "Pace")
 
-> **Fork note.** This is the `icto-ui` fork of upstream Coolify v4.5.0. The design is a layer, `resources/css/graphite.css`, imported by `resources/css/app.css` and winning over upstream by specificity: tokens on `html:root` (light) and `html.dark` (dark, the native world); component rules nested under `html:not(#icto-ui)`; an `@layer utilities` block only where upstream uses layered `!important` utilities. Templates edited by the fork: `layouts/app.blade.php`, `layouts/base.blade.php`, `components/navbar.blade.php`, `components/section-heading.blade.php`, `components/status-badge.blade.php`, `livewire/dashboard/active-deployments.blade.php`, `livewire/project/application/configuration.blade.php`, `livewire/project/application/general.blade.php`, `livewire/project/resource/index.blade.php`; new: `components/status-bar.blade.php`, `components/resource-rail.blade.php`, `livewire/project/application/log-panel.blade.php` (+ `app/Livewire/Project/Application/LogPanel.php`). Fonts are self-hosted woff2 in `resources/fonts` (OFL files alongside). **Prefer changes in `graphite.css` and the listed components**; edit other upstream templates only when structure must change. On an upstream merge conflict in this file, the fork's version wins.
+> **Fork note.** This is the `icto-ui` fork of upstream Coolify v4.5.0. The design is one layer, `resources/css/pace.css`, imported near the top of `resources/css/app.css` and winning over upstream by specificity: tokens on `html:root` (light) and `html.dark` (dark); component rules nested under `html:not(#icto-ui)`; `@layer utilities` blocks only where upstream uses layered `!important` utilities. Fork-owned templates include `layouts/app.blade.php`, `components/status-bar.blade.php`, `components/resource-rail.blade.php`, `livewire/project/application/log-panel.blade.php`, `livewire/dashboard/overview.blade.php` and `livewire/dashboard/active-deployments.blade.php`. Fonts are self-hosted variable woff2 in `resources/fonts` (DM Sans and JetBrains Mono, OFL files alongside). **Prefer changes in `pace.css` and the fork-owned components**; on an upstream merge conflict in this file, the fork's version wins.
 
 ## Overview
 
-**Creative North Star: "The Graphite Console"**
+**Creative North Star: "The Pace Workbench"**
 
-Coolify reads as a working surface of persistent panels on a graphite ground. The layout stays put; navigation changes what the panels hold. On wide screens an application is a tiled workspace edge to edge between the top bar and the status bar: the environment's resources on the left, the selected application in the centre, and its deployment log docked on the right, following the live build. Density is upstream's: 13 to 14px interface type, 40px panel headers, 8px rows of rhythm.
+Coolify reads as PaceUI's take on shadcn's neutral system: a quiet grey canvas holding one rounded page panel, and inside it white (or near-black) cards with a 1px border and a soft shadow. From `lg` the shell is inset: the sidebar, brand and status bar sit directly on the canvas, and the top bar's working half plus the page form a single 14px-cornered panel beside them. Everything a user acts on lives in a card with a header row; nothing is boxed twice.
 
-Depth is structural, not atmospheric. Panels sit one tonal step above the ground and are divided by 1px seams; nothing floats, nothing glows, nothing lifts on hover. Colour is reserved for state, in an editor-syntax palette: green running, yellow building, red failed, blue for links, focus, checked controls and the one primary key. Dark is the native theme; light is the same structure translated onto paper-grey.
+Colour is restrained. Keys are ink, not blue: the primary is near-black on light and near-white on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion.
 
 **Key Characteristics:**
-- Dark-first graphite ground with panels one step up, divided by 1px seams.
-- Every top-level section is a panel with a 40px header bar carrying its small uppercase title and its actions.
-- Persistent deployment log panel docked beside the application (the signature).
-- Colour carries state only; one blue primary key per view.
-- Manrope for the interface, JetBrains Mono for anything a machine wrote.
+- Inset shell: sidebar on the canvas, the page in one rounded panel with an 8px gutter.
+- Every section is a 14px card with a 1px border, a soft shadow and a header row; inner boxes lose their frames.
+- Ink primary key; outline secondary keys; blue only for charts, links and log commands.
+- DM Sans for the interface, JetBrains Mono for logs, times, SHAs, versions, counts and key caps.
+- Spring motion (rise, press, lift, grow) with reduced-motion handling.
 
 ## Colors
 
-A near-neutral graphite (or paper-grey) structure with an editor-syntax signal set used only where something is live or actionable.
+shadcn's neutral ramp with a single blue chart family and three state colours; dark mode re-points the same roles.
 
 ### Primary
-- **Signal Blue** (dark `signal-blue-dark`, light `signal-blue`): the one primary key (Deploy split action, the highlighted button), links, focus rings, checked checkboxes and toggles, the selected segment of a view toggle, the active resource's 2px inset edge, and command lines in the log. Ink on the dark key is near-black `signal-blue-dark-ink`; on the light key, white.
+- **Ink Key** (`ink-primary` on light, `ink-primary-dark` on dark): the filled key (Deploy split action, highlighted buttons), checked checkboxes, selected controls, the collapse tooltip. Hover steps to `ink-primary-hover` / `ink-primary-dark-hover`; text on it is `ink-primary-fg` / `ink-primary-dark-fg`.
 
-### Secondary (state)
-- **Run Green** (`run-green-dark` / `run-green`): running, healthy, finished, server online.
-- **Build Yellow** (`build-yellow-dark` / `build-yellow`): queued, building, starting, restarting, degraded, unhealthy; warning lines in the log.
-- **Fail Red** (`fail-red-dark` / `fail-red`): exited, failed, unreachable; stderr lines; the destructive focus ring.
+### Secondary
+- **Chart Blue** (`chart-blue`, with `chart-blue-light` for the secondary series): finished deployments in the activity chart, the deployments sparkline (2px stroke over a 40%-to-0 gradient fill), and the text selection wash at 24%.
+- **Link Blue** (`link-blue` / `link-blue-dark`): links in fact rows, helper text, and `$` command lines in the log.
+
+### Tertiary (state)
+- **OK Green** (`state-ok` / `state-ok-dark`): running, finished, server online, positive deltas.
+- **Busy Amber** (`state-busy` / `state-busy-dark`): queued, building, starting, degraded, unhealthy; warning and hidden log lines.
+- **Bad Red** (`state-bad` / `state-bad-dark`): exited, failed, unreachable, negative deltas; stderr lines; the failed chart series; the destructive focus ring.
 
 ### Neutral
-- **Graphite Ground** (`graphite-ground`): page canvas, sidebar, top bar, status bar, resource column. One flat canvas behind all chrome.
-- **Graphite Panel** (`graphite-panel`): panel bodies, the summary strip, the active rail item, the search field.
-- **Graphite Sunk** (`graphite-sunk`): panel header bars; read-only inputs.
-- **Graphite Raised / Selected** (`graphite-raised`, `graphite-selected`): secondary buttons, inputs, view toggles at rest / on hover.
-- **Graphite Log** (`graphite-log`): the log body, one step below the ground.
-- **Graphite Text** (`graphite-fg`, `graphite-fg-dim`, `graphite-fg-faint`): headings and values; body copy (dark body text is the dim step); timestamps, meta, placeholders.
-- **Seams** (`graphite-rule`, `graphite-rule-strong`): panel borders and dividers; control borders and overlay edges.
-- **Washes** (`graphite-hover`, `graphite-active`): row and menu hover; active nav item, active tab, active log filter.
-- Light equivalents: `paper-canvas`, `paper-panel`, `paper-sunk`, `paper-log`, `ink`, `ink-dim`, `ink-faint`, `paper-rule`, `paper-rule-strong`, `paper-hover`, `paper-active`.
+- **Canvas** (`canvas` / `canvas-dark`): behind the shell from `lg`: sidebar, brand cell, top bar strip, status bar.
+- **Page** (`page` / `page-dark`): the inset page panel, the top bar's working half, outline keys on light, the selected segment of toggles.
+- **Card** (`card` / `card-dark`): every card, popover, toast, chart tooltip and docked column.
+- **Muted** (`muted` / `muted-dark`): hover and active fills (nav items, rail items, menu rows), segmented-control tracks, chips, read-only inputs, empty meter segments. Debug log lines sit on `hover-dark` in dark mode.
+- **Border** (`border` / `border-dark`): every card edge, header seam and divider. Dark inputs and outline keys use `input-dark` for the edge and a 30% wash of it as fill.
+- **Ring** (`ring` / `ring-dark`): focus outlines at 50% strength.
+- **Text** (`fg`, `fg-muted`, `fg-faint`; dark `fg-dark`, `fg-muted-dark`): titles and values; descriptions, meta and axis labels; log timestamps. In dark mode body copy defaults to the muted step and titles to full foreground.
+- **Log** (`log-bg` / `log-bg-dark`): the log body and its pinned time column.
 
 ### Named Rules
-**The State-Only Colour Rule.** Green, yellow and red appear only to report the live state of a resource, deployment, server or log line. They never decorate, never fill a control, never mark a category.
+**The Ink Key Rule.** The filled key is ink, never blue. Blue is for data and links; a blue button is off-system.
 
-**The One Key Rule.** A view has one filled blue key. Everything else is a neutral key on the raised step. The Coolify logo is rendered greyscale so brand purple never competes with it.
+**The State-Only Colour Rule.** Green, amber and red appear only to report live state (lamps, badges, rail and feed dots, meters, deltas, log lines, the failed chart series). They never fill a control or mark a category.
 
 ## Typography
 
-**Display Font:** none; the system has no display role.
-**Body Font:** Manrope (with ui-sans-serif, system-ui)
-**Label/Mono Font:** JetBrains Mono (with ui-monospace, SFMono-Regular, Menlo)
+**Display Font:** none; the largest role is the 30px stat figure.
+**Body Font:** DM Sans (with ui-sans-serif, system-ui), variable 100 to 1000, stylistic set `ss01` off.
+**Label/Mono Font:** JetBrains Mono (with ui-monospace, SFMono-Regular, Menlo).
 
-**Character:** A compact, slightly geometric grotesque for the interface against a programmer's mono for logs, SHAs, UUIDs and versions; the pairing reads as a developer console without costume.
+**Character:** A soft, open geometric grotesque in mid weights against a programmer's mono; it reads like a modern product dashboard that still prints its logs honestly.
 
 ### Hierarchy
-- **Headline** (600, 22px/28px, -0.015em): page `h1`.
-- **Title** (700, 20px/26px, -0.01em): the resource name in the workspace summary strip.
-- **Body** (400, 14px/20px): default copy and form text. Manrope gets `word-spacing: 0.1em` on body; mono contexts reset it to normal.
-- **UI** (500 to 600, 13px): nav items, rail names (600), status badges.
-- **Meta** (400 to 600, 12px): table headers, facts, filters, status bar, log meta.
-- **Panel label** (700, 11px/16px, 0.06em, uppercase, dim): the title in every panel header bar, the log panel title, the Resources column title.
-- **Nav group** (600, 10.5px, 0.06em, uppercase, faint): sidebar group names.
-- **Log** (JetBrains Mono 400, 12px/1.6): log lines; timestamps faint and tabular.
-- **Key cap** (JetBrains Mono 500, 10.5px): `kbd` hints (Ctrl B, Ctrl K).
+- **Stat value** (600, 30px/36px, -0.02em, tabular): dashboard stat figures; units in `small` at 15px 500 muted.
+- **Headline** (600, 22px/28px, -0.02em): page `h1` and the resource name in the summary card.
+- **Title** (600, 15px/20px, -0.01em): card header titles (sections, settings sections, chart and console cards).
+- **Title small** (600, 14px, -0.01em): the log panel and Resources column titles. Stat card heads use 14px at 500.
+- **Body** (400, 14px/20px): default copy and form text.
+- **UI** (500, 13px): card descriptions (400, muted), actions, rail names (13.5px 500), feed rows, rail footer.
+- **Label** (500, 12px): badges, table headers, sidebar group names (60% foreground, sentence case), status bar, rail status, stat notes.
+- **Axis** (400, 11px, tabular): chart axes.
+- **Log** (JetBrains Mono 400, 12px/1.65): log lines; command lines at 600.
+- **Mono meta** (JetBrains Mono 400, 12px/1): feed times and meta, short SHAs, UUIDs, the version.
+- **Key cap** (JetBrains Mono 500, 10.5px/1): `kbd` hints (Ctrl B, Ctrl K) and filter counts.
 
 ### Named Rules
-**The Machine-Text Rule.** Anything a machine wrote (log lines, commit SHAs, UUIDs, repo paths, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.
+**The Machine-Text Rule.** Anything a machine wrote (log lines, SHAs, UUIDs, times in the feed, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.
 
-**The Tabular Rule.** Tables, times, counts and the status bar use tabular numerals.
+**The Sentence-Case Rule.** Titles, group names and badges are sentence case with no tracking; uppercase labels are off-system.
 
 ## Layout
 
-The shell is fixed chrome around a content area: a 48px top bar (brand cell tracks the sidebar width, then breadcrumbs, page toolbar slot, a 240px search field with Cmd/Ctrl+K hint, resource actions), a sidebar of 224px that collapses to a 64px rail (toggle beside the wordmark, Cmd/Ctrl+B, remembered), and from `lg` (1024px) a 28px status bar fixed along the bottom with up to four servers, their state and proxy, and the version at the right.
+Below `lg` (1024px) upstream's stacked layout stays, with a sticky mobile bar. From `lg` the shell is inset: a 48px top bar whose brand cell tracks the sidebar (224px, collapsing to a 64px rail with Cmd/Ctrl+B, remembered); the page panel is drawn by a fixed pseudo-element behind the content (top and right inset by the 8px gutter, bottom resting on the 36px status bar, left on the sidebar edge), so the document still scrolls normally. The top bar's working half is the panel's head (14px top corners, bottom seam on scroll). The status bar sits on the canvas below the panel: up to four servers as dot, name, state and proxy, then the version at the right.
 
-From `xl` (1280px) an application page becomes a tiled workspace with no outer padding: a 232px resources column, the centre pane, and, when the log is open, a log column of `minmax(340px, 34%)`. Rail and log columns are sticky and fill the height between top bar and status bar; columns meet at 1px seams. In the centre pane, panels stack edge to edge, separated by their bottom seam, with 24px side insets. Below 1280px the log opens as an overlay docked to the right edge (`min(440px, 90vw)`, Escape closes) and a vertical "Log" tab on the right edge reopens it. Open/closed state is remembered on wide screens.
+Inside the panel, content uses upstream's page grid; card stacks and grids gap at 16px. The dashboard opens with a stat row (`auto-fit, minmax(220px, 1fr)`), then the deployment activity chart, then the console and lists.
 
-Elsewhere content is panels in upstream's page grid. Rhythm: 4, 8, 12, 16, 24px; panel headers 40px tall; rows 10px by 16px; card grids inside a panel get 12px padding.
+From `xl` (1280px) an application page is three cards across the panel with 16px gaps and 16px insets: a 240px Resources column, the centre stack (summary card, then settings cards), and, when open, the log column at `minmax(340px, 34%)`. Side columns are sticky and fill the height between top bar and status bar. Below `xl` the log opens as a right-edge sheet (`min(440px, 90vw)`) with a vertical "Log" tab to reopen it.
 
-**The Panels Stay Put Rule.** Navigation changes what the panels contain, never where they are. The log panel stays docked while the operator edits configuration in the centre.
+Rhythm: 4, 8, 12, 16, 20px. Card headers are 52px minimum with 20px left padding; card bodies pad 16 to 20px.
+
+**The One Panel Rule.** From `lg` the page is a single rounded panel on the canvas; chrome (sidebar, brand, status bar) never sits inside it and cards never sit outside it.
 
 ## Elevation & Depth
 
-Flat by construction. Depth is one tonal step (ground, panel, raised, selected; the log one step below ground) plus 1px seams. Tailwind's shadow utilities are re-pointed to a hairline ring, buttons have no raised edge and no hover lift, and the top bar has no blur.
+Soft and shallow. Cards and docked columns carry a small two-layer shadow over a 1px border; overlays carry a 1px border ring plus a larger diffuse shadow; buttons and inputs carry a hairline 1px shadow. Shadows deepen in dark mode only for overlays. Tailwind's `shadow-xs/sm` utilities are re-pointed to the card shadow and `shadow-md` and above to the overlay shadow; the top bar has no blur.
 
 ### Shadow Vocabulary
-- **Hairline ring** (`box-shadow: 0 0 0 1px var(--gp-rule-strong)`): popovers, menus, the command palette, toasts, tooltips, dialogs; the only "shadow" in the system.
-- **Inset edge** (`box-shadow: inset 0 0 0 1px var(--gp-rule-strong)`): the search field and outlined badges.
-- **Active edge** (`box-shadow: inset 2px 0 0 var(--gp-primary)`): the selected resource in the Resources column.
-- **Focus ring** (`outline: 2px solid var(--gp-focus); outline-offset: 2px`; inputs instead shift their border to blue plus `0 0 0 1px` blue).
+- **Control** (`box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05)`): buttons, inputs.
+- **Card** (`box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)`): cards, the page panel, the selected segment in segmented controls, active tabs.
+- **Overlay** (`box-shadow: 0 0 0 1px <border>, 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 8px 24px -6px rgb(0 0 0 / 0.14)`; dark `0 1px 3px 0 rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6)`): popovers, menus, toasts, the command palette, chart tooltips, the log sheet, grid cards on hover.
+- **Focus** (`outline: 3px solid <ring at 50%>; outline-offset: 1px`; inputs: ring-coloured border plus `0 0 0 3px` ring at 50%; destructive keys: red at 40%).
+- **Lamp halo** (`box-shadow: 0 0 0 3px <state at 18%>`): status lamps and status bar dots.
 
 ### Named Rules
-**The Seam Rule.** Panels are separated by 1px seams and one tonal step, never by drop shadows. If something needs to stand above the page, it gets the hairline ring.
+**The Soft Lift Rule.** Depth is a border plus a soft shadow, never a hard offset or a glow. Only grid cards lift on hover (2px up, overlay shadow); everything else stays put.
 
 ## Shapes
 
-Small, consistent radii: key caps 4px, chips and log filters 5px, buttons, inputs, search and menu items 6px, panels 8px, dialogs 10px, status lamps round. Inside the tiled workspace the radius goes to zero: the workspace is a grid of seams, not rounded cards. A box never sits inside another box: nested section bodies and rows inside a panel lose their frames and become hairline-divided groups.
+Rounded and consistent: cards, the page panel, toasts and docked columns 14px; buttons, inputs, menu items, rail items, segmented tracks and tooltips 8px; segments, log line highlights, the collapse tooltip and chart bar tops 6px; key caps 4px; badges, chips, counts and meter segments are pills. A box never sits inside another box: section bodies, nested groups and boxes inside a card lose their frames and become seam-divided rows. The stat card's inner well (8px, 1px border, 20% muted wash) is the one sanctioned inset.
 
 ## Components
 
 ### Buttons
-- **Shape:** gently squared (6px), 1px `rule-strong` border, sentence case.
-- **Primary:** Signal Blue fill and border, dark ink on dark / white on light; hover steps to the hover blue. The Deploy split action uses the same key, its caret divided by a 22% ink seam.
-- **Secondary:** raised graphite (dark) or paper panel (light), text in full foreground, icons at 80% opacity; hover to the selected step / control-hover, press to control-press.
-- **Hover / Focus:** no transform, no shadow. Focus is a 2px blue outline offset 2px; destructive buttons take a red ring.
+- **Shape:** 8px, 1px border, sentence case, 500 weight, control shadow.
+- **Primary:** ink fill and border, light text; hover steps to the hover ink. The Deploy split action uses the same key, its caret divided by a 20% foreground seam.
+- **Outline (default):** page fill with border on light, hover to muted; on dark a 30% wash of the input edge, 50% on hover, icons at 85%.
+- **Press / Focus:** keys scale to 0.97 on press (spring, 120ms); no hover lift. Focus is the 3px ring at 50%, offset 1px; destructive keys take a red ring.
 
 ### Status
-- **Status lamp:** 8px round lamp lit in the state colour with a 1px inset rim; stopped or unknown is an empty housing (1.5px ring). In-progress states pulse at 1.6s (disabled under reduced motion). The badge around it is bare text at 13px, no pill.
-- **Dots:** rail and log status use a 6 to 7px dot in `currentColor` beside a 12px 600 label tinted in the state colour.
+- **Badge:** 22px pill, 1px border, transparent, 12px 500 text, an 8px lamp inside.
+- **Lamp:** 8px dot in the state colour with an 18% halo; stopped or unknown is an empty 1.5px ring. In-progress states pulse at 1.6s.
+- **Dots:** rail, log and feed status use a 6 to 8px dot beside 12px 500 text tinted in the state colour.
 
-### Cards / Containers (Panels)
-- **Corner Style:** 8px; 0 inside the tiled workspace.
-- **Background:** panel step; header bar on the sunk step.
-- **Shadow Strategy:** none; see Elevation.
-- **Border:** 1px `rule`; header separated by a 1px bottom seam.
-- **Header:** 40px min height, title as Panel label on the left, actions on the right, padding 8px 10px 8px 16px (24px left in the workspace).
-- Applies to settings sections, `section-heading` sections (dashboard, shared variables) and the environment resource list (toolbar as header bar, table or card grid as body, pagination behind a top seam).
+### Cards / Containers
+- **Corner Style:** 14px.
+- **Background:** card step.
+- **Shadow Strategy:** card shadow; see Elevation.
+- **Border:** 1px border; the header row is divided by a 1px bottom seam.
+- **Header:** 52px minimum, title on the left, description below it in 13px muted, actions on the right.
+- Applies to settings sections, `section-heading` sections, the environment resource list (toolbar as header, pagination behind a top seam), empty states and dialogs (no shadow).
 
 ### Inputs / Fields
-- **Style:** 6px, 1px `rule-strong` border, raised graphite (dark) or paper panel (light).
-- **Focus:** border turns blue plus a 1px blue ring.
-- **Read-only:** sunk step, dim text.
+- **Style:** 8px, 1px input edge, transparent fill (dark: 30% wash of the input edge), control shadow.
+- **Focus:** border takes the ring colour plus a 3px ring at 50%.
+- **Read-only:** muted fill, muted text.
 
-### Chips
-- **Summary chip:** 12px 600 dim text, 1px `rule-strong` outline, 5px radius (build pack in the summary strip). Beta / "Try it" badges are the same outline, never a fill.
+### Segmented controls
+- View toggles, tabs and log filters: a muted track (8px), segments 6px; the selected segment is page-filled with the card shadow. Counts inside segments are mono pills on a 7% foreground wash.
 
 ### Navigation
-- **Sidebar:** flat ground, 1px right seam. Items 32px tall, 13px 500, 6px radius; hover is the 4% wash, active the 7% wash at 600 weight in full foreground; no accent rail. Group names as Nav group type. Chevrons and badges stay muted.
-- **Collapse toggle:** beside the wordmark, 28px, with a Cmd/Ctrl+B key cap; on the collapsed rail it replaces the logo on hover; tooltip after 400ms.
-- **Top bar:** flat ground, bottom seam on scroll, search field 240px by 30px with inset edge and key cap.
-- **Status bar:** 28px, ground, top seam, 12px dim text, servers as 7px dot + name + state, 1px separators.
-- **Resources column:** 40px header (Panel label + mono count), items as name (13px 600) / state dot and label / build type (12px faint), bottom seams, hover wash, active item on the panel step with the 2px blue inset edge; footer link to the full environment.
+- **Sidebar:** on the canvas, no edge. Items 8px, hover and active on the muted fill, active at 500 in full foreground; press scales to 0.98. Group names 12px 500 at 60% foreground. The search field is page-filled with an inset border.
+- **Collapse toggle:** beside the wordmark, 28px, with a key cap; tooltip is an ink chip that springs in after 400ms.
+- **Top bar:** canvas strip; its working half is the page panel's head with a 240px by 30px search field (muted wash, inset border, key cap).
+- **Status bar:** 36px on the canvas, 12px muted text, tabular, 7px dots with halo, 1px separators.
+
+### Dashboard stat card
+Card at 18px by 20px padding: a 14px 500 head with an 18px muted icon, then an inner well holding the stat value and a 12px note (deltas in green or red at 500) beside a visual: the blue sparkline, or a pill meter of 8px segments in state colours.
+
+### Deployment activity chart
+Card with a 15px title, 13px description and a legend of 10px swatches. Stacked bars up to 28px wide on a 180px plot with four 1px border grid bands; finished in chart blue, failed in red, other in light blue; tops rounded 6px. Bars grow from the axis with a 25ms per-day stagger. Hovering a day washes its column at 6% and shows a tooltip card with overlay shadow.
+
+### Deployment console (live feed)
+Card with a terminal icon, title and a mono count. Rows are a grid of mono time, 8px state dot (busy pulses), application name at 500 with its environment muted, and mono status and duration; rows are 8px, hover to muted, and slide in from the left.
+
+### Resources column and summary card
+- **Resources column:** a sticky 240px card; 48px header (14px title, mono count pill), rows of name, state dot and label, build type in 12px muted; hover muted; active row muted with a 1px inset border; footer link behind a top seam.
+- **Summary card:** top of the centre stack, 20px by 24px padding: resource name as Headline, status, a pill chip for the build pack, then a facts row (13px, muted terms, values in foreground, links blue).
 
 ### Deployment Log Panel (signature)
-The latest deployment's log, docked beside the application and following it live (polls every 2s while live, 20s otherwise). Structure, top to bottom, each band divided by a seam: header (Panel label title, state dot and label, "Full log" and hide actions), meta row (mono short SHA, commit message, relative time), filter row (All / Warnings / Errors as 24px segments with mono counts, active segment on the active wash with a hairline ring; Follow checkbox), body, footer (line count, "following", SHA). The body is JetBrains Mono 12px/1.6 on the log step; lines never wrap, the body scrolls sideways while the 5.4rem timestamp column stays pinned; command lines are blue 600 with a `$` prefix, stderr red, warnings and hidden lines yellow. Follow turns off when the operator scrolls up and back on at the bottom.
+The latest deployment's log as a card docked beside the application. Bands top to bottom: 48px header (title, outline status pill tinted by state, "Full log" and hide actions), meta row (mono SHA, commit message, relative time), segmented filter row (All / Warnings / Errors with mono counts; Follow checkbox), body, footer (line count and SHA). The body is JetBrains Mono 12px/1.65 on the log step behind a top seam; lines never wrap, the body scrolls sideways while the 5.4rem time column stays pinned; command lines are link blue at 600 with a `$` prefix, stderr red, warnings and hidden lines amber; hovered lines take the muted fill.
 
-### Summary Strip
-Top of the workspace centre: resource name (Title), status, build-pack chip, then a facts row (Domain, Source, Server, UUID) at 12.5px with faint terms and mono values; on the panel step with a bottom seam.
+### Motion
+Spring easing `cubic-bezier(0.22, 1.25, 0.36, 1)`. Cards rise in (420ms, 8px up from 99.5% scale, staggered 40ms to a 160ms cap); the log card follows 80ms behind the rail. Colour transitions run 150ms; the sidebar collapses in 200ms. Under `prefers-reduced-motion` animations stop and transitions drop to 0s inside the page, and the lamp pulse, docks and log sheet stop animating.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put new tokens and component rules in `graphite.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.
-- **Do** make every new top-level section a panel: 8px, 1px seam, 40px header bar on the sunk step with an 11px uppercase panel title and right-aligned actions.
-- **Do** use JetBrains Mono for logs, SHAs, UUIDs, versions, counts and key caps, with tabular numerals.
-- **Do** keep one blue primary key per view; everything else is a neutral key.
-- **Do** design dark first and translate to light through the same `--gp-*` tokens.
-- **Do** respect reduced motion for every pulse.
+- **Do** put new tokens and component rules in `pace.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.
+- **Do** make every new section a card: 14px, 1px border, card shadow, 52px header row with a 15px 600 title.
+- **Do** keep the filled key ink; outline keys for everything else.
+- **Do** use the chart blues for data series and keep green, amber and red for state.
+- **Do** use JetBrains Mono for logs, SHAs, UUIDs, times, versions, counts and key caps, with tabular numerals.
+- **Do** give new entrances the spring and the rise, and cover every animation with the reduced-motion rule.
 
 ### Don't:
-- **Don't** use drop shadows, blur, glow or hover lift; overlays get the 1px hairline ring.
-- **Don't** use green, yellow or red for anything but live state, and don't fill controls with them.
-- **Don't** put a box inside a box; inner sections and rows become seam-divided groups.
-- **Don't** bring back brand purple or the stacked-card admin look; the logo stays greyscale.
-- **Don't** move docked panels on navigation or let the log panel cover the centre on wide screens.
+- **Don't** fill a button blue or with a state colour.
+- **Don't** put a box inside a box; inner groups become seam-divided rows.
+- **Don't** use hard offset shadows, glows or blur; depth is border plus soft shadow.
+- **Don't** set labels in uppercase with tracking; titles and group names are sentence case.
+- **Don't** place chrome inside the page panel or cards outside it from `lg`.
+- **Don't** bring back brand purple; the logo stays greyscale.

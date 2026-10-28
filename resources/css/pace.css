@@ -1,0 +1,2000 @@
+/*
+* Pace: the icto-ui design layer, after PaceUI (paceui.com).
+*
+* shadcn's neutral system as PaceUI ships it: a near-black / near-white
+* primary, grey surfaces, 1px borders and soft shadows on 14px cards, and an
+* inset shell where the sidebar sits on the canvas and the page is one rounded
+* panel beside it. DM Sans for the interface, JetBrains Mono for logs, commits
+* and figures. Blue is the chart ramp and links; green, amber and red carry
+* state only. Motion is short and springy: cards rise in, keys press in.
+*
+* app.css imports this file near the top (CSS allows @import only there), so
+* upstream rules come later. Every rule here therefore wins by specificity:
+* tokens live on `html:root` / `html.dark`, which beat upstream `:root` /
+* `.dark` and Tailwind's theme layer, and component rules are nested under
+* `html:not(#icto-ui)`, one ID above the upstream selector they replace.
+*/
+
+@font-face {
+    font-display: swap;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    src: url('../fonts/dm-sans-variable-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    src: url('../fonts/dm-sans-variable-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 100 800;
+    src: url('../fonts/jetbrains-mono-variable-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 100 800;
+    src: url('../fonts/jetbrains-mono-variable-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---- Tokens --------------------------------------------------------------- */
+
+html:root {
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-geist-sans: var(--font-sans);
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --font-logs: var(--font-mono);
+
+    /* Tailwind's neutral ramp, as shadcn uses it. */
+    --color-white: #ffffff;
+    --color-black: #0a0a0a;
+    --color-neutral-50: #fafafa;
+    --color-neutral-100: #f5f5f5;
+    --color-neutral-200: #e5e5e5;
+    --color-neutral-300: #d4d4d4;
+    --color-neutral-400: #a1a1a1;
+    --color-neutral-500: #737373;
+    --color-neutral-600: #525252;
+    --color-neutral-700: #404040;
+    --color-neutral-800: #262626;
+    --color-neutral-900: #171717;
+    --color-neutral-950: #0a0a0a;
+
+    /* Steps used by upstream dark utilities. */
+    --color-coolgray-100: #171717;
+    --color-coolgray-200: #1c1c1c;
+    --color-coolgray-300: #262626;
+    --color-coolgray-400: #2e2e2e;
+    --color-coolgray-500: #404040;
+    --color-base: #0a0a0a;
+
+    /* Blue: links, focus marks in charts. Keys are neutral. */
+    --color-coollabs-50: #eff6ff;
+    --color-coollabs: #155dfc;
+    --color-coollabs-100: #3080ff;
+    --color-coollabs-200: #1447e6;
+    --color-coollabs-300: #193cb8;
+    --color-brand: #155dfc;
+    --color-brand-hover: #1447e6;
+    --color-brand-press: #193cb8;
+    --color-brand-depth: #1c398e;
+    --color-brand-light: #54a2ff;
+    --color-accent: #171717;
+    --color-accent-foreground: #fafafa;
+
+    /* State. */
+    --color-success: #00a544;
+    --color-warning: #dd7400;
+    --color-error: #e40014;
+
+    --radius: 0.625rem;
+    --pace-radius-card: calc(var(--radius) + 4px);
+    --pace-radius-control: calc(var(--radius) - 2px);
+
+    --pace-canvas: #fafafa;
+    --pace-bg: #ffffff;
+    --pace-card: #ffffff;
+    --pace-muted: #f5f5f5;
+    --pace-accent: #f5f5f5;
+    --pace-border: #e5e5e5;
+    --pace-input: #e5e5e5;
+    --pace-ring: #a1a1a1;
+    --pace-fg: #0a0a0a;
+    --pace-fg-muted: #737373;
+    --pace-fg-faint: #8a8a8a;
+    --pace-primary: #171717;
+    --pace-primary-hover: #333333;
+    --pace-primary-fg: #fafafa;
+    --pace-link: #155dfc;
+    --pace-hover: #f5f5f5;
+    --pace-ok: #00a544;
+    --pace-busy: #dd7400;
+    --pace-bad: #e40014;
+    --pace-log-bg: #fafafa;
+    --pace-chart-1: #92c5ff;
+    --pace-chart-2: #3a81f6;
+    --pace-chart-3: #2563ef;
+    --pace-chart-4: #1a4eda;
+    --pace-chart-5: #1f3fad;
+    --pace-shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    --pace-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --pace-shadow-lg: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 8px 24px -6px rgb(0 0 0 / 0.14);
+    --pace-status-h: 36px;
+    --pace-gutter: 8px;
+    --pace-spring: cubic-bezier(0.22, 1.25, 0.36, 1);
+
+    --coollabs-canvas: var(--pace-bg);
+    --coollabs-elevated: var(--pace-card);
+    --coollabs-recessed: var(--pace-muted);
+    --coollabs-base: var(--pace-card);
+    --coollabs-fill: var(--pace-muted);
+    --coollabs-line: var(--pace-border);
+    --coollabs-hairline: var(--pace-border);
+    --coollabs-subtle: var(--pace-fg-muted);
+
+    --color-nav-text: #404040;
+    --color-nav-muted: var(--pace-fg-muted);
+    --color-nav-active: var(--pace-fg);
+
+    --shadow-dropdown: var(--pace-shadow-lg);
+    --shadow-modal: var(--pace-shadow-lg);
+
+    --chart-spark-bandwidth: var(--pace-chart-2);
+}
+
+html.dark {
+    --color-accent: #e5e5e5;
+    --color-accent-foreground: #171717;
+    --color-app: #0a0a0a;
+    --color-panel: #0a0a0a;
+    --color-card: #171717;
+    --color-sidebar: #121212;
+    --color-surface: #171717;
+    --color-raised: #1f1f1f;
+    --color-selected: #262626;
+    --color-log: #0d0d0d;
+    --color-fg: #fafafa;
+    --color-fg-dim: #a1a1a1;
+    --color-fg-faint: #8a8a8a;
+    --color-hairline: #282828;
+    --color-success: #05df72;
+    --color-warning: #fcbb00;
+    --color-error: #ff6568;
+    --color-coollabs: #54a2ff;
+    --color-coollabs-100: #7cb8ff;
+    --color-brand: #54a2ff;
+    --color-brand-light: #8ec5ff;
+
+    --pace-canvas: #121212;
+    --pace-bg: #0a0a0a;
+    --pace-card: #171717;
+    --pace-muted: #262626;
+    --pace-accent: #262626;
+    --pace-border: #282828;
+    --pace-input: #343434;
+    --pace-ring: #737373;
+    --pace-fg: #fafafa;
+    --pace-fg-muted: #a1a1a1;
+    --pace-fg-faint: #8a8a8a;
+    --pace-primary: #e5e5e5;
+    --pace-primary-hover: #cfcfcf;
+    --pace-primary-fg: #171717;
+    --pace-link: #54a2ff;
+    --pace-hover: #1f1f1f;
+    --pace-ok: #05df72;
+    --pace-busy: #fcbb00;
+    --pace-bad: #ff6568;
+    --pace-log-bg: #0d0d0d;
+    --pace-shadow-lg: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+
+    --coollabs-canvas: var(--pace-bg);
+    --coollabs-elevated: var(--pace-card);
+    --coollabs-recessed: var(--color-raised);
+    --coollabs-base: var(--pace-card);
+    --coollabs-fill: var(--pace-muted);
+    --coollabs-line: var(--pace-border);
+    --coollabs-hairline: var(--pace-border);
+    --coollabs-subtle: var(--pace-fg-muted);
+
+    --color-nav-text: #d4d4d4;
+    --color-nav-muted: var(--pace-fg-muted);
+    --color-nav-active: var(--pace-fg);
+}
+
+/* ---- Components ----------------------------------------------------------- */
+
+/* `:not(#icto-ui)` adds ID-level specificity, so these beat upstream's plain
+   rules (including `.button:not(:disabled)` chains) without !important. */
+html:not(#icto-ui) {
+    caret-color: var(--pace-fg);
+    accent-color: var(--pace-primary);
+    background-color: var(--pace-bg);
+
+    & body {
+        background-color: var(--pace-bg);
+        color: var(--pace-fg);
+        font-feature-settings: 'ss01' off;
+    }
+
+    &.dark body {
+        color: var(--pace-fg-muted);
+    }
+
+    & ::selection {
+        background: color-mix(in srgb, var(--pace-chart-2) 24%, transparent);
+    }
+
+    & * {
+        scrollbar-color: var(--color-neutral-300) transparent;
+    }
+
+    &.dark * {
+        scrollbar-color: var(--color-neutral-700) transparent;
+    }
+
+    & :is(table, .data-table, [class*="table-grid"], time, .tabular, .tabular-nums, .font-mono) {
+        font-variant-numeric: tabular-nums;
+    }
+
+    & a {
+        text-underline-offset: 3px;
+    }
+
+    /* Headings */
+    & h1 {
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--pace-fg);
+    }
+
+    & :is(h2, h3) {
+        letter-spacing: -0.01em;
+        color: var(--pace-fg);
+    }
+
+    /* Buttons: shadcn's outline key; the primary is solid ink. Keys press in. */
+    & :is(.button, .split-action-main, .split-action-caret),
+    & :is(.button, .split-action-main, .split-action-caret):not(:disabled):hover {
+        box-shadow: var(--pace-shadow-xs);
+        transform: none;
+        transition: background-color 150ms, color 150ms, border-color 150ms, transform 120ms var(--pace-spring);
+    }
+
+    & :is(.button, .split-action-main, .split-action-caret):not(:disabled):active {
+        transform: scale(0.97);
+    }
+
+    & .button {
+        border-radius: var(--pace-radius-control);
+        border-color: var(--pace-border);
+        background-color: var(--pace-bg);
+        color: var(--pace-fg);
+        font-weight: 500;
+        text-transform: none;
+    }
+
+    & .button:not(:disabled):hover {
+        background-color: var(--pace-accent);
+        color: var(--pace-fg);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: color-mix(in srgb, var(--pace-input) 30%, transparent);
+        border-color: var(--pace-input);
+        color: var(--pace-fg);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: color-mix(in srgb, var(--pace-input) 50%, transparent);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) svg {
+        color: currentColor;
+        opacity: 0.85;
+    }
+
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled),
+    & .button-highlighted {
+        background: var(--pace-primary);
+        border-color: var(--pace-primary);
+        color: var(--pace-primary-fg) !important;
+    }
+
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled):hover {
+        background: var(--pace-primary-hover);
+        border-color: var(--pace-primary-hover);
+    }
+
+    & .control-selected {
+        background: var(--pace-primary);
+        color: var(--pace-primary-fg);
+    }
+
+    /* Focus: shadcn's 3px ring at half strength. */
+    & :is(.button, .icon-button, .app-tab, .menu-item, .menu-subitem, a, [role="button"]):focus-visible,
+    & .button:not(:disabled):hover:focus-visible {
+        box-shadow: none;
+        outline: 3px solid color-mix(in srgb, var(--pace-ring) 50%, transparent);
+        outline-offset: 1px;
+    }
+
+    & .button.button-error:not(:disabled):is(:focus-visible, :hover:focus-visible) {
+        box-shadow: none;
+        outline: 3px solid color-mix(in srgb, var(--color-error) 40%, transparent);
+        outline-offset: 1px;
+    }
+
+    /* Inputs */
+    & :is(.input, .select, .input-select) {
+        border-radius: var(--pace-radius-control);
+        border-color: var(--pace-input);
+        background-color: transparent;
+        box-shadow: var(--pace-shadow-xs);
+    }
+
+    &.dark :is(.input, .select, .input-select) {
+        background-color: color-mix(in srgb, var(--pace-input) 30%, transparent);
+        border-color: var(--pace-input);
+    }
+
+    & :is(.input, .select):focus-visible,
+    &.dark :is(.input, .select):focus-visible,
+    &.dark :is(.application-settings-form, .application-settings-workspace) :is(.input, select, textarea):is(:focus, :focus-visible) {
+        border-color: var(--pace-ring);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ring) 50%, transparent) !important;
+    }
+
+    & .input:read-only,
+    &.dark .input:read-only {
+        background-color: var(--pace-muted);
+        color: var(--pace-fg-muted);
+    }
+
+    /* Tabs: the active tab is a raised chip. */
+    & .app-tab-active,
+    &.dark .app-tab-active {
+        background: var(--pace-card);
+        color: var(--pace-fg);
+        box-shadow: var(--pace-shadow-sm), 0 0 0 1px var(--pace-border);
+        --tw-ring-shadow: 0 0 #0000;
+    }
+
+    /* Sidebar menu: shadcn menu buttons. */
+    & :is(.menu-item, .menu-subitem) {
+        border-radius: var(--pace-radius-control);
+        transition: background-color 150ms, color 150ms, transform 120ms var(--pace-spring);
+    }
+
+    & :is(.menu-item, .menu-subitem):active {
+        transform: scale(0.98);
+    }
+
+    & :is(.menu-item-active, .menu-subitem-active),
+    &.dark :is(.menu-item-active, .menu-subitem-active) {
+        background: var(--pace-accent);
+        color: var(--color-nav-active);
+        font-weight: 500;
+    }
+
+    & :is(.menu-item, .menu-subitem):hover {
+        background: var(--pace-accent);
+        color: var(--color-nav-active);
+    }
+
+    & .nav-section,
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) nav:not(.sidebar-collapsed) .nav-section {
+        text-transform: none;
+        letter-spacing: 0;
+        font-family: var(--font-sans);
+        font-size: 12px;
+        font-weight: 500;
+        color: color-mix(in srgb, var(--pace-fg) 60%, transparent);
+    }
+
+    & .text-helper {
+        color: var(--pace-link);
+    }
+
+    /* Shell: sidebar and brand sit on the canvas. */
+    & :is(.app-topbar-brand, .app-sidebar, .auth-shell),
+    &.dark :is(.app-topbar-brand, .app-sidebar, .auth-shell),
+    &.dark.is-scrolled .app-topbar > .app-topbar-brand {
+        background: var(--pace-canvas);
+        background-image: none;
+        backdrop-filter: none;
+        border-color: transparent;
+    }
+
+    &.dark :is(.app-sidebar nav.sidebar-nav, .mobile-sidebar-sheet [role="dialog"]) {
+        background-color: var(--pace-canvas);
+        background-image: none;
+        border-right-color: transparent;
+        --color-nav-text: #d4d4d4;
+        --color-nav-muted: var(--pace-fg-muted);
+    }
+
+    & .app-sidebar nav.sidebar-nav {
+        border-right-color: transparent;
+    }
+
+    & :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search,
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search {
+        background-color: var(--pace-bg) !important;
+        box-shadow: inset 0 0 0 1px var(--pace-border) !important;
+        border-radius: var(--pace-radius-control);
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search kbd,
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .sidebar-nav :is([class~="dark:border-white/[0.06]"], [class~="dark:border-white/[0.07]"], [class~="dark:border-white/[0.08]"]) {
+        border-color: var(--pace-border) !important;
+    }
+
+    /* Cards: one surface with a header row; never a box in a box. */
+    & :is(.application-settings-section, .application-settings-section-body, .empty-state),
+    &.dark :is(.application-settings-section, .application-settings-section-body, .empty-state) {
+        --card-bg: transparent;
+        --card-underlay: transparent;
+        --card-border: var(--pace-border);
+        --well-bg: var(--pace-card);
+        --well-border: var(--pace-border);
+        --well-shadow: none;
+        --card-fg: var(--pace-fg);
+        --card-fg-dim: var(--pace-fg-muted);
+        --card-fg-faint: var(--pace-fg-faint);
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form),
+    &.dark .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) {
+        padding: 0;
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        overflow: clip;
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) {
+        min-height: 52px;
+        margin: 0;
+        padding: 12px 12px 12px 20px;
+        align-items: center;
+        border-bottom: 1px solid var(--pace-border);
+        background: transparent;
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) :is(h3, h3 span) {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        color: var(--pace-fg);
+        text-decoration: none;
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) p {
+        font-size: 13px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > .application-settings-section-body,
+    &.dark .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    & .application-settings-section-body:not(.application-settings-section *),
+    & .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *),
+    &.dark .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *) {
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+    }
+
+    & .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *) > .empty-state-well {
+        background: transparent;
+        border: 0;
+    }
+
+    & .application-settings-section-body .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+    }
+
+    /* Dialogs: a popover card with a header row. */
+    & .application-settings-section.application-settings-form,
+    &.dark .application-settings-section.application-settings-form {
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        padding: 0;
+        box-shadow: none !important;
+    }
+
+    & .application-settings-section.application-settings-form > :is(header, .application-settings-section-header) {
+        padding: 0.875rem 0.75rem 0.875rem 1.25rem;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & .application-settings-section.application-settings-form > .application-settings-section-body,
+    &.dark .application-settings-section.application-settings-form > .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0 0 var(--pace-radius-card) var(--pace-radius-card);
+    }
+
+    &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] {
+        background-color: var(--pace-card) !important;
+        border-color: var(--pace-border) !important;
+    }
+
+    /* Tables */
+    & .data-table-header {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+    }
+
+    & input[type="checkbox"]:checked + :is(span, div),
+    & input[type="checkbox"]:checked {
+        background-color: var(--pace-primary);
+        border-color: var(--pace-primary);
+        color: var(--pace-primary);
+    }
+
+    & input[type="checkbox"]:checked ~ svg {
+        color: var(--pace-primary-fg);
+    }
+
+    /* The logo reads in ink, not brand purple. */
+    & img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(0.2);
+    }
+
+    &.dark img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(3);
+    }
+
+    & .sticky.lg\:hidden.backdrop-blur-sm {
+        background: var(--pace-bg);
+        backdrop-filter: none;
+    }
+
+    & :is(.app-sidebar, .mobile-sidebar-sheet) .text-coollabs {
+        color: var(--color-nav-muted);
+    }
+
+    & .application-settings-section-body .group.relative.rounded-lg.border {
+        border-width: 0;
+        background: transparent;
+        padding-inline: 0;
+    }
+
+    & .log-debug {
+        background: var(--pace-hover);
+    }
+
+    & .data-table-row:hover {
+        background: color-mix(in srgb, var(--pace-muted) 50%, transparent);
+    }
+
+    /* Overlays: popover cards with a soft lift. */
+    & .surface-popover {
+        background: var(--pace-card);
+        box-shadow: 0 0 0 1px var(--pace-border), var(--pace-shadow-lg);
+    }
+
+    & :is(.info-helper-popup, .auth-tooltip) {
+        box-shadow: 0 0 0 1px var(--pace-border), var(--pace-shadow-lg);
+    }
+
+    /* Status dots: coloured by state; pulse while in progress. */
+    & .status-lamp {
+        position: relative;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        background: var(--lamp-color, transparent);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--lamp-color, transparent) 18%, transparent);
+    }
+
+    & .status-lamp-success { --lamp-color: var(--color-success); }
+    & .status-lamp-warning { --lamp-color: var(--color-warning); }
+    & .status-lamp-error { --lamp-color: var(--color-error); }
+
+    & .status-lamp-neutral {
+        --lamp-color: transparent;
+        box-shadow: inset 0 0 0 1.5px var(--color-neutral-400);
+    }
+
+    &.dark .status-lamp-neutral {
+        box-shadow: inset 0 0 0 1.5px var(--color-neutral-600);
+    }
+
+    & .status-lamp-pulse {
+        animation: status-lamp-pulse 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    /* Status badges: shadcn outline badges. */
+    & .status-badge,
+    &.dark .status-badge {
+        height: 22px;
+        gap: 0.4rem;
+        padding: 0 8px;
+        border: 1px solid var(--pace-border);
+        border-radius: 999px;
+        background: transparent;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pace-fg);
+    }
+
+    /* Split action (Deploy): the solid ink key. */
+    & :is(.split-action-main, .split-action-caret),
+    &.dark :is(.split-action-main, .split-action-caret) {
+        background: var(--pace-primary);
+        border-color: var(--pace-primary);
+        color: var(--pace-primary-fg) !important;
+    }
+
+    & :is(.split-action-main, .split-action-caret):not(:disabled):hover {
+        background: var(--pace-primary-hover);
+    }
+
+    & .split-action-caret {
+        border-left: 1px solid color-mix(in oklab, var(--pace-primary-fg) 20%, transparent);
+    }
+
+    /* Beta / "Try it" badges: a secondary badge. */
+    & :is(.bg-coollabs, .dark\:bg-coollabs):not(.button, .status-lamp) {
+        background-color: var(--pace-muted);
+        color: var(--pace-fg);
+        box-shadow: none;
+    }
+
+    & .view-toggle,
+    &.dark .view-toggle {
+        background-color: var(--pace-muted);
+        border-color: transparent;
+        border-radius: var(--pace-radius-control);
+    }
+
+    & .view-toggle > :is(a, button),
+    & .view-toggle > :is(a, button) svg {
+        color: var(--pace-fg-muted);
+    }
+
+    & .view-toggle > :is(a, button):not(.is-selected):hover {
+        color: var(--pace-fg);
+    }
+
+    &.dark .view-toggle > .is-selected,
+    & .view-toggle > .is-selected {
+        background: var(--pace-bg);
+        color: var(--pace-fg);
+        box-shadow: var(--pace-shadow-sm);
+    }
+
+    & .view-toggle > .is-selected svg {
+        color: var(--pace-fg);
+    }
+
+    & .toast-icon {
+        box-shadow: none;
+    }
+
+    & .toast-card,
+    &.dark .toast-card {
+        border-radius: var(--pace-radius-card);
+        box-shadow: 0 0 0 1px var(--pace-border), var(--pace-shadow-lg);
+    }
+
+    &.dark :is(.command-palette, .listbox-panel.top-user-menu-panel-sidebar) {
+        background: var(--pace-card);
+        border-color: var(--pace-border);
+        box-shadow: var(--pace-shadow-lg);
+    }
+
+    &.dark .command-palette-body {
+        background: var(--pace-card);
+        box-shadow: 0 0 0 1px var(--pace-border);
+    }
+
+    &.dark .command-palette-header-icon:not(.is-loading),
+    &.dark .card-icon-button {
+        color: var(--pace-fg-muted);
+    }
+
+    &.dark .command-palette-input::placeholder {
+        color: var(--pace-fg-faint);
+    }
+
+    &.dark .top-user-menu-panel-sidebar .listbox-option:hover,
+    &.dark .card-icon-button:hover {
+        background: var(--pace-accent);
+        color: var(--pace-fg);
+    }
+
+    & .resource-glyph,
+    &.dark .resource-glyph {
+        border-color: var(--pace-border);
+        background: var(--pace-muted);
+        color: var(--pace-fg-muted);
+        border-radius: var(--pace-radius-control);
+    }
+
+    /* Grid cards lift on hover, PaceUI style. */
+    & .app-main :is(article.group, a.group).rounded-xl,
+    &.dark .app-main :is(article.group, a.group).rounded-xl {
+        background-color: var(--pace-card) !important;
+        border-color: var(--pace-border) !important;
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        transition: transform 200ms var(--pace-spring), box-shadow 200ms, border-color 150ms;
+    }
+
+    & .app-main :is(article.group, a.group).rounded-xl:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--pace-shadow-lg);
+        border-color: color-mix(in srgb, var(--pace-fg) 18%, transparent) !important;
+    }
+
+    /* Tailwind inlines shadow values at build time, so re-point the utilities. */
+    & :is(.shadow-xs, .shadow-sm, .shadow) {
+        --tw-shadow: var(--pace-shadow-sm);
+    }
+
+    & :is(.shadow-modal, .shadow-dropdown, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+        --tw-shadow: 0 0 0 1px var(--pace-border), var(--pace-shadow-lg);
+    }
+}
+
+@keyframes status-lamp-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+/* Upstream paints dark collection shells #121212 with !important inside the
+   utilities layer, which no unlayered rule can beat; answer in the same layer. */
+@layer utilities {
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: color-mix(in srgb, var(--pace-input) 30%, transparent) !important;
+        border-color: var(--pace-input) !important;
+        color: var(--pace-fg) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: color-mix(in srgb, var(--pace-input) 50%, transparent) !important;
+        border-color: var(--pace-input) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .view-toggle {
+        background-color: var(--pace-muted) !important;
+        border-color: transparent !important;
+    }
+
+    html:not(#icto-ui).dark .app-main [class*="dark:bg-white/[0.05]"].rounded-xl {
+        background-color: var(--pace-card) !important;
+        border-color: var(--pace-border) !important;
+    }
+}
+
+/* ---- Motion --------------------------------------------------------------- */
+
+/* Cards rise in on each page, one after another (PaceUI's entrance). */
+@keyframes pace-rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.995);
+    }
+}
+
+html:not(#icto-ui) {
+    & .app-main :is(
+        .application-settings-section:not(.application-settings-section *):not(.application-settings-form),
+        section:has(> .section-heading),
+        .resource-panel,
+        .pace-stat,
+        .pace-card
+    ) {
+        animation: pace-rise 420ms var(--pace-spring) both;
+    }
+
+    & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(2) { animation-delay: 40ms; }
+    & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(3) { animation-delay: 80ms; }
+    & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(4) { animation-delay: 120ms; }
+    & .app-main :is(.application-settings-section:not(.application-settings-section *), section:has(> .section-heading), .pace-stat, .pace-card):nth-of-type(n + 5) { animation-delay: 160ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(#icto-ui) :is(.app-main *, .status-lamp-pulse, .menu-item, .menu-subitem, .sidebar-collapse-toggle, .sidebar-collapse-tip, .button, .split-action-main, .split-action-caret) {
+        animation: none !important;
+        transition-duration: 0s !important;
+    }
+}
+
+/* ---- Shell ---------------------------------------------------------------- */
+
+/* Inset layout from lg: the sidebar and brand sit on the canvas; the top bar
+   and the page are one rounded panel beside them. The panel is drawn by a
+   fixed pseudo-element behind the page (negative z in the root stacking
+   context), so the document still scrolls as before and nothing new traps
+   overlays or sticky children. */
+@media (min-width: 1024px) {
+    html:not(#icto-ui) {
+        background-color: var(--pace-canvas);
+
+        & body,
+        & .app-main,
+        &.dark .app-main {
+            background: transparent;
+        }
+
+        & .app-shell::before {
+            content: '';
+            position: fixed;
+            z-index: -1;
+            top: var(--pace-gutter);
+            right: var(--pace-gutter);
+            bottom: var(--pace-status-h);
+            left: var(--sidebar-w, 14rem);
+            background: var(--pace-bg);
+            border: 1px solid var(--pace-border);
+            border-radius: var(--pace-radius-card);
+            box-shadow: var(--pace-shadow-sm);
+            transition: left 200ms;
+        }
+
+        & .app-topbar,
+        &.dark .app-topbar,
+        &.dark.is-scrolled .app-topbar {
+            background: var(--pace-canvas);
+            backdrop-filter: none;
+        }
+
+        /* The top bar's working half is the panel's head. */
+        & .app-topbar > div:not(.app-topbar-brand) {
+            align-self: flex-end;
+            height: calc(3rem - var(--pace-gutter));
+            margin-right: var(--pace-gutter);
+            background: var(--pace-bg);
+            border: 1px solid var(--pace-border);
+            border-bottom-color: transparent;
+            border-radius: var(--pace-radius-card) var(--pace-radius-card) 0 0;
+        }
+
+        &.is-scrolled .app-topbar > div:not(.app-topbar-brand),
+        &.dark.is-scrolled .app-topbar > div:not(.app-topbar-brand) {
+            border-bottom-color: var(--pace-border);
+            box-shadow: none;
+        }
+
+        & .app-main {
+            margin-right: var(--pace-gutter);
+        }
+
+        & .app-main.app-main-full > div {
+            margin-bottom: 8px;
+            border-radius: 0 0 var(--pace-radius-card) var(--pace-radius-card);
+            overflow: hidden;
+        }
+    }
+}
+
+html:not(#icto-ui) {
+    /* Sidebar collapse toggle beside the wordmark (Cmd/Ctrl+B). */
+    & .sidebar-collapse-toggle {
+        position: relative;
+        align-items: center;
+        gap: 6px;
+        height: 28px;
+        padding: 0 6px;
+        border-radius: var(--pace-radius-control);
+        color: var(--pace-fg-muted);
+        transition: background-color 150ms, color 150ms, transform 120ms var(--pace-spring);
+    }
+
+    & .sidebar-collapse-toggle:hover {
+        background: var(--pace-accent);
+        color: var(--pace-fg);
+    }
+
+    & .sidebar-collapse-toggle:active {
+        transform: scale(0.94);
+    }
+
+    & .sidebar-collapse-kbd {
+        font: 500 10.5px/1 var(--font-mono);
+        color: var(--pace-fg-muted);
+        background: var(--pace-muted);
+        border-radius: 4px;
+        padding: 3px 5px;
+    }
+
+    & .sidebar-collapse-tip {
+        position: absolute;
+        left: calc(100% + 8px);
+        top: 50%;
+        translate: -4px -50%;
+        z-index: 60;
+        white-space: nowrap;
+        pointer-events: none;
+        font-size: 12px;
+        color: var(--pace-primary-fg);
+        background: var(--pace-primary);
+        border-radius: 6px;
+        padding: 4px 8px;
+        opacity: 0;
+        transition: opacity 120ms ease-out, translate 200ms var(--pace-spring);
+    }
+
+    & .sidebar-collapse-toggle:is(:hover, :focus-visible) .sidebar-collapse-tip {
+        opacity: 1;
+        translate: 0 -50%;
+        transition-delay: 400ms;
+    }
+
+    /* Bottom status bar, on the canvas below the panel. */
+    & .app-status-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 45;
+        height: var(--pace-status-h);
+        align-items: center;
+        gap: 18px;
+        padding: 6px 20px 0;
+        font-size: 12px;
+        color: var(--pace-fg-muted);
+        background: var(--pace-canvas);
+        font-variant-numeric: tabular-nums;
+        transition: left 200ms;
+    }
+
+    & .app-status-bar-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 100%;
+        color: inherit;
+    }
+
+    & .app-status-bar-item:hover {
+        color: var(--pace-fg);
+    }
+
+    & .app-status-bar-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--pace-fg-faint);
+    }
+
+    & .app-status-bar-dot.is-ok {
+        background: var(--pace-ok);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ok) 18%, transparent);
+    }
+
+    & .app-status-bar-dot.is-bad {
+        background: var(--pace-bad);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-bad) 18%, transparent);
+    }
+
+    & .app-status-bar-sep {
+        width: 1px;
+        height: 12px;
+        background: var(--pace-border);
+    }
+
+    & .topbar-search {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: 240px;
+        height: 30px;
+        margin-right: 8px;
+        padding: 0 6px 0 10px;
+        border-radius: var(--pace-radius-control);
+        font-size: 13px;
+        color: var(--pace-fg-muted);
+        background: color-mix(in srgb, var(--pace-muted) 50%, transparent);
+        box-shadow: inset 0 0 0 1px var(--pace-border);
+        transition: background-color 150ms, color 150ms;
+    }
+
+    & .topbar-search:hover {
+        color: var(--pace-fg);
+        background: var(--pace-muted);
+    }
+
+    & .topbar-search kbd {
+        margin-left: auto;
+        font: 500 10.5px/1 var(--font-mono);
+        color: var(--pace-fg-muted);
+        background: var(--pace-bg);
+        box-shadow: 0 0 0 1px var(--pace-border);
+        border-radius: 4px;
+        padding: 3px 5px;
+    }
+}
+
+/* ---- Application workspace ------------------------------------------------- */
+
+/* From xl the application page is three cards across the panel: resources,
+   the selected application, its log. The side cards stay in view. */
+@media (min-width: 1280px) {
+    html:not(#icto-ui) {
+        & .app-main:has(.application-settings-workspace) {
+            padding: calc(3rem + 16px) 16px calc(var(--pace-status-h) + 16px);
+
+            & > div {
+                max-width: none;
+            }
+        }
+
+        & .application-settings-workspace {
+            margin: 0;
+        }
+
+        & .application-settings-workspace .workspace-grid {
+            grid-template-columns: 240px minmax(0, 1fr);
+            gap: 16px;
+
+            & > .resource-rail-dock { grid-column: 1; grid-row: 1; }
+            & > .workspace-centre { grid-column: 2; grid-row: 1; }
+            & > .log-panel-dock { grid-column: 3; grid-row: 1; }
+        }
+
+        & .application-settings-workspace.has-log-panel .workspace-grid {
+            grid-template-columns: 240px minmax(0, 1fr) minmax(340px, 34%);
+        }
+
+        & :is(.resource-rail-dock, .log-panel-dock) {
+            position: sticky;
+            top: calc(3rem + 16px);
+            align-self: start;
+            height: calc(100dvh - 3rem - var(--pace-status-h) - 32px);
+            min-width: 0;
+        }
+
+        & .resource-rail-dock {
+            background: var(--pace-card);
+            border: 1px solid var(--pace-border);
+            border-radius: var(--pace-radius-card);
+            box-shadow: var(--pace-shadow-sm);
+            overflow: hidden;
+            animation: pace-rise 420ms var(--pace-spring) both;
+        }
+
+        & .log-panel-dock .log-panel {
+            animation: pace-rise 420ms var(--pace-spring) 80ms both;
+        }
+
+        & .workspace-centre {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+}
+
+/* ---- Persistent log panel (PaceUI live console) ----------------------------- */
+
+html:not(#icto-ui) {
+    /* Below xl the log opens as a sheet at the right edge. */
+    & .log-panel-dock.is-overlay {
+        position: fixed;
+        top: calc(3rem + 8px);
+        right: 16px;
+        bottom: calc(var(--pace-status-h) + 8px);
+        z-index: 40;
+        width: min(440px, 90vw);
+        animation: pace-sheet 320ms var(--pace-spring) both;
+    }
+
+    & .log-panel-dock.is-overlay .log-panel {
+        box-shadow: 0 0 0 1px var(--pace-border), var(--pace-shadow-lg);
+    }
+
+    & .log-panel {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        overflow: hidden;
+    }
+
+    & .log-panel-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 8px 0 16px;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & .log-panel-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--pace-fg);
+    }
+
+    & .log-panel-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 22px;
+        padding: 0 8px;
+        border: 1px solid var(--pace-border);
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+    }
+
+    & .log-panel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    & .log-panel-status.is-ok { color: var(--pace-ok); }
+    & .log-panel-status.is-bad { color: var(--pace-bad); }
+    & .log-panel-status.is-busy { color: var(--pace-busy); }
+
+    & .log-panel-status.is-busy .log-panel-dot {
+        animation: log-panel-pulse 1.6s ease-in-out infinite;
+    }
+
+    & .log-panel-action {
+        display: inline-flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 8px;
+        border-radius: var(--pace-radius-control);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+        transition: background-color 150ms, color 150ms;
+    }
+
+    & .log-panel-action:hover {
+        background: var(--pace-accent);
+        color: var(--pace-fg);
+    }
+
+    & .log-panel-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        padding: 10px 16px 4px;
+        font-size: 12.5px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .log-panel-filters {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin: 6px 12px 8px;
+        padding: 3px;
+        border-radius: var(--pace-radius-control);
+        background: var(--pace-muted);
+    }
+
+    & .log-panel-filter {
+        height: 26px;
+        padding: 0 10px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+        transition: background-color 150ms, color 150ms, box-shadow 150ms;
+    }
+
+    & .log-panel-filter:hover {
+        color: var(--pace-fg);
+    }
+
+    & .log-panel-filter.is-active {
+        background: var(--pace-bg);
+        color: var(--pace-fg);
+        box-shadow: var(--pace-shadow-sm);
+    }
+
+    & .log-panel-filters label {
+        padding-right: 8px;
+    }
+
+    & .log-panel-follow {
+        width: 14px;
+        height: 14px;
+        accent-color: var(--pace-primary);
+    }
+
+    & .log-panel-body {
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+        padding: 4px 6px 8px;
+        font: 12px/1.65 var(--font-logs);
+        color: var(--pace-fg);
+        border-top: 1px solid var(--pace-border);
+        background: var(--pace-log-bg);
+    }
+
+    /* Lines never wrap: the body scrolls sideways and the time column stays pinned. */
+    & .log-panel-line {
+        display: flex;
+        width: max-content;
+        min-width: 100%;
+        padding-right: 10px;
+        border-radius: 6px;
+    }
+
+    & .log-panel-line:hover {
+        background: var(--pace-accent);
+    }
+
+    & .log-panel-time {
+        position: sticky;
+        left: 0;
+        flex: none;
+        width: 5.4rem;
+        padding-left: 10px;
+        background: var(--pace-log-bg);
+        color: var(--pace-fg-faint);
+        user-select: none;
+    }
+
+    & .log-panel-line:hover .log-panel-time {
+        background: var(--pace-accent);
+    }
+
+    & .log-panel-text {
+        white-space: pre;
+    }
+
+    & .log-panel-line.is-command {
+        margin-top: 6px;
+        font-weight: 600;
+        color: var(--pace-link);
+    }
+
+    & .log-panel-line.is-stderr .log-panel-text { color: var(--pace-bad); }
+    & .log-panel-line.is-hidden .log-panel-text { color: var(--pace-busy); }
+    & .log-panel-line.is-warning .log-panel-text { color: var(--pace-busy); }
+
+    & .only-errors .log-panel-line:not(.is-stderr),
+    & .only-warnings .log-panel-line:not(.is-warning) {
+        display: none;
+    }
+
+    & .log-panel-count {
+        margin-left: 4px;
+        padding: 1px 5px;
+        border-radius: 999px;
+        font: 500 10.5px/1.3 var(--font-mono);
+        color: var(--pace-fg-muted);
+        background: color-mix(in srgb, var(--pace-fg) 7%, transparent);
+    }
+
+    & .log-panel-empty {
+        padding: 24px 10px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .log-panel-foot {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+        font-size: 12px;
+        color: var(--pace-fg-muted);
+        border-top: 1px solid var(--pace-border);
+        font-variant-numeric: tabular-nums;
+    }
+
+    & .log-panel-reopen {
+        position: fixed;
+        right: var(--pace-gutter);
+        top: 50%;
+        z-index: 30;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 7px;
+        writing-mode: vertical-rl;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-right: 0;
+        border-radius: var(--pace-radius-control) 0 0 var(--pace-radius-control);
+        box-shadow: var(--pace-shadow-sm);
+    }
+
+    & .log-panel-reopen:hover {
+        color: var(--pace-fg);
+    }
+
+    & .log-panel-reopen svg {
+        rotate: 90deg;
+    }
+}
+
+@keyframes log-panel-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@keyframes pace-sheet {
+    from {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(#icto-ui) :is(.log-panel-status.is-busy .log-panel-dot, .log-panel-dock, .resource-rail-dock, .log-panel) {
+        animation: none !important;
+    }
+}
+
+/* ---- Card sections (dashboard, shared variables) --------------------------- */
+
+/* A section that opens with a section heading is one card: the heading is its
+   header row and the boxes inside it lose their own frames. */
+html:not(#icto-ui) {
+    & section:has(> .section-heading) {
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        overflow: clip;
+    }
+
+    & section > .section-heading {
+        margin: 0;
+        min-height: 52px;
+        padding: 8px 12px 8px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & section:has(> .section-heading) [class~="rounded-xl"][class~="border"]:not(article, article *) {
+        border: 0;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    & section:has(> .section-heading) > div > [class~="rounded-xl"][class~="border"]:not(article) + [class~="rounded-xl"][class~="border"] {
+        border-top: 1px solid var(--pace-border);
+    }
+
+    & section:has(> .section-heading) > div.grid {
+        padding: 16px;
+    }
+
+    & section:has(> .section-heading) > :is(.empty-state, [class*="empty"]) {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Upstream sizes section titles with layered !important utilities; only a rule
+   in the same layer can answer them. */
+@layer utilities {
+    html:not(#icto-ui) section > .section-heading h2 {
+        font-size: 15px !important;
+        line-height: 20px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        color: var(--pace-fg) !important;
+    }
+}
+
+/* ---- Resource list card (project environment) ------------------------------ */
+
+html:not(#icto-ui) {
+    & .resource-panel {
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        overflow: clip;
+    }
+
+    & .resource-panel-toolbar {
+        margin: 0;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & .resource-panel [class~="rounded-xl"][class~="border"]:not(article) {
+        border: 0;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    & .resource-panel [x-show="viewMode === 'grid'"] > .grid {
+        padding: 16px;
+    }
+
+    & .resource-panel :is(.client-pagination, [class*="pagination"]) {
+        margin: 0;
+        border-top: 1px solid var(--pace-border);
+    }
+}
+
+/* ---- Resources column and summary card ------------------------------------- */
+
+html:not(#icto-ui) {
+    & .resource-rail {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+    }
+
+    & .resource-rail-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & .resource-rail-head h2 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--pace-fg);
+    }
+
+    & .resource-rail-head > span {
+        min-width: 22px;
+        padding: 1px 7px;
+        border-radius: 999px;
+        background: var(--pace-muted);
+        font: 500 11px/1.5 var(--font-mono);
+        text-align: center;
+        color: var(--pace-fg-muted);
+    }
+
+    & .resource-rail-list {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        margin: 0;
+        padding: 6px;
+        list-style: none;
+    }
+
+    & .resource-rail-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2px 8px;
+        padding: 8px 10px;
+        border-radius: var(--pace-radius-control);
+        color: var(--pace-fg);
+        text-decoration: none;
+        transition: background-color 150ms, transform 120ms var(--pace-spring);
+    }
+
+    & .resource-rail-item:hover {
+        background: var(--pace-accent);
+    }
+
+    & .resource-rail-item:active {
+        transform: scale(0.98);
+    }
+
+    & .resource-rail-item.is-active {
+        background: var(--pace-accent);
+        box-shadow: inset 0 0 0 1px var(--pace-border);
+    }
+
+    & .resource-rail-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13.5px;
+        font-weight: 500;
+    }
+
+    & .resource-rail-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+    }
+
+    & .resource-rail-status.is-ok { color: var(--pace-ok); }
+    & .resource-rail-status.is-busy { color: var(--pace-busy); }
+    & .resource-rail-status.is-bad { color: var(--pace-bad); }
+
+    & .resource-rail-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    & .resource-rail-meta {
+        grid-column: 1 / -1;
+        font-size: 12px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .resource-rail-foot {
+        padding: 12px 16px;
+        border-top: 1px solid var(--pace-border);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+    }
+
+    & .resource-rail-foot:hover {
+        color: var(--pace-fg);
+    }
+
+    & .resource-summary {
+        flex-direction: column;
+        gap: 14px;
+        padding: 20px 24px;
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+        animation: pace-rise 420ms var(--pace-spring) both;
+    }
+
+    & .resource-summary-name {
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--pace-fg);
+    }
+
+    & .resource-summary-chip {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--pace-fg);
+        background: var(--pace-muted);
+        border-radius: 999px;
+        padding: 2px 9px;
+    }
+
+    & .resource-summary-facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 28px;
+        margin: 0;
+        font-size: 13px;
+    }
+
+    & .resource-summary-facts > div {
+        display: flex;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    & .resource-summary-facts dt {
+        color: var(--pace-fg-muted);
+    }
+
+    & .resource-summary-facts dd {
+        margin: 0;
+        min-width: 0;
+        color: var(--pace-fg);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    & .resource-summary-facts a {
+        color: var(--pace-link);
+    }
+}
+
+/* ---- Dashboard overview (PaceUI stat and chart blocks) ---------------------- */
+
+html:not(#icto-ui) {
+    & .pace-stats {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    & :is(.pace-stat, .pace-card) {
+        min-width: 0;
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-card);
+        box-shadow: var(--pace-shadow-sm);
+    }
+
+    & .pace-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    & .pace-stat-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--pace-fg);
+    }
+
+    & .pace-stat-head h2 {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+        letter-spacing: 0;
+    }
+
+    & .pace-stat-head svg {
+        width: 18px;
+        height: 18px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-stat-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: end;
+        gap: 12px;
+        padding: 12px 12px 12px 16px;
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-control);
+        background: color-mix(in srgb, var(--pace-muted) 20%, transparent);
+    }
+
+    & .pace-stat-value {
+        font-size: 30px;
+        line-height: 36px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--pace-fg);
+        font-variant-numeric: tabular-nums;
+    }
+
+    & .pace-stat-value small {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-stat-note {
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-stat-note .is-up { color: var(--pace-ok); font-weight: 500; }
+    & .pace-stat-note .is-down { color: var(--pace-bad); font-weight: 500; }
+
+    & .pace-spark {
+        width: 100%;
+        height: 56px;
+        overflow: visible;
+    }
+
+    & .pace-meter {
+        display: flex;
+        gap: 3px;
+        height: 8px;
+        margin-bottom: 6px;
+    }
+
+    & .pace-meter > span {
+        flex: 1;
+        border-radius: 999px;
+        background: var(--pace-muted);
+    }
+
+    & .pace-meter > span.is-ok { background: var(--pace-ok); }
+    & .pace-meter > span.is-busy { background: var(--pace-busy); }
+    & .pace-meter > span.is-bad { background: var(--pace-bad); }
+
+    & .pace-card-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 56px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--pace-border);
+    }
+
+    & .pace-card-title {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--pace-fg);
+    }
+
+    & .pace-card-desc {
+        font-size: 13px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-legend {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-legend i {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 6px;
+        border-radius: 3px;
+        vertical-align: -1px;
+    }
+
+    & .pace-chart {
+        position: relative;
+        padding: 20px 20px 12px;
+    }
+
+    & .pace-bars {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        align-items: end;
+        gap: 6px;
+        height: 180px;
+        padding-left: 28px;
+        background-image: linear-gradient(to top, var(--pace-border) 1px, transparent 1px);
+        background-size: 100% 25%;
+        background-position: 28px 0;
+        background-repeat: repeat-y;
+    }
+
+    & .pace-bar {
+        position: relative;
+        justify-self: center;
+        width: min(100%, 28px);
+        display: flex;
+        flex-direction: column-reverse;
+        height: 100%;
+        border-radius: 6px 6px 2px 2px;
+        cursor: default;
+    }
+
+    & .pace-bar > span {
+        display: block;
+        min-height: 0;
+        transform-origin: bottom;
+        animation: pace-grow 600ms var(--pace-spring) both;
+    }
+
+    & .pace-bar > span:last-child { border-radius: 5px 5px 0 0; }
+    & .pace-bar > span:first-child { border-radius: 0 0 2px 2px; }
+    & .pace-bar > span:only-child { border-radius: 5px 5px 2px 2px; }
+
+    & .pace-bar > .is-ok { background: var(--pace-chart-2); }
+    & .pace-bar > .is-bad { background: var(--pace-bad); }
+    & .pace-bar > .is-other { background: var(--pace-chart-1); }
+
+    & .pace-bar:hover::before {
+        content: '';
+        position: absolute;
+        inset: 0 -3px;
+        border-radius: 6px;
+        background: color-mix(in srgb, var(--pace-fg) 6%, transparent);
+    }
+
+    & .pace-axis {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        gap: 6px;
+        padding: 8px 0 0 28px;
+        font-size: 11px;
+        color: var(--pace-fg-muted);
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+    }
+
+    & .pace-yaxis {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 180px;
+        font-size: 11px;
+        line-height: 1;
+        color: var(--pace-fg-muted);
+        font-variant-numeric: tabular-nums;
+        translate: 0 -5px;
+    }
+
+    & .pace-tip {
+        position: absolute;
+        z-index: 5;
+        min-width: 150px;
+        padding: 8px 10px;
+        font-size: 12px;
+        color: var(--pace-fg);
+        background: var(--pace-card);
+        border: 1px solid var(--pace-border);
+        border-radius: var(--pace-radius-control);
+        box-shadow: var(--pace-shadow-lg);
+        pointer-events: none;
+        translate: -50% calc(-100% - 10px);
+    }
+
+    & .pace-tip-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 4px;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-tip-row b {
+        margin-left: auto;
+        color: var(--pace-fg);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    & .pace-tip-row i {
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+    }
+
+    /* Activity: a live console of recent deployments (PaceUI widget). */
+    & .pace-feed {
+        max-height: 292px;
+        overflow-y: auto;
+        padding: 6px;
+    }
+
+    & .pace-feed-row {
+        display: grid;
+        grid-template-columns: 4.6rem 1.1rem minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 10px;
+        border-radius: var(--pace-radius-control);
+        font-size: 13px;
+        color: var(--pace-fg);
+        text-decoration: none;
+        animation: pace-slide 260ms var(--pace-spring) both;
+        transition: background-color 150ms;
+    }
+
+    & .pace-feed-row:hover {
+        background: var(--pace-accent);
+    }
+
+    & .pace-feed-time {
+        font: 12px/1 var(--font-mono);
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-feed-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 500;
+    }
+
+    & .pace-feed-name span {
+        margin-left: 8px;
+        font-weight: 400;
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-feed-meta {
+        font: 12px/1 var(--font-mono);
+        color: var(--pace-fg-muted);
+    }
+
+    & .pace-feed-dot {
+        justify-self: center;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--pace-fg-faint);
+    }
+
+    & .pace-feed-dot.is-ok { background: var(--pace-ok); }
+    & .pace-feed-dot.is-bad { background: var(--pace-bad); }
+
+    & .pace-feed-dot.is-busy {
+        background: var(--pace-busy);
+        animation: log-panel-pulse 1.6s ease-in-out infinite;
+    }
+
+    & .pace-feed-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 180px;
+        font-size: 13px;
+        color: var(--pace-fg-muted);
+    }
+}
+
+@keyframes pace-grow {
+    from {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes pace-slide {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}

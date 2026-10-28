@@ -1,330 +1,711 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T03:24:48+00:00",
-  "title": "Design System: Coolify (icto-ui \"Graphite Panels\")",
+  "generatedAt": "2026-10-28T16:00:35+00:00",
+  "title": "Design System: Coolify (icto-ui \"Pace\")",
   "extensions": {
     "colorMeta": {
-      "graphite-ground": {
-        "role": "neutral",
-        "displayName": "Graphite Ground",
-        "canonical": "#17181b",
-        "tonalRamp": [
-          "#141518",
-          "#17181b",
-          "#1d1f23",
-          "#24262b",
-          "#2b2e34",
-          "#3d4048",
-          "#8e939c",
-          "#e8e9ec"
-        ]
-      },
-      "graphite-panel": {
-        "role": "neutral",
-        "displayName": "Graphite Panel",
-        "canonical": "#1d1f23",
-        "tonalRamp": [
-          "#141518",
-          "#17181b",
-          "#1d1f23",
-          "#24262b",
-          "#2b2e34",
-          "#3d4048",
-          "#8e939c",
-          "#e8e9ec"
-        ]
-      },
-      "graphite-log": {
-        "role": "neutral",
-        "displayName": "Graphite Log",
-        "canonical": "#141518"
-      },
-      "graphite-fg": {
-        "role": "neutral",
-        "displayName": "Graphite Text",
-        "canonical": "#e8e9ec"
-      },
-      "graphite-fg-dim": {
-        "role": "neutral",
-        "displayName": "Graphite Text Dim",
-        "canonical": "#a3a7b0"
-      },
-      "graphite-fg-faint": {
-        "role": "neutral",
-        "displayName": "Graphite Text Faint",
-        "canonical": "#8e939c"
-      },
-      "graphite-rule": {
-        "role": "neutral",
-        "displayName": "Seam",
-        "canonical": "rgb(255 255 255 / 0.07)"
-      },
-      "graphite-rule-strong": {
-        "role": "neutral",
-        "displayName": "Strong Seam",
-        "canonical": "rgb(255 255 255 / 0.12)"
-      },
-      "signal-blue-dark": {
+      "ink-primary": {
         "role": "primary",
-        "displayName": "Signal Blue (dark)",
-        "canonical": "oklch(73.0% 0.121 245)",
+        "displayName": "Ink Key",
+        "canonical": "#171717",
         "tonalRamp": [
-          "oklch(15% 0.018 245)",
-          "oklch(26% 0.031 245)",
-          "oklch(38% 0.053 245)",
-          "oklch(49% 0.075 245)",
-          "oklch(61% 0.097 245)",
-          "oklch(72% 0.120 245)",
-          "oklch(84% 0.101 245)",
-          "oklch(95% 0.079 245)"
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
         ]
       },
-      "signal-blue": {
+      "ink-primary-hover": {
         "role": "primary",
-        "displayName": "Signal Blue (light)",
-        "canonical": "oklch(51.5% 0.165 259)",
+        "displayName": "Ink Key Hover",
+        "canonical": "#333333",
         "tonalRamp": [
-          "oklch(15% 0.068 259)",
-          "oklch(26% 0.099 259)",
-          "oklch(38% 0.129 259)",
-          "oklch(49% 0.159 259)",
-          "oklch(61% 0.141 259)",
-          "oklch(72% 0.110 259)",
-          "oklch(84% 0.080 259)",
-          "oklch(95% 0.050 259)"
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
         ]
       },
-      "run-green-dark": {
+      "ink-primary-fg": {
+        "role": "primary",
+        "displayName": "Ink Key Text",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ink-primary-dark": {
+        "role": "primary",
+        "displayName": "Ink Key (dark)",
+        "canonical": "#e5e5e5",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ink-primary-dark-hover": {
+        "role": "primary",
+        "displayName": "Ink Key Hover (dark)",
+        "canonical": "#cfcfcf",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ink-primary-dark-fg": {
+        "role": "primary",
+        "displayName": "Ink Key Text (dark)",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "link-blue": {
         "role": "secondary",
-        "displayName": "Run Green (dark)",
-        "canonical": "oklch(76.7% 0.097 156)",
+        "displayName": "Link Blue",
+        "canonical": "#155dfc",
         "tonalRamp": [
-          "oklch(15% 0.015 156)",
-          "oklch(26% 0.019 156)",
-          "oklch(38% 0.037 156)",
-          "oklch(49% 0.055 156)",
-          "oklch(61% 0.073 156)",
-          "oklch(72% 0.090 156)",
-          "oklch(84% 0.087 156)",
-          "oklch(95% 0.069 156)"
+          "#1c398e",
+          "#193cb8",
+          "#1447e6",
+          "#155dfc",
+          "#3a81f6",
+          "#54a2ff",
+          "#92c5ff",
+          "#eff6ff"
         ]
       },
-      "run-green": {
+      "link-blue-dark": {
         "role": "secondary",
-        "displayName": "Run Green (light)",
-        "canonical": "oklch(56.5% 0.119 154)",
+        "displayName": "Link Blue (dark)",
+        "canonical": "#54a2ff",
         "tonalRamp": [
-          "oklch(15% 0.040 154)",
-          "oklch(26% 0.062 154)",
-          "oklch(38% 0.084 154)",
-          "oklch(49% 0.105 154)",
-          "oklch(61% 0.111 154)",
-          "oklch(72% 0.089 154)",
-          "oklch(84% 0.068 154)",
-          "oklch(95% 0.046 154)"
+          "#1c398e",
+          "#193cb8",
+          "#1447e6",
+          "#155dfc",
+          "#3a81f6",
+          "#54a2ff",
+          "#92c5ff",
+          "#eff6ff"
         ]
       },
-      "build-yellow-dark": {
+      "chart-blue-light": {
         "role": "secondary",
-        "displayName": "Build Yellow (dark)",
-        "canonical": "oklch(82.6% 0.097 82)",
+        "displayName": "Chart Blue Light",
+        "canonical": "#92c5ff",
         "tonalRamp": [
-          "oklch(15% 0.015 82)",
-          "oklch(26% 0.015 82)",
-          "oklch(38% 0.028 82)",
-          "oklch(49% 0.046 82)",
-          "oklch(61% 0.063 82)",
-          "oklch(72% 0.081 82)",
-          "oklch(84% 0.096 82)",
-          "oklch(95% 0.078 82)"
+          "#1c398e",
+          "#193cb8",
+          "#1447e6",
+          "#155dfc",
+          "#3a81f6",
+          "#54a2ff",
+          "#92c5ff",
+          "#eff6ff"
         ]
       },
-      "build-yellow": {
+      "chart-blue": {
         "role": "secondary",
-        "displayName": "Build Yellow (light)",
-        "canonical": "oklch(56.2% 0.117 78)",
+        "displayName": "Chart Blue",
+        "canonical": "#3a81f6",
         "tonalRamp": [
-          "oklch(15% 0.040 78)",
-          "oklch(26% 0.061 78)",
-          "oklch(38% 0.083 78)",
-          "oklch(49% 0.104 78)",
-          "oklch(61% 0.109 78)",
-          "oklch(72% 0.087 78)",
-          "oklch(84% 0.066 78)",
-          "oklch(95% 0.044 78)"
+          "#1c398e",
+          "#193cb8",
+          "#1447e6",
+          "#155dfc",
+          "#3a81f6",
+          "#54a2ff",
+          "#92c5ff",
+          "#eff6ff"
+        ],
+        "note": "The chart ramp in pace.css is --pace-chart-1..5 (#92c5ff, #3a81f6, #2563ef, #1a4eda, #1f3fad); only steps 1 and 2 are used."
+      },
+      "state-ok": {
+        "role": "tertiary",
+        "displayName": "OK Green",
+        "canonical": "#00a544",
+        "tonalRamp": [
+          "#07381b",
+          "#055827",
+          "#037633",
+          "#01923d",
+          "#00a544",
+          "#58c384",
+          "#a2dcba",
+          "#e1f2e8"
         ]
       },
-      "fail-red-dark": {
-        "role": "secondary",
-        "displayName": "Fail Red (dark)",
-        "canonical": "oklch(67.1% 0.145 17)",
+      "state-busy": {
+        "role": "tertiary",
+        "displayName": "Busy Amber",
+        "canonical": "#dd7400",
         "tonalRamp": [
-          "oklch(15% 0.024 17)",
-          "oklch(26% 0.051 17)",
-          "oklch(38% 0.077 17)",
-          "oklch(49% 0.104 17)",
-          "oklch(61% 0.130 17)",
-          "oklch(72% 0.133 17)",
-          "oklch(84% 0.107 17)",
-          "oklch(95% 0.080 17)"
+          "#492a07",
+          "#743f05",
+          "#9e5403",
+          "#c46701",
+          "#dd7400",
+          "#e7a358",
+          "#f0cba2",
+          "#f7ede1"
         ]
       },
-      "fail-red": {
-        "role": "secondary",
-        "displayName": "Fail Red (light)",
-        "canonical": "oklch(55.3% 0.171 20)",
+      "state-bad": {
+        "role": "tertiary",
+        "displayName": "Bad Red",
+        "canonical": "#e40014",
         "tonalRamp": [
-          "oklch(15% 0.061 20)",
-          "oklch(26% 0.092 20)",
-          "oklch(38% 0.123 20)",
-          "oklch(49% 0.154 20)",
-          "oklch(61% 0.156 20)",
-          "oklch(72% 0.125 20)",
-          "oklch(84% 0.094 20)",
-          "oklch(95% 0.062 20)"
+          "#4b070d",
+          "#77050f",
+          "#a30311",
+          "#ca0113",
+          "#e40014",
+          "#ec5864",
+          "#f2a2aa",
+          "#f8e1e3"
         ]
       },
-      "paper-canvas": {
+      "state-ok-dark": {
+        "role": "tertiary",
+        "displayName": "OK Green (dark)",
+        "canonical": "#05df72",
+        "tonalRamp": [
+          "#084a29",
+          "#08743e",
+          "#069f53",
+          "#06c566",
+          "#05df72",
+          "#5be8a2",
+          "#a4f1ca",
+          "#e2f7ec"
+        ]
+      },
+      "state-busy-dark": {
+        "role": "tertiary",
+        "displayName": "Busy Amber (dark)",
+        "canonical": "#fcbb00",
+        "tonalRamp": [
+          "#533f07",
+          "#836205",
+          "#b38603",
+          "#dfa601",
+          "#fcbb00",
+          "#fbd158",
+          "#fbe4a2",
+          "#faf4e1"
+        ]
+      },
+      "state-bad-dark": {
+        "role": "tertiary",
+        "displayName": "Bad Red (dark)",
+        "canonical": "#ff6568",
+        "tonalRamp": [
+          "#542526",
+          "#843839",
+          "#b64a4c",
+          "#e25a5d",
+          "#ff6568",
+          "#fd999b",
+          "#fcc6c7",
+          "#faebeb"
+        ]
+      },
+      "canvas": {
         "role": "neutral",
-        "displayName": "Paper Canvas",
-        "canonical": "#eeeeeb",
+        "displayName": "Canvas",
+        "canonical": "#fafafa",
         "tonalRamp": [
-          "#17181b",
-          "#2a2c31",
-          "#4f535b",
-          "#6b7079",
-          "#9a9da3",
-          "#c6c7c3",
-          "#eaeae6",
-          "#f3f3f0"
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
         ]
       },
-      "paper-panel": {
+      "page": {
         "role": "neutral",
-        "displayName": "Paper Panel",
-        "canonical": "#fafaf8",
+        "displayName": "Page",
+        "canonical": "#ffffff",
         "tonalRamp": [
-          "#17181b",
-          "#2a2c31",
-          "#4f535b",
-          "#6b7079",
-          "#9a9da3",
-          "#c6c7c3",
-          "#eaeae6",
-          "#f3f3f0"
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
         ]
       },
-      "ink": {
+      "card": {
         "role": "neutral",
-        "displayName": "Ink",
-        "canonical": "#1b1d21"
+        "displayName": "Card",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
       },
-      "ink-dim": {
+      "muted": {
         "role": "neutral",
-        "displayName": "Ink Dim",
-        "canonical": "#4f535b"
+        "displayName": "Muted",
+        "canonical": "#f5f5f5",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
       },
-      "ink-faint": {
+      "border": {
         "role": "neutral",
-        "displayName": "Ink Faint",
-        "canonical": "#6b7079"
+        "displayName": "Border",
+        "canonical": "#e5e5e5",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Ring",
+        "canonical": "#a1a1a1",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "fg": {
+        "role": "neutral",
+        "displayName": "Foreground",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "fg-muted": {
+        "role": "neutral",
+        "displayName": "Fg Muted",
+        "canonical": "#737373",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "fg-faint": {
+        "role": "neutral",
+        "displayName": "Fg Faint",
+        "canonical": "#8a8a8a",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "log-bg": {
+        "role": "neutral",
+        "displayName": "Log Bg",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "canvas-dark": {
+        "role": "neutral",
+        "displayName": "Canvas (dark)",
+        "canonical": "#121212",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "page-dark": {
+        "role": "neutral",
+        "displayName": "Page (dark)",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Card (dark)",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted (dark)",
+        "canonical": "#262626",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "hover-dark": {
+        "role": "neutral",
+        "displayName": "Hover (dark)",
+        "canonical": "#1f1f1f",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Border (dark)",
+        "canonical": "#282828",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "input-dark": {
+        "role": "neutral",
+        "displayName": "Input (dark)",
+        "canonical": "#343434",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ring-dark": {
+        "role": "neutral",
+        "displayName": "Ring (dark)",
+        "canonical": "#737373",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "fg-dark": {
+        "role": "neutral",
+        "displayName": "Fg (dark)",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "fg-muted-dark": {
+        "role": "neutral",
+        "displayName": "Fg Muted (dark)",
+        "canonical": "#a1a1a1",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "log-bg-dark": {
+        "role": "neutral",
+        "displayName": "Log Bg (dark)",
+        "canonical": "#0d0d0d",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a1a1a1",
+          "#e5e5e5",
+          "#fafafa"
+        ]
       }
     },
     "typographyMeta": {
+      "stat-value": {
+        "displayName": "Stat Value",
+        "purpose": "Dashboard stat figures; units in small at 15px 500 muted."
+      },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Page h1."
+        "purpose": "Page h1 and the resource name in the summary card."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Resource name in the workspace summary strip."
+        "purpose": "Card header titles: sections, settings sections, chart and console cards."
+      },
+      "title-sm": {
+        "displayName": "Title Sm",
+        "purpose": "Log panel and Resources column titles."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Default copy and form text; word-spacing 0.1em on Manrope."
+        "purpose": "Default copy and form text."
       },
       "ui": {
-        "displayName": "UI",
-        "purpose": "Nav items, rail names (600), status badges."
+        "displayName": "Ui",
+        "purpose": "Card descriptions, actions, rail names, feed rows."
       },
-      "meta": {
-        "displayName": "Meta",
-        "purpose": "Table headers, facts, filters, status bar, log meta."
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, table headers, sidebar group names, status bar, stat notes."
       },
-      "panel-label": {
-        "displayName": "Panel label",
-        "purpose": "Uppercase title in every panel header bar, the log panel and the Resources column."
-      },
-      "nav-group": {
-        "displayName": "Nav group",
-        "purpose": "Sidebar group names, uppercase."
+      "axis": {
+        "displayName": "Axis",
+        "purpose": "Chart axes."
       },
       "log": {
         "displayName": "Log",
-        "purpose": "Log lines; JetBrains Mono, never wrapped."
+        "purpose": "Log lines; command lines at 600."
+      },
+      "mono-meta": {
+        "displayName": "Mono Meta",
+        "purpose": "Feed times and meta, short SHAs, UUIDs, the version."
       },
       "key-cap": {
-        "displayName": "Key cap",
-        "purpose": "kbd shortcut hints."
+        "displayName": "Key Cap",
+        "purpose": "kbd hints and filter counts."
       }
     },
     "shadows": [
       {
-        "name": "hairline-ring",
-        "value": "0 0 0 1px var(--gp-rule-strong)",
-        "purpose": "Popovers, menus, command palette, toasts, tooltips, dialogs; Tailwind shadow utilities are re-pointed to it."
+        "name": "control",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Buttons and inputs."
       },
       {
-        "name": "inset-edge",
-        "value": "inset 0 0 0 1px var(--gp-rule-strong)",
-        "purpose": "Top-bar search field and outlined badges."
+        "name": "card",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Cards, the page panel, selected segments, active tabs."
       },
       {
-        "name": "active-edge",
-        "value": "inset 2px 0 0 var(--gp-primary)",
-        "purpose": "Selected resource in the Resources column."
+        "name": "overlay",
+        "value": "0 0 0 1px var(--pace-border), 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 8px 24px -6px rgb(0 0 0 / 0.14)",
+        "purpose": "Popovers, menus, toasts, command palette, chart tooltips, log sheet, grid cards on hover."
       },
       {
-        "name": "input-focus",
-        "value": "0 0 0 1px var(--gp-focus)",
-        "purpose": "With a blue border on focused inputs."
+        "name": "overlay-dark",
+        "value": "0 0 0 1px var(--pace-border), 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6)",
+        "purpose": "The overlay shadow in dark mode."
       },
       {
-        "name": "lamp-rim",
-        "value": "inset 0 0 0 1px oklch(100% 0 0 / 0.12)",
-        "purpose": "Status lamp rim (dark); oklch(0% 0 0 / 0.18) in light."
+        "name": "focus-ring",
+        "value": "outline: 3px solid color-mix(in srgb, var(--pace-ring) 50%, transparent); outline-offset: 1px",
+        "purpose": "Keyboard focus on keys, tabs, menu items and links; inputs use a 3px box-shadow ring with a ring-coloured border."
+      },
+      {
+        "name": "lamp-halo",
+        "value": "0 0 0 3px color-mix(in srgb, <state> 18%, transparent)",
+        "purpose": "Status lamps and status bar dots."
       }
     ],
     "motion": [
       {
-        "name": "control-state",
-        "value": "120ms ease-out",
-        "purpose": "Background and colour of the collapse toggle."
+        "name": "spring",
+        "value": "cubic-bezier(0.22, 1.25, 0.36, 1)",
+        "purpose": "Easing for entrances, presses, lifts and the collapse tooltip."
       },
       {
-        "name": "tooltip",
-        "value": "opacity 100ms ease-out, 400ms delay",
-        "purpose": "Collapse toggle tooltip."
+        "name": "pace-rise",
+        "value": "420ms spring, from opacity 0, translateY(8px) scale(0.995); stagger 40ms to 160ms",
+        "purpose": "Cards, stat cards, summary card and docks rising in on each page."
+      },
+      {
+        "name": "press",
+        "value": "transform 120ms spring; scale 0.97 keys, 0.98 menu and rail items, 0.94 collapse toggle",
+        "purpose": "Keys and rows press in."
+      },
+      {
+        "name": "card-lift",
+        "value": "transform 200ms spring, translateY(-2px), overlay shadow",
+        "purpose": "Grid cards on hover only."
+      },
+      {
+        "name": "pace-grow",
+        "value": "600ms spring, scaleY from 0, 25ms per bar",
+        "purpose": "Chart bars growing from the axis."
+      },
+      {
+        "name": "pace-slide",
+        "value": "260ms spring, from opacity 0, translateX(-10px)",
+        "purpose": "Deployment console rows."
+      },
+      {
+        "name": "pace-sheet",
+        "value": "320ms spring, from opacity 0, translateX(24px)",
+        "purpose": "Log panel sheet below xl."
+      },
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Background, colour and border transitions."
       },
       {
         "name": "sidebar",
         "value": "200ms",
-        "purpose": "Sidebar width, main margin and status bar left edge on collapse."
+        "purpose": "Sidebar width, page panel left edge, status bar left edge."
       },
       {
         "name": "live-pulse",
         "value": "1.6s ease-in-out infinite, opacity 1 to 0.35",
-        "purpose": "In-progress status lamps and the building log dot; off under prefers-reduced-motion."
+        "purpose": "In-progress lamps, the building log dot, busy feed dots."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Animations off and transitions 0s inside the page; lamp pulse, docks and log sheet stop."
       }
     ],
     "breakpoints": [
       {
         "name": "lg",
-        "value": "1024px"
+        "value": "1024px",
+        "purpose": "Inset shell, status bar."
       },
       {
         "name": "xl",
-        "value": "1280px"
+        "value": "1280px",
+        "purpose": "Three-card application workspace."
       }
     ]
   },
@@ -333,131 +714,140 @@
       "name": "Primary Key",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one filled blue action per view (Deploy, the highlighted button).",
+      "description": "The filled ink key (Deploy, highlighted buttons).",
       "html": "<button class=\"ds-btn-primary\">Deploy</button>",
-      "css": ".ds-btn-primary { font: 500 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--gp-primary, #61afef); background: var(--gp-primary, #61afef); color: var(--gp-primary-fg, #0f1420); cursor: pointer; } .ds-btn-primary:hover { background: var(--gp-primary-hover, #7dbdf2); border-color: var(--gp-primary-hover, #7dbdf2); } .ds-btn-primary:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
+      "css": ".ds-btn-primary { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; height: 36px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--pace-primary, #171717); background: var(--pace-primary, #171717); color: var(--pace-primary-fg, #fafafa); box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); cursor: pointer; transition: background-color 150ms, transform 120ms cubic-bezier(0.22, 1.25, 0.36, 1); } .ds-btn-primary:hover { background: var(--pace-primary-hover, #333333); border-color: var(--pace-primary-hover, #333333); } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 3px solid color-mix(in srgb, var(--pace-ring, #a1a1a1) 50%, transparent); outline-offset: 1px; }"
     },
     {
-      "name": "Secondary Key",
+      "name": "Outline Key",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Every other action: a neutral key on the raised step, no lift.",
-      "html": "<button class=\"ds-btn\">Reload compose</button>",
-      "css": ".ds-btn { font: 500 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); cursor: pointer; } .ds-btn:hover { background: var(--color-selected, #2b2e34); } .ds-btn:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
+      "refersTo": "button-outline",
+      "description": "The default key for every other action.",
+      "html": "<button class=\"ds-btn-outline\">Reload compose</button>",
+      "css": ".ds-btn-outline { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; height: 36px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--pace-border, #e5e5e5); background: var(--pace-bg, #ffffff); color: var(--pace-fg, #0a0a0a); box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); cursor: pointer; transition: background-color 150ms, transform 120ms cubic-bezier(0.22, 1.25, 0.36, 1); } .ds-btn-outline:hover { background: var(--pace-accent, #f5f5f5); } .ds-btn-outline:active { transform: scale(0.97); } .ds-btn-outline:focus-visible { outline: 3px solid color-mix(in srgb, var(--pace-ring, #a1a1a1) 50%, transparent); outline-offset: 1px; }"
     },
     {
       "name": "Text Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Form field on the raised step; focus turns the border blue with a 1px ring.",
-      "html": "<input class=\"ds-input\" value=\"linerx\" aria-label=\"Name\">",
-      "css": ".ds-input { font: 400 14px/20px Manrope, ui-sans-serif, system-ui, sans-serif; height: 32px; width: 280px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); outline: none; } .ds-input:focus-visible { border-color: var(--gp-focus, #61afef); box-shadow: 0 0 0 1px var(--gp-focus, #61afef); }"
+      "description": "Form field with soft ring focus.",
+      "html": "<input class=\"ds-input\" value=\"linerx\">",
+      "css": ".ds-input { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 14px; height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--pace-input, #e5e5e5); background: transparent; color: var(--pace-fg, #0a0a0a); box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); outline: none; } .ds-input:focus-visible { border-color: var(--pace-ring, #a1a1a1); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ring, #a1a1a1) 50%, transparent); }"
     },
     {
-      "name": "Panel",
+      "name": "Card",
       "kind": "card",
-      "refersTo": "panel",
-      "description": "Every top-level section: a 40px header bar with the panel title and actions over one seamed surface.",
-      "html": "<section class=\"ds-panel\"><header class=\"ds-panel-head\"><h3>Application details</h3><button class=\"ds-panel-act\">Reload compose</button></header><div class=\"ds-panel-body\">Name, description and build settings.</div></section>",
-      "css": ".ds-panel { width: 420px; background: var(--gp-surface, #1d1f23); border: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); border-radius: 8px; overflow: clip; font: 400 14px/20px Manrope, ui-sans-serif, sans-serif; color: var(--gp-fg-dim, #a3a7b0); } .ds-panel-head { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 8px 10px 8px 16px; box-sizing: border-box; background: var(--gp-surface-sunk, #1a1c1f); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-panel-head h3 { margin: 0; font-size: 11px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-panel-act { font: 500 13px Manrope, sans-serif; height: 28px; padding: 0 10px; border-radius: 6px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); background: var(--color-raised, #24262b); color: var(--gp-fg, #e8e9ec); } .ds-panel-act:hover { background: var(--color-selected, #2b2e34); } .ds-panel-body { padding: 16px; }"
+      "refersTo": "card",
+      "description": "Every section: 14px card with a header row and a seam.",
+      "html": "<section class=\"ds-card\"><header class=\"ds-card-head\"><h3>Access</h3><p>Domains and redirects</p></header><div class=\"ds-card-body\">https://linerx.icto.io</div></section>",
+      "css": ".ds-card { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; background: var(--pace-card, #ffffff); border: 1px solid var(--pace-border, #e5e5e5); border-radius: 14px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); overflow: clip; max-width: 420px; } .ds-card-head { min-height: 52px; padding: 12px 12px 12px 20px; border-bottom: 1px solid var(--pace-border, #e5e5e5); } .ds-card-head h3 { margin: 0; font-size: 15px; line-height: 20px; font-weight: 600; letter-spacing: -0.01em; color: var(--pace-fg, #0a0a0a); } .ds-card-head p { margin: 2px 0 0; font-size: 13px; color: var(--pace-fg-muted, #737373); } .ds-card-body { padding: 16px 20px; font-size: 14px; color: var(--pace-fg, #0a0a0a); }"
+    },
+    {
+      "name": "Stat Card",
+      "kind": "card",
+      "refersTo": "stat-card",
+      "description": "Dashboard stat: head, inner well with figure, note and meter.",
+      "html": "<article class=\"ds-stat\"><header class=\"ds-stat-head\">Servers ready</header><div class=\"ds-stat-body\"><div><div class=\"ds-stat-value\">1<small> / 1</small></div><p class=\"ds-stat-note\"><span>All reachable</span></p></div><div class=\"ds-meter\"><span></span><span></span><span class=\"off\"></span></div></div></article>",
+      "css": ".ds-stat { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; max-width: 280px; background: var(--pace-card, #ffffff); border: 1px solid var(--pace-border, #e5e5e5); border-radius: 14px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); } .ds-stat-head { font-size: 14px; font-weight: 500; color: var(--pace-fg, #0a0a0a); } .ds-stat-body { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 12px; padding: 12px 12px 12px 16px; border: 1px solid var(--pace-border, #e5e5e5); border-radius: 8px; background: color-mix(in srgb, var(--pace-muted, #f5f5f5) 20%, transparent); } .ds-stat-value { font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--pace-fg, #0a0a0a); } .ds-stat-value small { font-size: 15px; font-weight: 500; color: var(--pace-fg-muted, #737373); } .ds-stat-note { margin: 4px 0 0; font-size: 12px; color: var(--pace-fg-muted, #737373); } .ds-stat-note span { color: var(--pace-ok, #00a544); font-weight: 500; } .ds-meter { display: flex; gap: 3px; height: 8px; margin-bottom: 6px; } .ds-meter span { flex: 1; border-radius: 999px; background: var(--pace-ok, #00a544); } .ds-meter span.off { background: var(--pace-muted, #f5f5f5); }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "status-badge",
+      "description": "Outline pill with a state lamp and halo.",
+      "html": "<span class=\"ds-badge\"><i class=\"ds-lamp\"></i>Running</span>",
+      "css": ".ds-badge { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; gap: 0.4rem; height: 22px; padding: 0 8px; border: 1px solid var(--pace-border, #e5e5e5); border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--pace-fg, #0a0a0a); } .ds-lamp { width: 8px; height: 8px; border-radius: 999px; background: var(--pace-ok, #00a544); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ok, #00a544) 18%, transparent); }"
     },
     {
       "name": "Sidebar Navigation",
       "kind": "nav",
-      "refersTo": "nav",
-      "description": "Flat sidebar items: 4% wash on hover, 7% wash and 600 weight when active, no accent rail.",
-      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-group\">Infrastructure</div><a class=\"ds-nav-item is-active\" href=\"#\">Projects</a><a class=\"ds-nav-item\" href=\"#\">Servers</a><a class=\"ds-nav-item\" href=\"#\">Integrations</a></nav>",
-      "css": ".ds-nav { width: 200px; padding: 8px; background: var(--gp-canvas, #17181b); display: flex; flex-direction: column; gap: 2px; font-family: Manrope, sans-serif; } .ds-nav-group { padding: 8px 10px 4px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-fg-faint, #8e939c); } .ds-nav-item { display: flex; align-items: center; height: 32px; padding: 0 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--color-nav-text, #a3a7b0); text-decoration: none; } .ds-nav-item:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); color: var(--gp-fg, #e8e9ec); } .ds-nav-item.is-active { background: var(--gp-active, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); font-weight: 600; } .ds-nav-item:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; }"
-    },
-    {
-      "name": "Summary Chip",
-      "kind": "chip",
-      "refersTo": "summary-chip",
-      "description": "Outlined fact chip (build pack); badges are outlines, never fills.",
-      "html": "<span class=\"ds-chip\">Docker Compose</span>",
-      "css": ".ds-chip { display: inline-block; font: 600 12px/18px Manrope, sans-serif; padding: 1px 7px; border-radius: 5px; border: 1px solid var(--gp-rule-strong, rgb(255 255 255 / 0.12)); color: var(--gp-fg-dim, #a3a7b0); }"
+      "refersTo": "nav-item-active",
+      "description": "Menu items on the canvas; muted fill for hover and active.",
+      "html": "<nav class=\"ds-nav\"><p class=\"ds-nav-group\">Infrastructure</p><a class=\"ds-nav-item is-active\" href=\"#\">Dashboard</a><a class=\"ds-nav-item\" href=\"#\">Servers</a><a class=\"ds-nav-item\" href=\"#\">Projects</a></nav>",
+      "css": ".ds-nav { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 2px; width: 200px; padding: 8px; background: var(--pace-canvas, #fafafa); } .ds-nav-group { margin: 8px 10px 4px; font-size: 12px; font-weight: 500; color: color-mix(in srgb, var(--pace-fg, #0a0a0a) 60%, transparent); } .ds-nav-item { padding: 7px 10px; border-radius: 8px; font-size: 14px; color: #404040; text-decoration: none; transition: background-color 150ms, transform 120ms cubic-bezier(0.22, 1.25, 0.36, 1); } .ds-nav-item:hover, .ds-nav-item.is-active { background: var(--pace-accent, #f5f5f5); color: var(--pace-fg, #0a0a0a); } .ds-nav-item.is-active { font-weight: 500; } .ds-nav-item:active { transform: scale(0.98); } .ds-nav-item:focus-visible { outline: 3px solid color-mix(in srgb, var(--pace-ring, #a1a1a1) 50%, transparent); outline-offset: 1px; }"
     },
     {
       "name": "Resources Column",
       "kind": "custom",
       "refersTo": "resource-rail-item",
-      "description": "Left column of the tiled workspace: each resource with its state; the active one carries a 2px blue inset edge.",
-      "html": "<nav class=\"ds-rail\"><header class=\"ds-rail-head\"><span>Resources</span><b>3</b></header><a class=\"ds-rail-item\" href=\"#\"><span class=\"ds-rail-name\">icto</span><span class=\"ds-rail-st is-ok\"><i></i>Running</span><span class=\"ds-rail-meta\">Dockerfile</span></a><a class=\"ds-rail-item is-active\" href=\"#\"><span class=\"ds-rail-name\">linerx</span><span class=\"ds-rail-st is-bad\"><i></i>Exited</span><span class=\"ds-rail-meta\">Docker Compose</span></a></nav>",
-      "css": ".ds-rail { width: 232px; background: var(--gp-canvas, #17181b); border-right: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); font-family: Manrope, sans-serif; } .ds-rail-head { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 16px; border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-rail-head span { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-rail-head b { font: 500 11px/1 'JetBrains Mono', monospace; color: var(--gp-fg-faint, #8e939c); } .ds-rail-item { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2px 8px; padding: 10px 16px; border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); text-decoration: none; } .ds-rail-item:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); } .ds-rail-item.is-active { background: var(--gp-surface, #1d1f23); box-shadow: inset 2px 0 0 var(--gp-primary, #61afef); } .ds-rail-item:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: -2px; } .ds-rail-name { font-size: 13px; font-weight: 600; } .ds-rail-st { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--gp-fg-faint, #8e939c); } .ds-rail-st i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; } .ds-rail-st.is-ok { color: var(--gp-ok, #7ec699); } .ds-rail-st.is-bad { color: var(--gp-bad, #e06c75); } .ds-rail-meta { grid-column: 1 / -1; font-size: 12px; color: var(--gp-fg-faint, #8e939c); }"
+      "description": "Sticky 240px card listing the environment with state dots.",
+      "html": "<nav class=\"ds-rail\"><header class=\"ds-rail-head\"><b>Resources</b><span>3</span></header><a class=\"ds-rail-item\" href=\"#\"><span>icto</span><em class=\"bad\">Exited</em><small>Dockerfile</small></a><a class=\"ds-rail-item is-active\" href=\"#\"><span>linerx</span><em class=\"ok\">Running</em><small>Docker Compose</small></a></nav>",
+      "css": ".ds-rail { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; width: 240px; background: var(--pace-card, #ffffff); border: 1px solid var(--pace-border, #e5e5e5); border-radius: 14px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); overflow: hidden; } .ds-rail-head { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 0 16px; border-bottom: 1px solid var(--pace-border, #e5e5e5); font-size: 14px; font-weight: 600; color: var(--pace-fg, #0a0a0a); } .ds-rail-head span { padding: 1px 7px; border-radius: 999px; background: var(--pace-muted, #f5f5f5); font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 500; color: var(--pace-fg-muted, #737373); } .ds-rail-item { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; margin: 6px; padding: 8px 10px; border-radius: 8px; color: var(--pace-fg, #0a0a0a); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: background-color 150ms, transform 120ms cubic-bezier(0.22, 1.25, 0.36, 1); } .ds-rail-item:hover { background: var(--pace-accent, #f5f5f5); } .ds-rail-item:active { transform: scale(0.98); } .ds-rail-item.is-active { background: var(--pace-accent, #f5f5f5); box-shadow: inset 0 0 0 1px var(--pace-border, #e5e5e5); } .ds-rail-item em { font-style: normal; font-size: 12px; } .ds-rail-item em::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: 1px; } .ds-rail-item em.ok { color: var(--pace-ok, #00a544); } .ds-rail-item em.bad { color: var(--pace-bad, #e40014); } .ds-rail-item small { grid-column: 1 / -1; font-size: 12px; font-weight: 400; color: var(--pace-fg-muted, #737373); }"
     },
     {
       "name": "Deployment Log Panel",
       "kind": "custom",
       "refersTo": "log-panel-body",
-      "description": "Signature: the live deployment log docked beside the application; unwrapped mono lines with a pinned time column.",
-      "html": "<section class=\"ds-log\"><header class=\"ds-log-head\"><span class=\"ds-log-title\">Deployment log</span><span class=\"ds-log-st\"><i></i>Building</span></header><div class=\"ds-log-filters\"><button class=\"is-active\">All</button><button>Warnings <small>2</small></button><button>Errors <small>0</small></button></div><div class=\"ds-log-body\"><div class=\"ds-line is-cmd\"><span class=\"t\">01:08:54</span><span>$ docker compose up -d</span></div><div class=\"ds-line\"><span class=\"t\">01:08:59</span><span>Removing old containers.</span></div><div class=\"ds-line is-warn\"><span class=\"t\">01:09:22</span><span>WARN healthcheck slow</span></div><div class=\"ds-line is-err\"><span class=\"t\">01:09:26</span><span>Error: port 3000 already in use</span></div></div></section>",
-      "css": ".ds-log { width: 420px; display: flex; flex-direction: column; background: var(--gp-log-bg, #141518); border: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); border-radius: 8px; overflow: hidden; font-family: Manrope, sans-serif; } .ds-log-head { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 8px 0 14px; background: var(--gp-surface, #1d1f23); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-log-title { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-fg-dim, #a3a7b0); } .ds-log-st { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--gp-busy, #e6c07b); } .ds-log-st i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: ds-pulse 1.6s ease-in-out infinite; } @keyframes ds-pulse { 50% { opacity: 0.35; } } @media (prefers-reduced-motion: reduce) { .ds-log-st i { animation: none; } } .ds-log-filters { display: flex; gap: 4px; padding: 6px 14px 6px 10px; background: var(--gp-surface, #1d1f23); border-bottom: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); } .ds-log-filters button { height: 24px; padding: 0 10px; border: 0; border-radius: 5px; background: transparent; font: 600 12px Manrope, sans-serif; color: var(--gp-fg-dim, #a3a7b0); cursor: pointer; } .ds-log-filters button:hover { color: var(--gp-fg, #e8e9ec); } .ds-log-filters button.is-active { background: var(--gp-active, rgb(255 255 255 / 0.07)); color: var(--gp-fg, #e8e9ec); box-shadow: 0 0 0 1px var(--gp-rule-strong, rgb(255 255 255 / 0.12)); } .ds-log-filters button:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; } .ds-log-filters small { font: 500 11px/1 'JetBrains Mono', monospace; color: var(--gp-fg-faint, #8e939c); } .ds-log-body { padding: 8px 0; overflow: auto; font: 12px/1.6 'JetBrains Mono', ui-monospace, monospace; color: var(--gp-fg, #e8e9ec); } .ds-line { display: flex; width: max-content; min-width: 100%; padding-right: 14px; } .ds-line:hover { background: var(--gp-hover, rgb(255 255 255 / 0.04)); } .ds-line .t { position: sticky; left: 0; flex: none; width: 5.4rem; padding-left: 14px; background: var(--gp-log-bg, #141518); color: var(--gp-fg-faint, #8e939c); font-variant-numeric: tabular-nums; } .ds-line span:last-child { white-space: pre; } .ds-line.is-cmd { margin-top: 6px; font-weight: 600; color: var(--gp-link, #61afef); } .ds-line.is-warn span:last-child { color: var(--gp-busy, #e6c07b); } .ds-line.is-err span:last-child { color: var(--gp-bad, #e06c75); }"
+      "description": "Signature: the latest deployment log docked as a card beside the application.",
+      "html": "<section class=\"ds-log\"><header class=\"ds-log-head\"><b>Deployment log</b><span class=\"ds-log-status\">Finished</span></header><div class=\"ds-log-filters\"><button class=\"is-active\">All</button><button>Warnings <i>0</i></button><button>Errors <i>0</i></button></div><div class=\"ds-log-body\"><p class=\"cmd\"><span>01:06:07</span>$ docker compose build</p><p><span>01:09:00</span>Volume postgres-data Created</p><p class=\"err\"><span>01:09:22</span>error: port already allocated</p></div></section>",
+      "css": ".ds-log { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; width: 380px; background: var(--pace-card, #ffffff); border: 1px solid var(--pace-border, #e5e5e5); border-radius: 14px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); overflow: hidden; } .ds-log-head { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--pace-border, #e5e5e5); font-size: 14px; color: var(--pace-fg, #0a0a0a); } .ds-log-status { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border: 1px solid var(--pace-border, #e5e5e5); border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--pace-ok, #00a544); } .ds-log-filters { display: flex; gap: 2px; margin: 8px 12px; padding: 3px; border-radius: 8px; background: var(--pace-muted, #f5f5f5); } .ds-log-filters button { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; font-weight: 500; color: var(--pace-fg-muted, #737373); cursor: pointer; } .ds-log-filters button:hover { color: var(--pace-fg, #0a0a0a); } .ds-log-filters button.is-active { background: var(--pace-bg, #ffffff); color: var(--pace-fg, #0a0a0a); box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); } .ds-log-filters i { font-style: normal; padding: 1px 5px; border-radius: 999px; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; background: color-mix(in srgb, var(--pace-fg, #0a0a0a) 7%, transparent); } .ds-log-body { padding: 4px 6px 8px; border-top: 1px solid var(--pace-border, #e5e5e5); background: var(--pace-log-bg, #fafafa); font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.65; color: var(--pace-fg, #0a0a0a); white-space: pre; overflow-x: auto; } .ds-log-body p { margin: 0; padding-right: 10px; border-radius: 6px; } .ds-log-body p:hover { background: var(--pace-accent, #f5f5f5); } .ds-log-body span { display: inline-block; width: 5.4rem; padding-left: 10px; color: var(--pace-fg-faint, #8a8a8a); } .ds-log-body .cmd { margin-top: 6px; font-weight: 600; color: var(--pace-link, #155dfc); } .ds-log-body .err { color: var(--pace-bad, #e40014); }"
     },
     {
       "name": "Status Bar",
-      "kind": "custom",
+      "kind": "nav",
       "refersTo": "status-bar",
-      "description": "28px bar along the bottom: servers with state dot, proxy state, version.",
-      "html": "<footer class=\"ds-sb\"><a href=\"#\"><i class=\"is-bad\"></i><b>Oracle VPS</b>Unreachable<span class=\"sep\"></span>Proxy starting</a><span class=\"ver\">v4.5.0</span></footer>",
-      "css": ".ds-sb { display: flex; align-items: center; gap: 18px; height: 28px; padding: 0 16px; width: 640px; font: 12px Manrope, sans-serif; color: var(--gp-fg-dim, #a3a7b0); background: var(--gp-canvas, #17181b); border-top: 1px solid var(--gp-rule, rgb(255 255 255 / 0.07)); font-variant-numeric: tabular-nums; } .ds-sb a { display: inline-flex; align-items: center; gap: 6px; color: inherit; text-decoration: none; } .ds-sb a:hover { color: var(--gp-fg, #e8e9ec); } .ds-sb a:focus-visible { outline: 2px solid var(--gp-focus, #61afef); outline-offset: 2px; } .ds-sb b { font-weight: 500; color: var(--gp-fg, #e8e9ec); } .ds-sb i { width: 7px; height: 7px; border-radius: 50%; background: var(--gp-fg-faint, #8e939c); } .ds-sb i.is-ok { background: var(--gp-ok, #7ec699); } .ds-sb i.is-bad { background: var(--gp-bad, #e06c75); } .ds-sb .sep { width: 1px; height: 12px; background: var(--gp-rule-strong, rgb(255 255 255 / 0.12)); } .ds-sb .ver { margin-left: auto; font-family: 'JetBrains Mono', monospace; }"
+      "description": "36px strip on the canvas below the page panel: servers and version.",
+      "html": "<footer class=\"ds-status\"><span class=\"ds-status-item\"><i></i><b>Oracle VPS</b> Online</span><span class=\"ds-status-sep\"></span><span>Proxy running</span><span class=\"ds-status-ver\">v4.5.0</span></footer>",
+      "css": ".ds-status { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; display: flex; align-items: center; gap: 18px; height: 36px; padding: 6px 20px 0; font-size: 12px; color: var(--pace-fg-muted, #737373); background: var(--pace-canvas, #fafafa); font-variant-numeric: tabular-nums; } .ds-status-item { display: inline-flex; align-items: center; gap: 6px; } .ds-status-item b { font-weight: 500; color: var(--pace-fg, #0a0a0a); } .ds-status-item i { width: 7px; height: 7px; border-radius: 50%; background: var(--pace-ok, #00a544); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pace-ok, #00a544) 18%, transparent); } .ds-status-sep { width: 1px; height: 12px; background: var(--pace-border, #e5e5e5); } .ds-status-ver { margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }"
     }
   ],
   "narrative": {
-    "northStar": "The Graphite Console",
-    "overview": "**Creative North Star: \"The Graphite Console\"**\n\nCoolify reads as a working surface of persistent panels on a graphite ground. The layout stays put; navigation changes what the panels hold. On wide screens an application is a tiled workspace edge to edge between the top bar and the status bar: the environment's resources on the left, the selected application in the centre, and its deployment log docked on the right, following the live build. Density is upstream's: 13 to 14px interface type, 40px panel headers, 8px rows of rhythm.\n\nDepth is structural, not atmospheric. Panels sit one tonal step above the ground and are divided by 1px seams; nothing floats, nothing glows, nothing lifts on hover. Colour is reserved for state, in an editor-syntax palette: green running, yellow building, red failed, blue for links, focus, checked controls and the one primary key. Dark is the native theme; light is the same structure translated onto paper-grey.",
+    "northStar": "The Pace Workbench",
+    "overview": "Coolify reads as PaceUI's take on shadcn's neutral system: a quiet grey canvas holding one rounded page panel, and inside it white (or near-black) cards with a 1px border and a soft shadow. From `lg` the shell is inset: the sidebar, brand and status bar sit directly on the canvas, and the top bar's working half plus the page form a single 14px-cornered panel beside them. Everything a user acts on lives in a card with a header row; nothing is boxed twice.\n\nColour is restrained. Keys are ink, not blue: the primary is near-black on light and near-white on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion.",
     "keyCharacteristics": [
-      "Dark-first graphite ground with panels one step up, divided by 1px seams.",
-      "Every top-level section is a panel with a 40px header bar carrying its small uppercase title and its actions.",
-      "Persistent deployment log panel docked beside the application (the signature).",
-      "Colour carries state only; one blue primary key per view.",
-      "Manrope for the interface, JetBrains Mono for anything a machine wrote."
+      "Inset shell: sidebar on the canvas, the page in one rounded panel with an 8px gutter.",
+      "Every section is a 14px card with a 1px border, a soft shadow and a header row; inner boxes lose their frames.",
+      "Ink primary key; outline secondary keys; blue only for charts, links and log commands.",
+      "DM Sans for the interface, JetBrains Mono for logs, times, SHAs, versions, counts and key caps.",
+      "Spring motion (rise, press, lift, grow) with reduced-motion handling."
     ],
     "rules": [
       {
-        "name": "The State-Only Colour Rule",
-        "body": "Green, yellow and red appear only to report the live state of a resource, deployment, server or log line. They never decorate, never fill a control, never mark a category.",
+        "name": "The Ink Key Rule",
+        "body": "The filled key is ink, never blue. Blue is for data and links; a blue button is off-system.",
         "section": "colors"
       },
       {
-        "name": "The One Key Rule",
-        "body": "A view has one filled blue key. Everything else is a neutral key on the raised step. The Coolify logo is rendered greyscale so brand purple never competes with it.",
+        "name": "The State-Only Colour Rule",
+        "body": "Green, amber and red appear only to report live state (lamps, badges, rail and feed dots, meters, deltas, log lines, the failed chart series). They never fill a control or mark a category.",
         "section": "colors"
       },
       {
         "name": "The Machine-Text Rule",
-        "body": "Anything a machine wrote (log lines, commit SHAs, UUIDs, repo paths, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.",
+        "body": "Anything a machine wrote (log lines, SHAs, UUIDs, times in the feed, versions, counts, key caps) is JetBrains Mono. Labels and prose never are.",
         "section": "typography"
       },
       {
-        "name": "The Tabular Rule",
-        "body": "Tables, times, counts and the status bar use tabular numerals.",
+        "name": "The Sentence-Case Rule",
+        "body": "Titles, group names and badges are sentence case with no tracking; uppercase labels are off-system.",
         "section": "typography"
       },
       {
-        "name": "The Panels Stay Put Rule",
-        "body": "Navigation changes what the panels contain, never where they are. The log panel stays docked while the operator edits configuration in the centre.",
+        "name": "The One Panel Rule",
+        "body": "From `lg` the page is a single rounded panel on the canvas; chrome (sidebar, brand, status bar) never sits inside it and cards never sit outside it.",
         "section": "layout"
       },
       {
-        "name": "The Seam Rule",
-        "body": "Panels are separated by 1px seams and one tonal step, never by drop shadows. If something needs to stand above the page, it gets the hairline ring.",
+        "name": "The Soft Lift Rule",
+        "body": "Depth is a border plus a soft shadow, never a hard offset or a glow. Only grid cards lift on hover (2px up, overlay shadow); everything else stays put.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** put new tokens and component rules in `graphite.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.",
-      "**Do** make every new top-level section a panel: 8px, 1px seam, 40px header bar on the sunk step with an 11px uppercase panel title and right-aligned actions.",
-      "**Do** use JetBrains Mono for logs, SHAs, UUIDs, versions, counts and key caps, with tabular numerals.",
-      "**Do** keep one blue primary key per view; everything else is a neutral key.",
-      "**Do** design dark first and translate to light through the same `--gp-*` tokens.",
-      "**Do** respect reduced motion for every pulse."
+      "Do put new tokens and component rules in `pace.css` under `html:root` / `html.dark` / `html:not(#icto-ui)`; answer upstream layered `!important` only inside `@layer utilities`.",
+      "Do make every new section a card: 14px, 1px border, card shadow, 52px header row with a 15px 600 title.",
+      "Do keep the filled key ink; outline keys for everything else.",
+      "Do use the chart blues for data series and keep green, amber and red for state.",
+      "Do use JetBrains Mono for logs, SHAs, UUIDs, times, versions, counts and key caps, with tabular numerals.",
+      "Do give new entrances the spring and the rise, and cover every animation with the reduced-motion rule."
     ],
     "donts": [
-      "**Don't** use drop shadows, blur, glow or hover lift; overlays get the 1px hairline ring.",
-      "**Don't** use green, yellow or red for anything but live state, and don't fill controls with them.",
-      "**Don't** put a box inside a box; inner sections and rows become seam-divided groups.",
-      "**Don't** bring back brand purple or the stacked-card admin look; the logo stays greyscale.",
-      "**Don't** move docked panels on navigation or let the log panel cover the centre on wide screens."
+      "Don't fill a button blue or with a state colour.",
+      "Don't put a box inside a box; inner groups become seam-divided rows.",
+      "Don't use hard offset shadows, glows or blur; depth is border plus soft shadow.",
+      "Don't set labels in uppercase with tracking; titles and group names are sentence case.",
+      "Don't place chrome inside the page panel or cards outside it from `lg`.",
+      "Don't bring back brand purple; the logo stays greyscale."
     ]
   }
 }

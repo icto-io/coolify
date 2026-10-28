@@ -14,7 +14,7 @@
                 'is-ok' => $statusBarServer->isFunctional(),
                 'is-bad' => ! $statusBarServer->isFunctional(),
             ]) aria-hidden="true"></span>
-            <span class="font-medium text-[var(--gp-fg)]">{{ $statusBarServer->name }}</span>
+            <span class="font-medium text-[var(--pace-fg)]">{{ $statusBarServer->name }}</span>
             <span>{{ $statusBarServer->isFunctional() ? 'Online' : 'Unreachable' }}</span>
             @if ($statusBarProxy)
                 <span class="app-status-bar-sep" aria-hidden="true"></span>

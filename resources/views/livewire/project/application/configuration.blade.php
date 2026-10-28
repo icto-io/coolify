@@ -47,7 +47,7 @@
                             <dd>
                                 <a href="{{ $summaryDomains->first() }}" target="_blank" rel="noopener noreferrer">{{ str($summaryDomains->first())->after('://') }}</a>
                                 @if ($summaryDomains->count() > 1)
-                                    <span class="text-[var(--gp-fg-faint)]">+{{ $summaryDomains->count() - 1 }}</span>
+                                    <span class="text-[var(--pace-fg-faint)]">+{{ $summaryDomains->count() - 1 }}</span>
                                 @endif
                             </dd>
                         </div>
@@ -55,7 +55,7 @@
                     @if ($application->git_repository)
                         <div>
                             <dt>Source</dt>
-                            <dd class="font-mono">{{ str($application->git_repository)->afterLast(':')->replace('.git', '') }}@if ($application->git_branch)<span class="text-[var(--gp-fg-faint)]">:{{ $application->git_branch }}</span>@endif</dd>
+                            <dd class="font-mono">{{ str($application->git_repository)->afterLast(':')->replace('.git', '') }}@if ($application->git_branch)<span class="text-[var(--pace-fg-faint)]">:{{ $application->git_branch }}</span>@endif</dd>
                         </div>
                     @endif
                     <div>

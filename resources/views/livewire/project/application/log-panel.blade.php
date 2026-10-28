@@ -65,7 +65,7 @@
     @if ($deployment)
         <div class="log-panel-meta">
             @if ($deployment->commit && $deployment->commit !== 'HEAD')
-                <span class="font-mono text-[var(--gp-fg)]">{{ str($deployment->commit)->limit(7, '') }}</span>
+                <span class="font-mono text-[var(--pace-fg)]">{{ str($deployment->commit)->limit(7, '') }}</span>
             @endif
             @if ($deployment->commitMessage())
                 <span class="min-w-0 truncate">{{ str($deployment->commitMessage())->limit(60) }}</span>
@@ -79,7 +79,7 @@
                 :aria-pressed="(filter === 'warnings').toString()">Warnings <span class="log-panel-count">{{ $this->lineCounts['warnings'] }}</span></button>
             <button type="button" class="log-panel-filter" :class="filter === 'errors' && 'is-active'" @click="filter = 'errors'"
                 :aria-pressed="(filter === 'errors').toString()">Errors <span class="log-panel-count">{{ $this->lineCounts['errors'] }}</span></button>
-            <label class="ml-auto inline-flex cursor-pointer items-center gap-1.5 text-[12px] text-[var(--gp-fg-dim)]">
+            <label class="ml-auto inline-flex cursor-pointer items-center gap-1.5 text-[12px] text-[var(--pace-fg-muted)]">
                 <input type="checkbox" class="log-panel-follow" x-model="follow" @change="scrollToEnd()">
                 Follow
             </label>

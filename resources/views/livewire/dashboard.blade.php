@@ -46,7 +46,7 @@
         $tableRow = 'min-h-14 items-center border-b border-neutral-200 px-4 py-2.5 text-[12px] transition-colors last:border-b-0 hover:bg-neutral-50 dark:border-white/[0.07] dark:hover:bg-white/[0.025]';
     @endphp
 
-    <div class="flex min-w-0 flex-col gap-8">
+    <div class="flex min-w-0 flex-col gap-4">
         @if ($pendingInvitations->isNotEmpty())
             <div class="flex min-w-0 flex-col gap-2">
                 @foreach ($pendingInvitations as $invitation)
@@ -64,10 +64,12 @@
             </div>
         @endif
 
+        <livewire:dashboard.overview />
+
         {{-- Wide screens: activity takes the left third, projects and servers the other two thirds.
              It stays one column while the left side has no section (no deployments, no traffic). --}}
-        <div class="grid min-w-0 gap-8 xl:items-start xl:has-[.dashboard-activity_section]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <div class="dashboard-activity hidden min-w-0 has-[section]:flex flex-col gap-8">
+        <div class="grid min-w-0 gap-4 xl:items-start xl:has-[.dashboard-activity_section]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <div class="dashboard-activity hidden min-w-0 has-[section]:flex flex-col gap-4">
         <livewire:dashboard.active-deployments />
 
         @if ($hasTrafficAnalytics)
@@ -75,7 +77,7 @@
         @endif
         </div>
 
-        <div class="flex min-w-0 flex-col gap-8">
+        <div class="flex min-w-0 flex-col gap-4">
         <section class="@container mb-0! min-w-0" x-data="{
             viewMode: @js($this->listView('dashboard_projects', 'table')),
             setViewMode(mode) {
