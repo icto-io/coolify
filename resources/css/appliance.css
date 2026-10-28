@@ -417,11 +417,24 @@ html:not(#icto-ui) {
 
     & .application-settings-section.application-settings-form,
     &.dark .application-settings-section.application-settings-form {
-        background: var(--appliance-canvas);
+        background: var(--appliance-surface);
         border: 1px solid var(--appliance-rule-strong);
         border-radius: 10px;
-        padding: 0.375rem;
-        box-shadow: none !important;
+        padding: 0;
+        box-shadow: 0 12px 32px -12px oklch(0% 0 0 / 0.35) !important;
+    }
+
+    /* Dialogs are one surface: a ruled header over the body, not a panel in a frame. */
+    & .application-settings-section.application-settings-form > :is(header, .application-settings-section-header) {
+        padding: 0.75rem 0.75rem 0.75rem 1rem;
+        border-bottom: 1px solid var(--appliance-rule);
+    }
+
+    & .application-settings-section.application-settings-form > .application-settings-section-body,
+    &.dark .application-settings-section.application-settings-form > .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0 0 10px 10px;
     }
 
     &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] {
