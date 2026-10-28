@@ -420,34 +420,62 @@ html:not(#icto-ui) {
         --card-fg-faint: var(--gp-fg-faint);
     }
 
-    & .application-settings-section,
-    & :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *),
-    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) {
-        border: 0;
+    /* Panels: every top-level section is one graphite panel with a header bar
+       (small-caps title, actions on the right) over its body. */
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form),
+    &.dark .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) {
         padding: 0;
-        background: transparent;
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule);
+        border-radius: 8px;
         box-shadow: none;
-        border-radius: 0;
+        overflow: clip;
     }
 
-    & .application-settings-section > :is(header, .application-settings-section-header) {
-        padding: 0 0 0.625rem;
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) {
+        min-height: 40px;
+        margin: 0;
+        padding: 8px 10px 8px 16px;
+        align-items: center;
+        border-bottom: 1px solid var(--gp-rule);
+        background: var(--gp-surface-sunk);
     }
 
-    & .application-settings-section > :is(header, .application-settings-section-header) :is(h3, h3 span) {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--gp-fg);
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) :is(h3, h3 span) {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--gp-fg-dim);
         text-decoration: none;
     }
 
-    & .application-settings-section-body,
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > :is(header, .application-settings-section-header) p {
+        font-size: 12px;
+        color: var(--gp-fg-faint);
+    }
+
+    & .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > .application-settings-section-body,
+    &.dark .application-settings-section:not(.application-settings-section-body *):not(.application-settings-form) > .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* Bodies that stand alone (no section around them) and empty states keep a panel edge. */
     & .application-settings-section-body:not(.application-settings-section *),
-    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) > :is(.application-settings-section-body, .empty-state-well) {
-        background: var(--well-bg);
-        border: 1px solid var(--well-border);
+    & .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *),
+    &.dark .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *) {
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule);
         border-radius: 8px;
         box-shadow: none;
+    }
+
+    & .empty-state:not(:is(.application-settings-section, .application-settings-section-body) *) > .empty-state-well {
+        background: transparent;
+        border: 0;
     }
 
     /* A section inside a section is a group on the same surface. */
@@ -1177,5 +1205,103 @@ html:not(#icto-ui) {
 @media (prefers-reduced-motion: reduce) {
     html:not(#icto-ui) .log-panel-status.is-busy .log-panel-dot {
         animation: none;
+    }
+}
+
+/* ---- List panels (dashboard, shared variables) ----------------------------- */
+
+/* A section that opens with a section heading is one panel: the heading is its
+   header bar and the boxes inside it lose their own frames. */
+html:not(#icto-ui) {
+    & section:has(> .section-heading) {
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule);
+        border-radius: 8px;
+        overflow: clip;
+    }
+
+    & section > .section-heading {
+        margin: 0;
+        min-height: 40px;
+        padding: 6px 10px 6px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--gp-surface-sunk);
+        border-bottom: 1px solid var(--gp-rule);
+    }
+
+    & section > .section-heading h2 {
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--gp-fg-dim) !important;
+    }
+
+    & section:has(> .section-heading) [class~="rounded-xl"][class~="border"]:not(article, article *) {
+        border: 0;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    & section:has(> .section-heading) > div > [class~="rounded-xl"][class~="border"]:not(article) + [class~="rounded-xl"][class~="border"] {
+        border-top: 1px solid var(--gp-rule);
+    }
+
+    /* Card grids inside a panel get the panel's inner padding. */
+    & section:has(> .section-heading) > div.grid {
+        padding: 12px;
+    }
+
+    & section:has(> .section-heading) > :is(.empty-state, [class*="empty"]) {
+        border: 0;
+        border-radius: 0;
+    }
+}
+
+/* Upstream sizes section titles with layered !important utilities; only a rule
+   in the same layer can answer them. */
+@layer utilities {
+    html:not(#icto-ui) section > .section-heading h2 {
+        font-size: 11px !important;
+        line-height: 16px !important;
+        font-weight: 700 !important;
+        color: var(--gp-fg-dim) !important;
+    }
+}
+
+/* ---- Resource list panel (project environment) ----------------------------- */
+
+html:not(#icto-ui) {
+    & .resource-panel {
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule);
+        border-radius: 8px;
+        overflow: clip;
+    }
+
+    & .resource-panel-toolbar {
+        margin: 0;
+        padding: 8px 10px;
+        background: var(--gp-surface-sunk);
+        border-bottom: 1px solid var(--gp-rule);
+    }
+
+    & .resource-panel [class~="rounded-xl"][class~="border"]:not(article) {
+        border: 0;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    & .resource-panel [x-show="viewMode === 'grid'"] > .grid {
+        padding: 12px;
+    }
+
+    & .resource-panel :is(.client-pagination, [class*="pagination"]) {
+        margin: 0;
+        border-top: 1px solid var(--gp-rule);
     }
 }

@@ -68,7 +68,9 @@
                     icon-name="layers" />
             @endcan
         @else
-            <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            {{-- One panel: the toolbar is its header bar, the table or card grid its body. --}}
+            <section class="resource-panel">
+            <div class="resource-panel-toolbar mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div class="relative w-full sm:max-w-sm">
                     <x-reicon name="search"
                         class="pointer-events-none absolute top-1/2 left-2.5 z-10 size-3.5 -translate-y-1/2 text-neutral-400 dark:text-fg-faint" />
@@ -314,6 +316,7 @@
                     summary="filteredResources.length === 0 ? '0 resources' : `${rangeStart}-${rangeEnd} of ${filteredResources.length}`"
                     page-size-model="pageSize" storage-key="coolify.page-size.environment-resources" />
             </div>
+            </section>
         @endif
     </div>
 </div>
