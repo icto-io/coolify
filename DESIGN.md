@@ -5,11 +5,11 @@ colors:
   ink-primary: "#171717"
   ink-primary-hover: "#333333"
   ink-primary-fg: "#fafafa"
-  ink-primary-dark: "#e5e5e5"
-  ink-primary-dark-hover: "#cfcfcf"
-  ink-primary-dark-fg: "#171717"
+  ink-primary-dark: "#22d3ee"
+  ink-primary-dark-hover: "#06b6d4"
+  ink-primary-dark-fg: "#04121f"
   link-blue: "#155dfc"
-  link-blue-dark: "#54a2ff"
+  link-blue-dark: "#67e8f9"
   chart-blue-light: "#92c5ff"
   chart-blue: "#3a81f6"
   state-ok: "#00a544"
@@ -28,17 +28,17 @@ colors:
   fg-muted: "#737373"
   fg-faint: "#8a8a8a"
   log-bg: "#fafafa"
-  canvas-dark: "#121212"
-  page-dark: "#0a0a0a"
-  card-dark: "#171717"
-  muted-dark: "#262626"
-  hover-dark: "#1f1f1f"
-  border-dark: "#282828"
-  input-dark: "#343434"
-  ring-dark: "#737373"
-  fg-dark: "#fafafa"
-  fg-muted-dark: "#a1a1a1"
-  log-bg-dark: "#0d0d0d"
+  canvas-dark: "#0a1030"
+  page-dark: "#070c26"
+  card-dark: "#0f1840"
+  muted-dark: "#18245a"
+  hover-dark: "#141f4d"
+  border-dark: "#22306a"
+  input-dark: "#2c3c80"
+  ring-dark: "#5b6fd6"
+  fg-dark: "#eef2ff"
+  fg-muted-dark: "#a5b4fc"
+  log-bg-dark: "#060a20"
 typography:
   stat-value:
     fontFamily: "DM Sans, ui-sans-serif, system-ui, sans-serif"
@@ -198,7 +198,7 @@ components:
 
 Coolify reads as PaceUI's take on shadcn's neutral system: a quiet grey canvas holding one rounded page panel, and inside it white (or near-black) cards with a 1px border and a soft shadow. From `lg` the shell is inset: the sidebar, brand and status bar sit directly on the canvas, and the top bar's working half plus the page form a single 14px-cornered panel beside them. Everything a user acts on lives in a card with a header row; nothing is boxed twice.
 
-Colour is restrained. Keys are ink, not blue: the primary is near-black on light and near-white on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion.
+Colour is restrained. Keys are ink on light (near-black) and electric cyan on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion.
 
 **Key Characteristics:**
 - Inset shell: sidebar on the canvas, the page in one rounded panel with an 8px gutter.
@@ -209,7 +209,7 @@ Colour is restrained. Keys are ink, not blue: the primary is near-black on light
 
 ## Colors
 
-shadcn's neutral ramp with a single blue chart family and three state colours; dark mode re-points the same roles.
+shadcn's neutral ramp with a single blue chart family and three state colours on light. Dark mode is **Deep Ocean**: the same roles re-pointed to navy-indigo surfaces (no neutral greys), electric cyan keys, links and chart (`#22d3ee`, `#67e8f9`), and a soft glow on the page panel (`--pace-glow`: cyan from the upper right, indigo from the lower left).
 
 ### Primary
 - **Ink Key** (`ink-primary` on light, `ink-primary-dark` on dark): the filled key (Deploy split action, highlighted buttons), checked checkboxes, selected controls, the collapse tooltip. Hover steps to `ink-primary-hover` / `ink-primary-dark-hover`; text on it is `ink-primary-fg` / `ink-primary-dark-fg`.

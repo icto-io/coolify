@@ -4,7 +4,8 @@
 * shadcn's neutral system as PaceUI ships it: a near-black / near-white
 * primary, grey surfaces, 1px borders and soft shadows on 14px cards, and an
 * inset shell where the sidebar sits on the canvas and the page is one rounded
-* panel beside it. DM Sans for the interface, JetBrains Mono for logs, commits
+* panel beside it. Dark mode is Deep Ocean: navy-indigo surfaces with a soft
+* glow and electric cyan keys. DM Sans for the interface, JetBrains Mono for logs, commits
 * and figures. Blue is the chart ramp and links; green, amber and red carry
 * state only. Motion is short and springy: cards rise in, keys press in.
 *
@@ -157,49 +158,63 @@ html:root {
 }
 
 html.dark {
-    --color-accent: #e5e5e5;
-    --color-accent-foreground: #171717;
-    --color-app: #0a0a0a;
-    --color-panel: #0a0a0a;
-    --color-card: #171717;
-    --color-sidebar: #121212;
-    --color-surface: #171717;
-    --color-raised: #1f1f1f;
-    --color-selected: #262626;
-    --color-log: #0d0d0d;
-    --color-fg: #fafafa;
-    --color-fg-dim: #a1a1a1;
-    --color-fg-faint: #8a8a8a;
-    --color-hairline: #282828;
+    /* Deep Ocean: navy-indigo surfaces, electric cyan keys. */
+    --color-accent: #22d3ee;
+    --color-accent-foreground: #04121f;
+    --color-app: #070c26;
+    --color-panel: #070c26;
+    --color-card: #0f1840;
+    --color-sidebar: #0a1030;
+    --color-surface: #0f1840;
+    --color-raised: #141f4d;
+    --color-selected: #18245a;
+    --color-log: #060a20;
+    --color-fg: #eef2ff;
+    --color-fg-dim: #a5b4fc;
+    --color-fg-faint: #8190d8;
+    --color-hairline: #22306a;
     --color-success: #05df72;
     --color-warning: #fcbb00;
     --color-error: #ff6568;
-    --color-coollabs: #54a2ff;
-    --color-coollabs-100: #7cb8ff;
-    --color-brand: #54a2ff;
-    --color-brand-light: #8ec5ff;
+    --color-coollabs: #67e8f9;
+    --color-coollabs-100: #a5f3fc;
+    --color-brand: #22d3ee;
+    --color-brand-light: #67e8f9;
+    --color-neutral-600: #8190d8;
+    --color-neutral-700: #2c3c80;
+    --color-neutral-800: #18245a;
+    --color-coolgray-100: #0f1840;
+    --color-coolgray-200: #121c48;
+    --color-coolgray-300: #18245a;
+    --color-coolgray-400: #1f2c66;
+    --color-coolgray-500: #2c3c80;
+    --color-base: #070c26;
 
-    --pace-canvas: #121212;
-    --pace-bg: #0a0a0a;
-    --pace-card: #171717;
-    --pace-muted: #262626;
-    --pace-accent: #262626;
-    --pace-border: #282828;
-    --pace-input: #343434;
-    --pace-ring: #737373;
-    --pace-fg: #fafafa;
-    --pace-fg-muted: #a1a1a1;
-    --pace-fg-faint: #8a8a8a;
-    --pace-primary: #e5e5e5;
-    --pace-primary-hover: #cfcfcf;
-    --pace-primary-fg: #171717;
-    --pace-link: #54a2ff;
-    --pace-hover: #1f1f1f;
+    --pace-canvas: #0a1030;
+    --pace-bg: #070c26;
+    --pace-card: #0f1840;
+    --pace-muted: #18245a;
+    --pace-accent: #1b2a66;
+    --pace-border: #22306a;
+    --pace-input: #2c3c80;
+    --pace-ring: #5b6fd6;
+    --pace-fg: #eef2ff;
+    --pace-fg-muted: #a5b4fc;
+    --pace-fg-faint: #8190d8;
+    --pace-primary: #22d3ee;
+    --pace-primary-hover: #06b6d4;
+    --pace-primary-fg: #04121f;
+    --pace-link: #67e8f9;
+    --pace-hover: #141f4d;
     --pace-ok: #05df72;
     --pace-busy: #fcbb00;
     --pace-bad: #ff6568;
-    --pace-log-bg: #0d0d0d;
-    --pace-shadow-lg: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+    --pace-log-bg: #060a20;
+    --pace-chart-1: #67e8f9;
+    --pace-chart-2: #22d3ee;
+    /* The page panel glows: indigo from the lower left, cyan from the upper right. */
+    --pace-glow: radial-gradient(1200px 520px at 85% -10%, rgb(34 211 238 / 0.16), transparent 60%), radial-gradient(900px 600px at 0% 110%, rgb(99 102 241 / 0.22), transparent 60%);
+    --pace-shadow-lg: 0 1px 3px 0 rgb(2 6 23 / 0.4), 0 12px 32px -8px rgb(2 6 23 / 0.7);
 
     --coollabs-canvas: var(--pace-bg);
     --coollabs-elevated: var(--pace-card);
@@ -210,7 +225,7 @@ html.dark {
     --coollabs-hairline: var(--pace-border);
     --coollabs-subtle: var(--pace-fg-muted);
 
-    --color-nav-text: #d4d4d4;
+    --color-nav-text: #c7d2fe;
     --color-nav-muted: var(--pace-fg-muted);
     --color-nav-active: var(--pace-fg);
 }
@@ -865,7 +880,7 @@ html:not(#icto-ui) {
             right: var(--pace-gutter);
             bottom: var(--pace-status-h);
             left: var(--sidebar-w, 14rem);
-            background: var(--pace-bg);
+            background: var(--pace-glow, none), var(--pace-bg);
             border: 1px solid var(--pace-border);
             border-radius: var(--pace-radius-card);
             box-shadow: var(--pace-shadow-sm);

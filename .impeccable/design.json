@@ -52,47 +52,17 @@
       "ink-primary-dark": {
         "role": "primary",
         "displayName": "Ink Key (dark)",
-        "canonical": "#e5e5e5",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#22d3ee"
       },
       "ink-primary-dark-hover": {
         "role": "primary",
         "displayName": "Ink Key Hover (dark)",
-        "canonical": "#cfcfcf",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#06b6d4"
       },
       "ink-primary-dark-fg": {
         "role": "primary",
         "displayName": "Ink Key Text (dark)",
-        "canonical": "#171717",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#04121f"
       },
       "link-blue": {
         "role": "secondary",
@@ -112,17 +82,7 @@
       "link-blue-dark": {
         "role": "secondary",
         "displayName": "Link Blue (dark)",
-        "canonical": "#54a2ff",
-        "tonalRamp": [
-          "#1c398e",
-          "#193cb8",
-          "#1447e6",
-          "#155dfc",
-          "#3a81f6",
-          "#54a2ff",
-          "#92c5ff",
-          "#eff6ff"
-        ]
+        "canonical": "#67e8f9"
       },
       "chart-blue-light": {
         "role": "secondary",
@@ -398,167 +358,57 @@
       "canvas-dark": {
         "role": "neutral",
         "displayName": "Canvas (dark)",
-        "canonical": "#121212",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#0a1030"
       },
       "page-dark": {
         "role": "neutral",
         "displayName": "Page (dark)",
-        "canonical": "#0a0a0a",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#070c26"
       },
       "card-dark": {
         "role": "neutral",
         "displayName": "Card (dark)",
-        "canonical": "#171717",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#0f1840"
       },
       "muted-dark": {
         "role": "neutral",
         "displayName": "Muted (dark)",
-        "canonical": "#262626",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#18245a"
       },
       "hover-dark": {
         "role": "neutral",
         "displayName": "Hover (dark)",
-        "canonical": "#1f1f1f",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#141f4d"
       },
       "border-dark": {
         "role": "neutral",
         "displayName": "Border (dark)",
-        "canonical": "#282828",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#22306a"
       },
       "input-dark": {
         "role": "neutral",
         "displayName": "Input (dark)",
-        "canonical": "#343434",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#2c3c80"
       },
       "ring-dark": {
         "role": "neutral",
         "displayName": "Ring (dark)",
-        "canonical": "#737373",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#5b6fd6"
       },
       "fg-dark": {
         "role": "neutral",
         "displayName": "Fg (dark)",
-        "canonical": "#fafafa",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#eef2ff"
       },
       "fg-muted-dark": {
         "role": "neutral",
         "displayName": "Fg Muted (dark)",
-        "canonical": "#a1a1a1",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#a5b4fc"
       },
       "log-bg-dark": {
         "role": "neutral",
         "displayName": "Log Bg (dark)",
-        "canonical": "#0d0d0d",
-        "tonalRamp": [
-          "#0a0a0a",
-          "#171717",
-          "#262626",
-          "#404040",
-          "#737373",
-          "#a1a1a1",
-          "#e5e5e5",
-          "#fafafa"
-        ]
+        "canonical": "#060a20"
       }
     },
     "typographyMeta": {
@@ -793,7 +643,7 @@
   ],
   "narrative": {
     "northStar": "The Pace Workbench",
-    "overview": "Coolify reads as PaceUI's take on shadcn's neutral system: a quiet grey canvas holding one rounded page panel, and inside it white (or near-black) cards with a 1px border and a soft shadow. From `lg` the shell is inset: the sidebar, brand and status bar sit directly on the canvas, and the top bar's working half plus the page form a single 14px-cornered panel beside them. Everything a user acts on lives in a card with a header row; nothing is boxed twice.\n\nColour is restrained. Keys are ink, not blue: the primary is near-black on light and near-white on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion.",
+    "overview": "Coolify reads as PaceUI's take on shadcn's neutral system: a quiet grey canvas holding one rounded page panel, and inside it white (or near-black) cards with a 1px border and a soft shadow. From `lg` the shell is inset: the sidebar, brand and status bar sit directly on the canvas, and the top bar's working half plus the page form a single 14px-cornered panel beside them. Everything a user acts on lives in a card with a header row; nothing is boxed twice.\n\nColour is restrained. Keys are ink, not blue: the primary is near-black on light and near-white on dark. Blue belongs to charts, links and command lines in the log; green, amber and red report state and nothing else. Motion is short and springy: cards rise in on arrival, keys and rows press in, grid cards lift on hover, chart bars grow from the axis. All of it stops under reduced motion. Dark mode is Deep Ocean: navy-indigo surfaces with no neutral greys, electric cyan keys, links and chart, and a soft cyan and indigo glow on the page panel.",
     "keyCharacteristics": [
       "Inset shell: sidebar on the canvas, the page in one rounded panel with an 8px gutter.",
       "Every section is a 14px card with a 1px border, a soft shadow and a header row; inner boxes lose their frames.",
