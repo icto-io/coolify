@@ -7,39 +7,42 @@ related_targets: ["resources/css/app.css","resources/css/utilities.css","resourc
 
 # App shell (all authenticated screens)
 
-Scope: the whole Coolify app UI through its shared layers (theme tokens,
-utilities, shared Blade components, app layout). Mode: Operate.
-Audience: a single operator checking status, following deployments, debugging
-failures from logs, and editing config. Visual-only redesign: same screens,
-flows and copy as upstream. Brief pinned by the user: beautiful, minimalist,
-modern; keep density; nothing flashy or decorative; logs must get better.
+Scope: the whole Coolify app UI: theme tokens, utilities, shared Blade
+components, the app layout, and the templates of screens that need a new
+structure. Mode: Operate. Audience: a single operator checking status,
+following deployments, debugging failures from logs, and editing config.
+Full redesign (revised 2026-10-27): layouts and templates may change,
+behaviour may not. Pinned by the user: new design, not a recolour; sidebar
+clearly collapsible; keep density; nothing flashy; logs must get better.
+The rejected "Appliance" recolour is an anti-reference.
 
 ## Direction contract
 
-THESIS: Coolify as a Braun appliance: as little design as possible, every
-control obviously what it is. Refuses the purple admin look of stacked
-card-in-well boxes and the near-black-plus-one-neon dev dashboard.
+THESIS: Coolify as a graphite working surface of persistent panels: the
+layout stays put and navigation changes what the panels hold. Refuses the
+purple stacked-card admin look and the single scrolling settings page.
 
-OWN-WORLD: Warm light-grey body with off-white working surfaces and charcoal
-type; graphite body in dark. Flat colour, no gradients, glows or soft
-shadows; hairline rules instead of nested boxes. Charcoal is the primary
-action. Colour exists only as function: Braun green running, orange in
-progress, red failed, grey stopped. Helvetica-family grotesk, small tracked
-labels, tabular figures; mono only for logs.
+OWN-WORLD: Dark-first graphite ground (#17181B) with panels one step up
+(#1D1F23), divided by 1px seams, never shadows. Text #E8E9EC, dim #9DA1AA.
+Editor-syntax accents carry state only: green running, yellow building, red
+failed, blue links, focus and the one primary key. Manrope UI at 13px,
+small-caps 11px panel headers, JetBrains Mono for logs, SHAs and figures.
+Destructive actions stay outlined and stand apart. Light theme is a
+translation of the same structure on warm paper-grey.
 
-STORY: The operator sees at once what is up, what is building, and what
-failed; knows the one next action on each screen; reads logs without
-fighting them.
+STORY: The operator sees every resource's state in a left column, the
+selected one in the centre, and its log on the right without leaving the
+page; fixes config in the centre while the log keeps running.
 
-FIRST VIEWPORT: Standard side navigation on the graphite or warm-grey rail.
-Main area: the resource list as rows (lamp, name, type, last deploy as
-elapsed time, commit, domain) on one surface separated by hairlines; failed
-rows first; one primary action at the top right.
+FIRST VIEWPORT: Collapsible sidebar (220px, 56px rail, toggle beside the
+wordmark, Cmd/Ctrl+B) and top bar (breadcrumbs, Cmd+K search, one blue
+primary). Main area tiled: resources list, resource detail, log panel;
+status bar along the bottom with server health.
 
-FORM: Appliance (Braun product design), position 1 of 7 on the grounded list,
-taken as the pick card over the dealt direction. seed:a14c8ff89987788b.
-Signature move: status as indicator lamps, a small round lamp that is lit
-only when live: steady for running, slow pulse for building, red for failed,
-unlit for stopped; reduced motion holds every lamp steady.
+FORM: Graphite Panels (dark-first developer console), challenger
+digital-design-canon-dark-first-developer-console, chosen over assigned
+position 4 (Container Yard). seed:9a5332ed3fc99567. Signature move: the
+persistent log panel, always open beside the resource and following the
+live deployment.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

@@ -1,0 +1,1181 @@
+/*
+* Graphite Panels: the icto-ui design layer.
+*
+* Dark-first graphite working surface: panels one step above the ground,
+* divided by 1px seams instead of shadows; editor-syntax accents carry state
+* only (green running, yellow building, red failed, blue for links, focus and
+* the one primary key). Manrope for the interface, JetBrains Mono for logs,
+* commits and figures. The light theme translates the same structure onto
+* paper-grey.
+*
+* app.css imports this file near the top (CSS allows @import only there), so
+* upstream rules come later. Every rule here therefore wins by specificity:
+* tokens live on `html:root` / `html.dark`, which beat upstream `:root` /
+* `.dark` and Tailwind's theme layer, and component rules are nested under
+* `html:not(#icto-ui)`, one ID above the upstream selector they replace.
+*/
+
+@font-face {
+    font-display: swap;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 200 800;
+    src: url('../fonts/manrope-variable-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 200 800;
+    src: url('../fonts/manrope-variable-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 100 800;
+    src: url('../fonts/jetbrains-mono-variable-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 100 800;
+    src: url('../fonts/jetbrains-mono-variable-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---- Tokens --------------------------------------------------------------- */
+
+/* Light: the same structure on paper-grey. */
+html:root {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    --font-geist-sans: var(--font-sans);
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --font-logs: var(--font-mono);
+
+    --color-white: #fafaf8;
+    --color-black: #1b1d21;
+    --color-neutral-50: #f3f3f0;
+    --color-neutral-100: #eaeae6;
+    --color-neutral-200: #dcdcd8;
+    --color-neutral-300: #c6c7c3;
+    --color-neutral-400: #9a9da3;
+    --color-neutral-500: #6b7079;
+    --color-neutral-600: #4f535b;
+    --color-neutral-700: #3b3e45;
+    --color-neutral-800: #2a2c31;
+    --color-neutral-900: #1f2125;
+    --color-neutral-950: #17181b;
+
+    /* Graphite steps used by upstream dark utilities. */
+    --color-coolgray-100: #1d1f23;
+    --color-coolgray-200: #24262b;
+    --color-coolgray-300: #2b2e34;
+    --color-coolgray-400: #33363d;
+    --color-coolgray-500: #3d4048;
+    --color-base: #17181b;
+
+    /* Blue: links, focus, selection and the one primary key. */
+    --color-coollabs-50: #e8f0fc;
+    --color-coollabs: #2463c4;
+    --color-coollabs-100: #2a6dd3;
+    --color-coollabs-200: #1f56ab;
+    --color-coollabs-300: #1a4a93;
+    --color-brand: #2463c4;
+    --color-brand-hover: #1f56ab;
+    --color-brand-press: #1a4a93;
+    --color-brand-depth: #163e7b;
+    --color-brand-light: #61afef;
+    --color-accent: #2463c4;
+    --color-accent-foreground: #ffffff;
+
+    /* State. */
+    --color-success: #2e8a55;
+    --color-warning: #9a6b00;
+    --color-error: #c23b46;
+
+    --gp-primary: #2463c4;
+    --gp-primary-hover: #1f56ab;
+    --gp-primary-fg: #ffffff;
+
+    --gp-canvas: #eeeeeb;
+    --gp-surface: #fafaf8;
+    --gp-surface-sunk: #f3f3f0;
+    --gp-raised: #f3f3f0;
+    --gp-rule: rgb(20 22 26 / 0.09);
+    --gp-rule-strong: rgb(20 22 26 / 0.15);
+    --gp-fg: #1b1d21;
+    --gp-fg-dim: #4f535b;
+    --gp-fg-faint: #6b7079;
+    --gp-link: #2463c4;
+    --gp-hover: rgb(20 22 26 / 0.04);
+    --gp-active: rgb(20 22 26 / 0.07);
+    --gp-focus: #2463c4;
+    --gp-ok: #2e8a55;
+    --gp-busy: #9a6b00;
+    --gp-bad: #c23b46;
+    --gp-log-bg: #f6f6f3;
+
+    --coollabs-canvas: var(--gp-canvas);
+    --coollabs-elevated: var(--gp-surface);
+    --coollabs-recessed: var(--gp-surface-sunk);
+    --coollabs-base: var(--gp-surface);
+    --coollabs-fill: var(--color-neutral-100);
+    --coollabs-line: var(--gp-rule);
+    --coollabs-hairline: var(--gp-rule-strong);
+    --coollabs-subtle: var(--gp-fg-faint);
+
+    --color-nav-text: var(--gp-fg-dim);
+    --color-nav-muted: var(--gp-fg-faint);
+    --color-nav-active: var(--gp-fg);
+
+    --shadow-dropdown: 0 0 0 1px var(--gp-rule-strong);
+    --shadow-modal: 0 0 0 1px var(--gp-rule-strong);
+
+    --chart-spark-bandwidth: var(--color-neutral-700);
+}
+
+/* Dark: the native world. */
+html.dark {
+    --color-accent: #61afef;
+    --color-accent-foreground: #0f1420;
+    --color-app: #17181b;
+    --color-panel: #17181b;
+    --color-card: #1d1f23;
+    --color-sidebar: #17181b;
+    --color-surface: #1d1f23;
+    --color-raised: #24262b;
+    --color-selected: #2b2e34;
+    --color-log: #141518;
+    --color-fg: #e8e9ec;
+    --color-fg-dim: #a3a7b0;
+    --color-fg-faint: #8e939c;
+    --color-hairline: rgb(255 255 255 / 0.07);
+    --color-success: #7ec699;
+    --color-warning: #e6c07b;
+    --color-error: #e06c75;
+    --color-coollabs: #61afef;
+    --color-coollabs-100: #74baf1;
+    --color-brand: #61afef;
+    --color-brand-light: #8cc4f4;
+
+    --gp-primary: #61afef;
+    --gp-primary-hover: #7dbdf2;
+    --gp-primary-fg: #0f1420;
+
+    --gp-canvas: var(--color-app);
+    --gp-surface: var(--color-surface);
+    --gp-surface-sunk: #1a1c1f;
+    --gp-raised: var(--color-raised);
+    --gp-rule: rgb(255 255 255 / 0.07);
+    --gp-rule-strong: rgb(255 255 255 / 0.12);
+    --gp-fg: var(--color-fg);
+    --gp-fg-dim: var(--color-fg-dim);
+    --gp-fg-faint: var(--color-fg-faint);
+    --gp-link: #61afef;
+    --gp-hover: rgb(255 255 255 / 0.04);
+    --gp-active: rgb(255 255 255 / 0.07);
+    --gp-focus: #61afef;
+    --gp-ok: #7ec699;
+    --gp-busy: #e6c07b;
+    --gp-bad: #e06c75;
+    --gp-log-bg: var(--color-log);
+
+    --coollabs-canvas: var(--gp-canvas);
+    --coollabs-elevated: var(--gp-surface);
+    --coollabs-recessed: var(--color-raised);
+    --coollabs-base: var(--gp-surface);
+    --coollabs-fill: var(--color-selected);
+    --coollabs-line: var(--gp-rule);
+    --coollabs-hairline: var(--gp-rule-strong);
+    --coollabs-subtle: var(--gp-fg-faint);
+
+    --color-nav-text: var(--gp-fg-dim);
+    --color-nav-muted: var(--gp-fg-faint);
+    --color-nav-active: var(--gp-fg);
+
+    --chart-spark-bandwidth: var(--color-neutral-300);
+}
+
+/* ---- Components ----------------------------------------------------------- */
+
+/* `:not(#icto-ui)` adds ID-level specificity, so these beat upstream's plain
+   rules (including `.button:not(:disabled)` chains) without !important. */
+html:not(#icto-ui) {
+    caret-color: var(--color-accent);
+    accent-color: var(--gp-primary);
+    background-color: var(--gp-canvas);
+
+    & body {
+        background-color: var(--gp-canvas);
+        color: var(--gp-fg);
+        /* Manrope's word space collapses at 12px on standard-density screens. */
+        word-spacing: 0.1em;
+    }
+
+    &.dark body {
+        color: var(--gp-fg-dim);
+    }
+
+    /* Browser surfaces */
+    & ::selection {
+        background: oklch(57% 0.18 44 / 0.22);
+    }
+
+    &.dark ::selection {
+        background: oklch(70% 0.16 50 / 0.3);
+    }
+
+    & * {
+        scrollbar-color: var(--color-neutral-300) transparent;
+    }
+
+    &.dark * {
+        scrollbar-color: var(--color-coolgray-500) transparent;
+    }
+
+    & :is(table, .data-table, [class*="table-grid"], time, .tabular) {
+        font-variant-numeric: tabular-nums;
+    }
+
+    & a {
+        text-underline-offset: 3px;
+    }
+
+    & :is(code, pre, kbd, samp, .font-mono, .font-logs, .xterm, .cm-editor, .monaco-editor) {
+        word-spacing: normal;
+    }
+
+    /* Headings */
+    & h1 {
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        color: var(--gp-fg);
+    }
+
+    & :is(h2, h3) {
+        letter-spacing: -0.005em;
+        color: var(--gp-fg);
+    }
+
+    /* Buttons: flat keys, small radius, no raised edge or hover lift. */
+    & :is(.button, .split-action-main, .split-action-caret),
+    & :is(.button, .split-action-main, .split-action-caret):not(:disabled):is(:hover, :active) {
+        box-shadow: none;
+        transform: none;
+    }
+
+    & .button {
+        border-radius: 6px;
+        border-color: var(--gp-rule-strong);
+        background-color: var(--gp-surface);
+        color: var(--gp-fg);
+        text-transform: none;
+    }
+
+    & .button:not(:disabled):hover {
+        background-color: var(--color-neutral-100);
+        color: var(--gp-fg);
+    }
+
+    & .button:not(:disabled):active {
+        background-color: var(--color-neutral-200);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: var(--color-raised);
+        border-color: var(--gp-rule-strong);
+        color: var(--color-fg);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: var(--color-selected);
+    }
+
+    &.dark .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) svg {
+        color: currentColor;
+        opacity: 0.8;
+    }
+
+    /* Primary: the charcoal key (light), the off-white key (dark). */
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled),
+    & .button-highlighted {
+        background: var(--gp-primary);
+        border-color: var(--gp-primary);
+        color: var(--gp-primary-fg) !important;
+    }
+
+    & :is(.button.button-highlighted, .button[isHighlighted]):not(:disabled):hover {
+        background: var(--gp-primary-hover);
+        border-color: var(--gp-primary-hover);
+    }
+
+    & .control-selected {
+        background: var(--gp-primary);
+        color: var(--gp-primary-fg);
+    }
+
+    /* One focus language: a 2px orange outline with a small gap. */
+    & :is(.button, .icon-button, .app-tab, .menu-item, .menu-subitem, a, [role="button"]):focus-visible,
+    & .button:not(:disabled):hover:focus-visible {
+        box-shadow: none;
+        outline: 2px solid var(--gp-focus);
+        outline-offset: 2px;
+    }
+
+    & .button.button-error:not(:disabled):is(:focus-visible, :hover:focus-visible) {
+        box-shadow: none;
+        outline: 2px solid var(--color-error);
+        outline-offset: 2px;
+    }
+
+    /* Inputs */
+    & :is(.input, .select, .input-select) {
+        border-radius: 6px;
+        border-color: var(--gp-rule-strong);
+        background-color: var(--gp-surface);
+    }
+
+    &.dark :is(.input, .select, .input-select) {
+        background-color: var(--color-raised);
+        border-color: var(--gp-rule-strong);
+    }
+
+    & :is(.input, .select):focus-visible,
+    &.dark :is(.input, .select):focus-visible {
+        border-color: var(--gp-focus);
+        box-shadow: 0 0 0 1px var(--gp-focus);
+    }
+
+    & .input:read-only,
+    &.dark .input:read-only {
+        background-color: var(--gp-surface-sunk);
+        color: var(--gp-fg-dim);
+    }
+
+    /* Tabs and navigation */
+    & .app-tab-active,
+    &.dark .app-tab-active {
+        background: var(--gp-active);
+        color: var(--gp-fg);
+        box-shadow: none;
+        --tw-ring-shadow: 0 0 #0000;
+    }
+
+    & :is(.menu-item-active, .menu-subitem-active),
+    &.dark :is(.menu-item-active, .menu-subitem-active) {
+        background: var(--gp-active);
+        color: var(--color-nav-active);
+        font-weight: 600;
+    }
+
+    & :is(.menu-item, .menu-subitem):hover {
+        background: var(--gp-hover);
+    }
+
+    & .nav-section {
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 10.5px;
+        font-weight: 600;
+    }
+
+    & .text-helper {
+        color: var(--gp-link);
+    }
+
+    /* Shell: one flat canvas behind sidebar, top bar and content. */
+    & :is(.app-topbar, .app-topbar-brand, .app-sidebar, .auth-shell),
+    &.dark :is(.app-topbar, .app-topbar-brand, .app-sidebar, .auth-shell) {
+        background: var(--gp-canvas);
+        background-image: none;
+        backdrop-filter: none;
+    }
+
+    & .app-sidebar,
+    &.dark .app-sidebar {
+        border-color: var(--gp-rule);
+    }
+
+    /* Cards: a heading over one hairline surface, never a box in a box. */
+    & :is(.application-settings-section, .application-settings-section-body, .empty-state),
+    &.dark :is(.application-settings-section, .application-settings-section-body, .empty-state) {
+        --card-bg: transparent;
+        --card-underlay: transparent;
+        --card-border: var(--gp-rule);
+        --well-bg: var(--gp-surface);
+        --well-border: var(--gp-rule);
+        --well-shadow: none;
+        --card-fg: var(--gp-fg);
+        --card-fg-dim: var(--gp-fg-dim);
+        --card-fg-faint: var(--gp-fg-faint);
+    }
+
+    & .application-settings-section,
+    & :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *),
+    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    & .application-settings-section > :is(header, .application-settings-section-header) {
+        padding: 0 0 0.625rem;
+    }
+
+    & .application-settings-section > :is(header, .application-settings-section-header) :is(h3, h3 span) {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gp-fg);
+        text-decoration: none;
+    }
+
+    & .application-settings-section-body,
+    & .application-settings-section-body:not(.application-settings-section *),
+    &.dark :is(.application-settings-section, .empty-state):not(:is(.application-settings-section, .application-settings-section-body) *) > :is(.application-settings-section-body, .empty-state-well) {
+        background: var(--well-bg);
+        border: 1px solid var(--well-border);
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    /* A section inside a section is a group on the same surface. */
+    & .application-settings-section-body .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+    }
+
+    & .application-settings-section.application-settings-form,
+    &.dark .application-settings-section.application-settings-form {
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule-strong);
+        border-radius: 10px;
+        padding: 0;
+        box-shadow: 0 0 0 1px var(--gp-rule-strong) !important;
+    }
+
+    /* Dialogs are one surface: a ruled header over the body, not a panel in a frame. */
+    & .application-settings-section.application-settings-form > :is(header, .application-settings-section-header) {
+        padding: 0.75rem 0.75rem 0.75rem 1rem;
+        border-bottom: 1px solid var(--gp-rule);
+    }
+
+    & .application-settings-section.application-settings-form > .application-settings-section-body,
+    &.dark .application-settings-section.application-settings-form > .application-settings-section-body {
+        background: transparent;
+        border: 0;
+        border-radius: 0 0 10px 10px;
+    }
+
+    &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] {
+        background-color: var(--gp-surface) !important;
+        border-color: var(--gp-rule) !important;
+    }
+
+    &.dark [class~="rounded-xl"][class~="dark:bg-white/[0.05]"] > [class~="border-b"]:first-child {
+        background: var(--gp-surface-sunk) !important;
+    }
+
+    /* Tables */
+    & .data-table-header {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-faint);
+    }
+
+    & .tabular-nums, & .font-mono {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Checked controls take the primary key; the accent never fills a control. */
+    & input[type="checkbox"]:checked + :is(span, div),
+    & input[type="checkbox"]:checked {
+        background-color: var(--gp-primary);
+        border-color: var(--gp-primary);
+        color: var(--gp-primary);
+    }
+
+    & input[type="checkbox"]:checked ~ svg {
+        color: var(--gp-primary-fg);
+    }
+
+    /* The logo reads in ink, not brand purple. */
+    & img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(0.3);
+    }
+
+    &.dark img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(2.4);
+    }
+
+    & .sticky.lg\:hidden.backdrop-blur-sm {
+        background: var(--gp-canvas);
+        backdrop-filter: none;
+    }
+
+    /* Nav chevrons and badges stay quiet; the accent is for focus and links. */
+    & :is(.app-sidebar, .mobile-sidebar-sheet) .text-coollabs {
+        color: var(--color-nav-muted);
+    }
+
+    /* A row inside a section body is a hairline group, not a second box. */
+    & .application-settings-section-body .group.relative.rounded-lg.border {
+        border-width: 0;
+        background: transparent;
+        padding-inline: 0;
+    }
+
+    & .log-debug {
+        background: var(--gp-hover);
+    }
+
+    & .data-table-row:hover {
+        background: var(--gp-hover);
+    }
+
+    /* Overlays: a hairline edge, no blur, no floating shadow. */
+    & .surface-popover {
+        background: var(--gp-surface);
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    & :is(.info-helper-popup, .auth-tooltip) {
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    /* Status lamps (the signature move): lit only when live. */
+    & .status-lamp {
+        position: relative;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        background: var(--lamp-color, transparent);
+        box-shadow: inset 0 0 0 1px oklch(0% 0 0 / 0.18);
+    }
+
+    &.dark .status-lamp {
+        box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.12);
+    }
+
+    & .status-lamp-success {
+        --lamp-color: var(--color-success);
+    }
+
+    & .status-lamp-warning {
+        --lamp-color: var(--color-warning);
+    }
+
+    & .status-lamp-error {
+        --lamp-color: var(--color-error);
+    }
+
+    /* Unlit: a stopped or unknown resource shows the empty lamp housing. */
+    & .status-lamp-neutral {
+        --lamp-color: transparent;
+        box-shadow: inset 0 0 0 1.5px var(--color-neutral-400);
+    }
+
+    &.dark .status-lamp-neutral {
+        box-shadow: inset 0 0 0 1.5px var(--color-coolgray-500);
+    }
+
+    & .status-lamp-pulse {
+        animation: status-lamp-pulse 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    & .status-badge,
+    &.dark .status-badge {
+        height: auto;
+        gap: 0.5rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        font-size: 13px;
+        color: var(--gp-fg);
+    }
+
+    /* Split action (Deploy): the primary key, flat. */
+    & :is(.split-action-main, .split-action-caret),
+    &.dark :is(.split-action-main, .split-action-caret) {
+        background: var(--gp-primary);
+        border-color: var(--gp-primary);
+        color: var(--gp-primary-fg) !important;
+        box-shadow: none;
+        transform: none;
+    }
+
+    & :is(.split-action-main, .split-action-caret):not(:disabled):hover {
+        background: var(--gp-primary-hover);
+        box-shadow: none;
+        transform: none;
+    }
+
+    & .split-action-caret {
+        border-left: 1px solid color-mix(in oklab, var(--gp-primary-fg) 22%, transparent);
+    }
+
+    /* Beta / "Try it" badges: an outline, not an orange fill. */
+    & :is(.bg-coollabs, .dark\:bg-coollabs):not(.button, .status-lamp) {
+        background-color: transparent;
+        color: var(--gp-fg-dim);
+        box-shadow: inset 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    /* Dark shell: graphite, no lavender. */
+    &.dark :is(.app-sidebar nav.sidebar-nav, .mobile-sidebar-sheet [role="dialog"]) {
+        background-color: var(--gp-canvas);
+        background-image: none;
+        border-right-color: var(--gp-rule);
+        --color-nav-text: var(--color-fg-dim);
+        --color-nav-muted: var(--color-fg-faint);
+    }
+
+    &.dark .app-topbar-brand,
+    &.dark.is-scrolled .app-topbar > .app-topbar-brand {
+        background-color: var(--gp-canvas);
+        background-image: none;
+        border-right-color: var(--gp-rule);
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search {
+        background-color: var(--color-raised) !important;
+        box-shadow: inset 0 0 0 1px var(--gp-rule-strong) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search:hover {
+        background-color: var(--color-selected) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .menu-search kbd,
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) .sidebar-nav :is([class~="dark:border-white/[0.06]"], [class~="dark:border-white/[0.07]"], [class~="dark:border-white/[0.08]"]) {
+        border-color: var(--gp-rule) !important;
+    }
+
+    &.dark :is(.app-sidebar, .mobile-sidebar-sheet) nav:not(.sidebar-collapsed) .nav-section {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--color-fg-faint);
+    }
+
+    &.dark .app-topbar,
+    &.dark.is-scrolled .app-topbar {
+        background-color: var(--gp-canvas);
+        backdrop-filter: none;
+    }
+
+    &.is-scrolled .app-topbar > div:not(.app-topbar-brand),
+    &.dark.is-scrolled .app-topbar > div:not(.app-topbar-brand) {
+        border-bottom-color: var(--gp-rule);
+        box-shadow: none;
+    }
+
+    &.dark .view-toggle {
+        background-color: var(--color-raised);
+        border-color: var(--gp-rule-strong);
+    }
+
+    &.dark .view-toggle > :is(a, button),
+    &.dark .view-toggle > :is(a, button) svg {
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .view-toggle > :is(a, button):not(.is-selected):hover {
+        background-color: var(--color-selected);
+        color: var(--color-fg);
+    }
+
+    &.dark .view-toggle > .is-selected,
+    & .view-toggle > .is-selected {
+        background: var(--gp-primary);
+        color: var(--gp-primary-fg);
+        box-shadow: none;
+    }
+
+    &.dark .view-toggle > .is-selected svg {
+        color: var(--gp-primary-fg);
+    }
+
+    & .toast-icon {
+        box-shadow: none;
+    }
+
+    &.dark .toast-card {
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    &.dark :is(.command-palette, .listbox-panel.top-user-menu-panel-sidebar) {
+        background: var(--color-raised);
+        border-color: var(--gp-rule-strong);
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    &.dark .command-palette-body {
+        background: var(--gp-surface);
+        box-shadow: 0 0 0 1px var(--gp-rule);
+    }
+
+    &.dark .command-palette-header-icon:not(.is-loading),
+    &.dark .card-icon-button {
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .command-palette-input::placeholder {
+        color: var(--color-fg-faint);
+    }
+
+    &.dark .top-user-menu-panel-sidebar .listbox-option:hover,
+    &.dark .card-icon-button:hover {
+        background: var(--gp-hover);
+        color: var(--color-fg);
+    }
+
+    &.dark .resource-glyph {
+        border-color: var(--gp-rule-strong);
+        background: var(--color-raised);
+        color: var(--color-fg-dim);
+    }
+
+    &.dark .app-main :is(article.group, a.group).rounded-xl {
+        background-color: var(--gp-surface) !important;
+        border-color: var(--gp-rule) !important;
+    }
+
+    &.dark .app-main :is(article.group, a.group).rounded-xl:hover {
+        border-color: var(--gp-rule-strong) !important;
+    }
+
+    &.dark :is(.application-settings-form, .application-settings-workspace) :is(.input, select, textarea):is(:focus, :focus-visible) {
+        border-color: var(--gp-focus);
+        box-shadow: 0 0 0 1px var(--gp-focus) !important;
+    }
+
+    /* Tailwind inlines shadow values at build time, so re-point the utilities:
+       overlays get a hairline edge instead of a floating shadow. */
+    & :is(.shadow-xs, .shadow-sm, .shadow, .shadow-modal, .shadow-dropdown, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+        --tw-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+}
+
+@keyframes status-lamp-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(#icto-ui) .status-lamp-pulse {
+        animation: none;
+    }
+}
+
+/* Upstream paints dark collection shells #121212 with !important inside the
+   utilities layer, which no unlayered rule can beat; answer in the same layer. */
+@layer utilities {
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled) {
+        background-color: var(--color-raised) !important;
+        border-color: var(--gp-rule-strong) !important;
+        color: var(--color-fg) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .button:not(.button-highlighted):not(.button-error):not([isHighlighted]):not(:disabled):hover {
+        background-color: var(--color-selected) !important;
+        border-color: var(--gp-rule-strong) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main .view-toggle {
+        background-color: var(--color-raised) !important;
+        border-color: var(--gp-rule-strong) !important;
+    }
+
+    html:not(#icto-ui).dark .app-main [class*="dark:bg-white/[0.05]"].rounded-xl {
+        background-color: var(--gp-surface) !important;
+        border-color: var(--gp-rule) !important;
+    }
+}
+
+/* ---- Shell ---------------------------------------------------------------- */
+
+html:not(#icto-ui) {
+    /* Sidebar collapse toggle beside the wordmark (Cmd/Ctrl+B). */
+    & .sidebar-collapse-toggle {
+        position: relative;
+        align-items: center;
+        gap: 6px;
+        height: 28px;
+        padding: 0 6px;
+        border-radius: 6px;
+        color: var(--gp-fg-dim);
+        transition: background-color 120ms ease-out, color 120ms ease-out;
+    }
+
+    & .sidebar-collapse-toggle:hover {
+        background: var(--gp-active);
+        color: var(--gp-fg);
+    }
+
+    & .sidebar-collapse-kbd {
+        font: 500 10.5px/1 var(--font-mono);
+        color: var(--gp-fg-faint);
+        border: 1px solid var(--gp-rule-strong);
+        border-radius: 4px;
+        padding: 2px 4px;
+    }
+
+    & .sidebar-collapse-tip {
+        position: absolute;
+        left: calc(100% + 8px);
+        top: 50%;
+        translate: 0 -50%;
+        z-index: 60;
+        white-space: nowrap;
+        pointer-events: none;
+        font-size: 12px;
+        color: var(--gp-fg);
+        background: var(--gp-raised);
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+        border-radius: 6px;
+        padding: 4px 8px;
+        opacity: 0;
+        transition: opacity 100ms ease-out;
+    }
+
+    & .sidebar-collapse-toggle:is(:hover, :focus-visible) .sidebar-collapse-tip {
+        opacity: 1;
+        transition-delay: 400ms;
+    }
+
+    /* Bottom status bar. */
+    & .app-status-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 45;
+        height: 28px;
+        align-items: center;
+        gap: 18px;
+        padding: 0 16px;
+        font-size: 12px;
+        color: var(--gp-fg-dim);
+        background: var(--gp-canvas);
+        border-top: 1px solid var(--gp-rule);
+        font-variant-numeric: tabular-nums;
+        transition: left 200ms;
+    }
+
+    & .app-status-bar-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 100%;
+        color: inherit;
+    }
+
+    & .app-status-bar-item:hover {
+        color: var(--gp-fg);
+    }
+
+    & .app-status-bar-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--gp-fg-faint);
+    }
+
+    & .app-status-bar-dot.is-ok {
+        background: var(--gp-ok);
+    }
+
+    & .app-status-bar-dot.is-bad {
+        background: var(--gp-bad);
+    }
+
+    & .app-status-bar-sep {
+        width: 1px;
+        height: 12px;
+        background: var(--gp-rule-strong);
+    }
+}
+
+/* ---- Persistent log panel (signature) ------------------------------------- */
+
+/* From xl the page's sub-navigation lives in the main sidebar, so the
+   workspace is two columns: the page and the log panel beside it. */
+@media (min-width: 1280px) {
+    html:not(#icto-ui) .has-log-panel .workspace-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 34%);
+        gap: 1.5rem;
+
+        & > :not(.log-panel-dock) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        & > .log-panel-dock {
+            grid-column: 2;
+            grid-row: 1;
+        }
+    }
+}
+
+html:not(#icto-ui) {
+    & .log-panel-dock {
+        position: sticky;
+        top: calc(3rem + 1rem);
+        align-self: start;
+        height: calc(100dvh - 3rem - 1rem - 28px - 1rem);
+        min-width: 0;
+    }
+
+    & .log-panel {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+        background: var(--gp-log-bg);
+        border: 1px solid var(--gp-rule);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    & .log-panel-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 40px;
+        padding: 0 8px 0 14px;
+        border-bottom: 1px solid var(--gp-rule);
+        background: var(--gp-surface);
+    }
+
+    & .log-panel-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-variant-caps: normal;
+        color: var(--gp-fg-dim);
+    }
+
+    & .log-panel-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+    }
+
+    & .log-panel-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    & .log-panel-status.is-ok { color: var(--gp-ok); }
+    & .log-panel-status.is-bad { color: var(--gp-bad); }
+    & .log-panel-status.is-busy { color: var(--gp-busy); }
+
+    & .log-panel-status.is-busy .log-panel-dot {
+        animation: log-panel-pulse 1.6s ease-in-out infinite;
+    }
+
+    & .log-panel-action {
+        display: inline-flex;
+        align-items: center;
+        height: 26px;
+        padding: 0 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+    }
+
+    & .log-panel-action:hover {
+        background: var(--gp-active);
+        color: var(--gp-fg);
+    }
+
+    & .log-panel-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        padding: 8px 14px;
+        font-size: 12px;
+        color: var(--gp-fg-dim);
+        border-bottom: 1px solid var(--gp-rule);
+        background: var(--gp-surface);
+    }
+
+    & .log-panel-filters {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 14px 6px 10px;
+        border-bottom: 1px solid var(--gp-rule);
+        background: var(--gp-surface);
+    }
+
+    & .log-panel-filter {
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+    }
+
+    & .log-panel-filter:hover {
+        color: var(--gp-fg);
+    }
+
+    & .log-panel-filter.is-active {
+        background: var(--gp-active);
+        color: var(--gp-fg);
+        box-shadow: 0 0 0 1px var(--gp-rule-strong);
+    }
+
+    & .log-panel-follow {
+        width: 14px;
+        height: 14px;
+        accent-color: var(--gp-primary);
+    }
+
+    & .log-panel-body {
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+        padding: 8px 0;
+        font: 12px/1.6 var(--font-logs);
+        word-spacing: normal;
+        color: var(--gp-fg);
+    }
+
+    /* Lines never wrap: the body scrolls sideways and the time column stays pinned. */
+    & .log-panel-line {
+        display: flex;
+        width: max-content;
+        min-width: 100%;
+        padding-right: 14px;
+    }
+
+    & .log-panel-line:hover {
+        background: var(--gp-hover);
+    }
+
+    & .log-panel-time {
+        position: sticky;
+        left: 0;
+        flex: none;
+        width: 5.4rem;
+        padding-left: 14px;
+        background: var(--gp-log-bg);
+        color: var(--gp-fg-faint);
+        font-variant-numeric: tabular-nums;
+        user-select: none;
+    }
+
+    & .log-panel-line:hover .log-panel-time {
+        background: color-mix(in srgb, var(--gp-log-bg), var(--gp-fg) 4%);
+    }
+
+    & .log-panel-text {
+        white-space: pre;
+    }
+
+    & .log-panel-line.is-command {
+        margin-top: 6px;
+        font-weight: 600;
+        color: var(--gp-link);
+    }
+
+    & .log-panel-line.is-stderr .log-panel-text { color: var(--gp-bad); }
+    & .log-panel-line.is-hidden .log-panel-text { color: var(--gp-busy); }
+
+    & .errors-only .log-panel-line:not(.is-stderr) {
+        display: none;
+    }
+
+    & .log-panel-empty {
+        padding: 24px 14px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        color: var(--gp-fg-dim);
+    }
+
+    & .log-panel-foot {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 14px;
+        font-size: 11.5px;
+        color: var(--gp-fg-faint);
+        border-top: 1px solid var(--gp-rule);
+        background: var(--gp-surface);
+        font-variant-numeric: tabular-nums;
+    }
+
+    & .log-panel-reopen {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        z-index: 30;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 8px;
+        writing-mode: vertical-rl;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gp-fg-dim);
+        background: var(--gp-surface);
+        border: 1px solid var(--gp-rule-strong);
+        border-right: 0;
+        border-radius: 8px 0 0 8px;
+    }
+
+    & .log-panel-reopen:hover {
+        color: var(--gp-fg);
+    }
+
+    & .log-panel-reopen svg {
+        rotate: 90deg;
+    }
+}
+
+@keyframes log-panel-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(#icto-ui) .log-panel-status.is-busy .log-panel-dot {
+        animation: none;
+    }
+}

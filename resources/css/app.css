@@ -5,7 +5,7 @@
 
 @import "./utilities.css";
 /* icto-ui: Appliance visual layer (wins by specificity, see the file header). */
-@import "./appliance.css";
+@import "./graphite.css";
 
 @plugin 'tailwind-scrollbar';
 @plugin '@tailwindcss/typography';

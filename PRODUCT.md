@@ -38,13 +38,17 @@ on their own servers, and keep working if Coolify itself goes away.
 
 ## Capabilities and Constraints
 
-- Scope is visual only: same screens, flows, labels, features, and copy as
-  upstream. Navigation and page structure stay as upstream defines them.
+- Scope (revised 2026-10-27): a full redesign, not a recolour. Layouts,
+  components, page structure and the app shell may change, and Blade
+  templates may be edited. Behaviour must not change: same routes, Livewire
+  and Alpine wiring, features, flows, and labels.
+- The sidebar must be clearly collapsible (prominent toggle, keyboard
+  shortcut, polished collapsed rail).
 - Stack is upstream's: Laravel + Livewire + Blade + Alpine + Tailwind v4
   (`resources/css/app.css` `@theme` tokens, `resources/css/utilities.css`,
   shared Blade components in `resources/views/components`).
-- The fork must stay mergeable with upstream releases. Prefer changes to
-  tokens, shared utilities, and shared components over per-screen edits.
+- Upstream merges are accepted to cost template conflicts. Still prefer
+  shared components and layers where they give the same result.
 - Based on upstream `v4.5.0`. The image is built for `linux/arm64`.
 
 ## Brand Commitments
@@ -56,12 +60,15 @@ on their own servers, and keep working if Coolify itself goes away.
 
 - Upstream's current design system: `DESIGN.md` (incumbent visual world,
   evidence for the redesign, not the target).
-- No user research, analytics, or screenshots of the user's own pain points
-  were provided.
+- The owner's own words: needs status at a glance, following deployments,
+  debugging and changing config; logs are painful; the stock UI looks
+  generic and dated; avoid losing density and anything flashy. The first
+  redesign ("Appliance", a Braun recolour) was rejected as "just changed the
+  colors".
 
 ## Product Principles
 
 1. Operations first: status and the next action are readable at a glance.
-2. Same product, new look: never change what a screen does or says.
-3. Stay mergeable: concentrate the change in shared layers.
+2. Same product, new design: never change what a screen does.
+3. Shared layers first; edit a screen's template when the design needs it.
 4. Logs and data are the hero; chrome stays quiet.

@@ -5,8 +5,11 @@
     <livewire:project.shared.configuration-checker :resource="$application" />
     <livewire:project.application.heading :application="$application" :wire:key="'application-heading-'.$currentRoute" />
 
-    <section class="application-settings-workspace mt-4 w-full max-w-none lg:mt-0">
-        <div class="grid min-w-0 gap-8 xl:grid-cols-[210px_minmax(0,1fr)] xl:gap-8">
+    <section class="application-settings-workspace mt-4 w-full max-w-none lg:mt-0"
+        x-data="{ logPanelOpen: (() => { try { return localStorage.getItem('logPanelOpen') !== 'false' } catch (e) { return true } })() }"
+        @log-panel-toggle.window="logPanelOpen = !logPanelOpen; try { localStorage.setItem('logPanelOpen', logPanelOpen) } catch (e) {}"
+        :class="logPanelOpen && 'has-log-panel'">
+        <div class="workspace-grid grid min-w-0 gap-8 xl:grid-cols-[210px_minmax(0,1fr)] xl:gap-8">
             <x-application.configuration-sidebar :application="$application" :current-route="$currentRoute" />
 
             <div class="min-w-0">
@@ -53,6 +56,16 @@
                 <livewire:project.shared.danger :resource="$application" />
             @endif
             </div>
+            <aside class="log-panel-dock hidden xl:block" x-show="logPanelOpen" x-cloak>
+                <livewire:project.application.log-panel :application="$application" :key="'log-panel-'.$application->uuid" />
+            </aside>
         </div>
+        <button type="button" class="log-panel-reopen hidden xl:flex" x-show="!logPanelOpen" x-cloak
+            @click="$dispatch('log-panel-toggle')" aria-label="Show the deployment log">
+            <svg class="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16M4 12h10M4 18h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            <span>Log</span>
+        </button>
     </section>
 </div>

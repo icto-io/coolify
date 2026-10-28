@@ -31,8 +31,16 @@
             toggleSidebar() {
                 this.collapsed = !this.collapsed;
                 localStorage.setItem('sidebarCollapsed', this.collapsed);
+            },
+            // Cmd/Ctrl+B collapses the sidebar, except while typing.
+            sidebarShortcut(event) {
+                if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey || event.key.toLowerCase() !== 'b') return;
+                const target = event.target;
+                if (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.closest('.cm-editor, .monaco-editor, .xterm')) return;
+                event.preventDefault();
+                this.toggleSidebar();
             }
-        }" @open-global-search.window="open = false" @page-width-changed.window="pageWidth = $event.detail"
+        }" @keydown.window="sidebarShortcut($event)" @open-global-search.window="open = false" @page-width-changed.window="pageWidth = $event.detail"
             :style="{ '--sidebar-w': collapsed ? '4rem' : '14rem' }" x-cloak
             @class(['app-shell dark:text-inherit text-black', 'flex h-dvh flex-col' => $fullBleed ?? false])>
             {{-- ============ DESKTOP TOP BAR ============ --}}
@@ -45,9 +53,9 @@
                 :class="{ 'z-[1000]': resourceActionsOpen }"
                 class="app-topbar hidden lg:flex fixed top-0 inset-x-0 z-50 h-12 items-center bg-white/95 dark:bg-panel/95 backdrop-blur">
                 {{-- Brand (width tracks sidebar) --}}
-                <div class="app-topbar-brand flex items-center gap-2 h-full shrink-0 border-r border-black/[0.06] bg-neutral-50 dark:border-white/[0.04] dark:bg-app transition-[width] duration-200"
-                    :class="collapsed ? 'w-16 justify-center px-0 border-b' : 'w-56 px-4'">
-                    <div class="flex items-baseline gap-1.5 min-w-0">
+                <div class="app-topbar-brand group/brand flex items-center gap-2 h-full shrink-0 border-r border-black/[0.06] bg-neutral-50 dark:border-white/[0.04] dark:bg-app transition-[width] duration-200"
+                    :class="collapsed ? 'w-16 justify-center px-0 border-b' : 'w-56 pl-4 pr-2'">
+                    <div class="flex items-baseline gap-1.5 min-w-0" :class="collapsed && 'group-hover/brand:hidden'">
                         <a href="/" {{ wireNavigate() }} title="Coolify"
                             class="flex shrink-0 items-center hover:opacity-80 transition-opacity">
                             <img x-show="collapsed" x-cloak src="/coolify-logo.svg" alt="Coolify"
@@ -64,6 +72,18 @@
                             @endpersist
                         </div>
                     @endif
+                    {{-- Collapse toggle: beside the wordmark; on the collapsed rail it replaces the logo on hover. --}}
+                    <button type="button" @click="toggleSidebar()" class="sidebar-collapse-toggle shrink-0"
+                        :class="collapsed ? 'hidden group-hover/brand:flex' : 'flex' + ({{ isInstanceAdmin() && !isCloud() ? 'true' : 'false' }} ? '' : ' ml-auto')"
+                        :aria-label="collapsed ? 'Expand sidebar' : 'Collapse sidebar'" :aria-expanded="(!collapsed).toString()">
+                        <svg class="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="4.5" width="18" height="15" rx="3" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M9 4.5v15" stroke="currentColor" stroke-width="1.6" />
+                            <path :d="collapsed ? 'M13.5 10l2 2-2 2' : 'M16 10l-2 2 2 2'" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <kbd class="sidebar-collapse-kbd" x-show="!collapsed" x-text="(navigator.platform.includes('Mac') ? '⌘' : 'Ctrl ') + 'B'"></kbd>
+                        <span class="sidebar-collapse-tip" x-text="(collapsed ? 'Expand' : 'Collapse') + ' sidebar · ' + (navigator.platform.includes('Mac') ? '⌘' : 'Ctrl+') + 'B'"></span>
+                    </button>
                 </div>
                 {{-- Collapse toggle + team switcher --}}
                 <div
@@ -167,10 +187,12 @@
                 </div>
             </div>
 
+            <x-status-bar />
+
             {{-- ============ MAIN ============ --}}
             @if ($fullBleed ?? false)
                 {{-- Full-bleed pages (canvases) fill the space between the top bar and the sidebar. --}}
-                <main class="app-main app-main-full relative min-h-0 flex-1 bg-neutral-50 dark:bg-app lg:pt-12"
+                <main class="app-main app-main-full relative min-h-0 flex-1 bg-neutral-50 dark:bg-app lg:pt-12 lg:pb-7"
                     :class="[collapsed ? 'lg:ml-16' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '']">
                     <div class="relative h-full">
                         {{ $slot }}
@@ -178,7 +200,7 @@
                 </main>
             @else
                 <main
-                    class="app-main min-h-screen bg-neutral-50 dark:bg-app px-5 py-6 sm:px-8 lg:px-10 lg:pt-[calc(3rem+1.75rem)] lg:pb-10"
+                    class="app-main min-h-screen bg-neutral-50 dark:bg-app px-5 py-6 sm:px-8 lg:px-10 lg:pt-[calc(3rem+1.75rem)] lg:pb-[calc(1.75rem+2.5rem)]"
                     :class="[collapsed ? 'lg:ml-16' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '', pageWidth === 'centered' ? '' : 'app-main-wide']">
                     <div class="w-full" :class="pageWidth === 'centered' ? 'mx-auto max-w-[1400px]' : 'max-w-none'">
                         {{ $slot }}
