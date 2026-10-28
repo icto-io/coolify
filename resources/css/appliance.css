@@ -122,14 +122,14 @@ html:root {
 html.dark {
     /* Text on the off-white primary key; upstream forces it with a layered !important. */
     --color-accent-foreground: oklch(19% 0.005 70);
-    --color-app: oklch(16.5% 0.004 70);
-    --color-panel: oklch(16.5% 0.004 70);
-    --color-card: oklch(20.5% 0.004 70);
-    --color-sidebar: oklch(16.5% 0.004 70);
-    --color-surface: oklch(20.5% 0.004 70);
-    --color-raised: oklch(23.5% 0.005 70);
-    --color-selected: oklch(27% 0.005 70);
-    --color-log: oklch(14.5% 0.003 70);
+    --color-app: oklch(21% 0.004 70);
+    --color-panel: oklch(21% 0.004 70);
+    --color-card: oklch(24.5% 0.004 70);
+    --color-sidebar: oklch(21% 0.004 70);
+    --color-surface: oklch(24.5% 0.004 70);
+    --color-raised: oklch(27.5% 0.005 70);
+    --color-selected: oklch(31% 0.005 70);
+    --color-log: oklch(18% 0.003 70);
     --color-fg: oklch(95% 0.004 80);
     --color-fg-dim: oklch(80% 0.005 80);
     --color-fg-faint: oklch(66% 0.006 78);
@@ -142,7 +142,7 @@ html.dark {
 
     --appliance-canvas: var(--color-app);
     --appliance-surface: var(--color-surface);
-    --appliance-surface-sunk: oklch(18.5% 0.004 70);
+    --appliance-surface-sunk: oklch(22.5% 0.004 70);
     --appliance-rule: oklch(95% 0.004 80 / 0.09);
     --appliance-rule-strong: oklch(95% 0.004 80 / 0.15);
     --appliance-fg: var(--color-fg);
@@ -174,7 +174,7 @@ html.dark {
    rules (including `.button:not(:disabled)` chains) without !important. */
 html:not(#icto-ui) {
     caret-color: var(--color-accent);
-    accent-color: var(--color-accent);
+    accent-color: var(--appliance-primary);
     background-color: var(--appliance-canvas);
 
     & body {
@@ -421,7 +421,7 @@ html:not(#icto-ui) {
         border: 1px solid var(--appliance-rule-strong);
         border-radius: 10px;
         padding: 0;
-        box-shadow: 0 12px 32px -12px oklch(0% 0 0 / 0.35) !important;
+        box-shadow: 0 0 0 1px var(--appliance-rule-strong) !important;
     }
 
     /* Dialogs are one surface: a ruled header over the body, not a panel in a frame. */
@@ -448,11 +448,55 @@ html:not(#icto-ui) {
 
     /* Tables */
     & .data-table-header {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
         color: var(--appliance-fg-faint);
+    }
+
+    & .tabular-nums, & .font-mono {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Checked controls take the primary key; the accent never fills a control. */
+    & input[type="checkbox"]:checked + :is(span, div),
+    & input[type="checkbox"]:checked {
+        background-color: var(--appliance-primary);
+        border-color: var(--appliance-primary);
+        color: var(--appliance-primary);
+    }
+
+    & input[type="checkbox"]:checked ~ svg {
+        color: var(--appliance-primary-fg);
+    }
+
+    /* The logo reads in ink, not brand purple. */
+    & img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(0.3);
+    }
+
+    &.dark img[src="/coolify-logo.svg"] {
+        filter: grayscale(1) brightness(2.4);
+    }
+
+    & .sticky.lg\:hidden.backdrop-blur-sm {
+        background: var(--appliance-canvas);
+        backdrop-filter: none;
+    }
+
+    /* Nav chevrons and badges stay quiet; the accent is for focus and links. */
+    & :is(.app-sidebar, .mobile-sidebar-sheet) .text-coollabs {
+        color: var(--color-nav-muted);
+    }
+
+    /* A row inside a section body is a hairline group, not a second box. */
+    & .application-settings-section-body .group.relative.rounded-lg.border {
+        border-width: 0;
+        background: transparent;
+        padding-inline: 0;
+    }
+
+    & .log-debug {
+        background: var(--appliance-hover);
     }
 
     & .data-table-row:hover {
@@ -681,7 +725,7 @@ html:not(#icto-ui) {
 
     /* Tailwind inlines shadow values at build time, so re-point the utilities:
        overlays get a hairline edge instead of a floating shadow. */
-    & :is(.shadow-modal, .shadow-dropdown, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+    & :is(.shadow-xs, .shadow-sm, .shadow, .shadow-modal, .shadow-dropdown, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
         --tw-shadow: 0 0 0 1px var(--appliance-rule-strong);
     }
 }
