@@ -41,8 +41,8 @@
                 this.toggleSidebar();
             }
         }" @keydown.window="sidebarShortcut($event)" @open-global-search.window="open = false" @page-width-changed.window="pageWidth = $event.detail"
-            :style="{ '--sidebar-w': collapsed ? '4rem' : '14rem' }" x-cloak
-            @class(['app-shell dark:text-inherit text-black', 'flex h-dvh flex-col' => $fullBleed ?? false])>
+            :style="{ '--sidebar-w': collapsed ? 'var(--sidebar-collapsed-w)' : '14rem' }" x-cloak
+            @class(['app-shell dark:text-inherit text-black', 'app-shell-canvas flex h-dvh flex-col' => $fullBleed ?? false])>
             {{-- ============ DESKTOP TOP BAR ============ --}}
             <header
                 x-data="{ resourceActionsOpen: false }"
@@ -54,7 +54,7 @@
                 class="app-topbar hidden lg:flex fixed top-0 inset-x-0 z-50 h-12 items-center bg-white/95 dark:bg-panel/95 backdrop-blur">
                 {{-- Brand (width tracks sidebar) --}}
                 <div class="app-topbar-brand group/brand flex items-center gap-2 h-full shrink-0 border-r border-black/[0.06] bg-neutral-50 dark:border-white/[0.04] dark:bg-app transition-[width] duration-200"
-                    :class="collapsed ? 'w-16 justify-center px-0 border-b' : 'w-56 pl-4 pr-2'">
+                    :class="collapsed ? 'w-(--sidebar-collapsed-w) justify-center px-0 border-b' : 'w-56 pl-4 pr-2'">
                     <div class="flex items-baseline gap-1.5 min-w-0" :class="collapsed && 'group-hover/brand:hidden'">
                         <a href="/" {{ wireNavigate() }} title="Coolify"
                             class="flex shrink-0 items-center hover:opacity-80 transition-opacity">
@@ -156,7 +156,7 @@
 
             {{-- ============ DESKTOP SIDEBAR (below top bar) ============ --}}
             <div class="app-sidebar hidden lg:fixed lg:top-12 lg:bottom-0 lg:left-0 lg:z-40 lg:flex lg:flex-col min-w-0"
-                :class="[collapsed ? 'lg:w-16' : 'lg:w-56', sidebarReady ? 'transition-[width] duration-200' : '']">
+                :class="[collapsed ? 'lg:w-(--sidebar-collapsed-w)' : 'lg:w-56', sidebarReady ? 'transition-[width] duration-200' : '']">
                 <div class="flex min-h-0 grow min-w-0 flex-col overflow-visible">
                     <x-navbar desktop />
                 </div>
@@ -201,7 +201,7 @@
             @if ($fullBleed ?? false)
                 {{-- Full-bleed pages (canvases) fill the space between the top bar and the sidebar. --}}
                 <main class="app-main app-main-full relative min-h-0 flex-1 bg-neutral-50 dark:bg-app lg:pt-12 lg:pb-7"
-                    :class="[collapsed ? 'lg:ml-16' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '']">
+                    :class="[collapsed ? 'lg:ml-(--sidebar-collapsed-w)' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '']">
                     <div class="relative h-full">
                         {{ $slot }}
                     </div>
@@ -209,7 +209,7 @@
             @else
                 <main
                     class="app-main min-h-screen bg-neutral-50 dark:bg-app px-5 py-6 sm:px-8 lg:px-10 lg:pt-[calc(3rem+1.75rem)] lg:pb-[calc(1.75rem+2.5rem)]"
-                    :class="[collapsed ? 'lg:ml-16' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '', pageWidth === 'centered' ? '' : 'app-main-wide']">
+                    :class="[collapsed ? 'lg:ml-(--sidebar-collapsed-w)' : 'lg:ml-56', sidebarReady ? 'transition-[margin] duration-200' : '', pageWidth === 'centered' ? '' : 'app-main-wide']">
                     <div class="w-full" :class="pageWidth === 'centered' ? 'mx-auto max-w-[1400px]' : 'max-w-none'">
                         {{ $slot }}
                     </div>
