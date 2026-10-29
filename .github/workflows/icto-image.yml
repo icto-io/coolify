@@ -1,0 +1,145 @@
+# icto-ui: follows Coolify stable releases and publishes the Pace image.
+#
+# Daily, it merges the newest stable Coolify tag into icto-ui, tests it and publishes
+# ghcr.io/icto-io/coolify:<version>-icto. The server's docker-compose.custom.yml
+# points at ${LATEST_IMAGE}-icto, so Coolify's own auto-update pulls that tag.
+# A conflict or a failed test stops the run and opens an issue; nothing is published.
+# Pushes to icto-ui rebuild the tag for the version the branch is on.
+name: icto image
+
+on:
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Coolify version to merge and build (blank = newest stable)
+        required: false
+        type: string
+  push:
+    branches: [icto-ui]
+    paths:
+      - 'app/**'
+      - 'resources/**'
+      - 'routes/**'
+      - 'config/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
+      - '.github/icto/**'
+      - '.github/workflows/icto-image.yml'
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+
+concurrency:
+  group: icto-image
+  cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/icto-io/coolify
+
+jobs:
+  image:
+    # The bot's own merge push already built its image.
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[icto-bot]')
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: icto-ui
+          fetch-depth: 0
+          # A merge from upstream usually touches workflow files, which GITHUB_TOKEN may not push.
+          token: ${{ secrets.FORK_PUSH_TOKEN || github.token }}
+
+      - name: Pick the version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = push ]; then
+            version=$(grep -oP "'version' => env\('COOLIFY_VERSION'\) \?: '\K[^']+" config/constants.php)
+          else
+            version="${{ inputs.version }}"
+            [ -n "$version" ] || version=$(curl -fsSL https://cdn.coollabs.io/coolify/versions.json | jq -r '.coolify.v4.version')
+          fi
+          echo "Coolify $version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to ghcr.io
+        run: echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Skip when already published
+        id: published
+        if: github.event_name != 'push'
+        run: |
+          if docker manifest inspect "$IMAGE:${{ steps.version.outputs.version }}-icto" >/dev/null 2>&1; then
+            echo "Already published."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Merge the Coolify release
+        if: steps.published.outputs.skip != 'true' && github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "icto-ui bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags https://github.com/coollabsio/coolify.git "refs/tags/v$VERSION:refs/tags/v$VERSION"
+          if git merge-base --is-ancestor "v$VERSION" HEAD; then
+            echo "icto-ui already contains v$VERSION."
+          elif ! git merge --no-ff --no-edit -m "Merge Coolify v$VERSION into icto-ui [icto-bot]" "v$VERSION"; then
+            conflicts=$(git diff --name-only --diff-filter=U | sed 's/^/- `/; s/$/`/')
+            git merge --abort
+            title="Coolify v$VERSION needs a manual merge"
+            if [ -z "$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')" ]; then
+              gh issue create --title "$title" --body "Merging \`v$VERSION\` into \`icto-ui\` conflicts in:
+
+          $conflicts
+
+          Nothing was published, so Coolify's auto-update keeps the current version. Merge by hand, push icto-ui, then run this workflow again."
+            fi
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.published.outputs.skip != 'true'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build assets
+        if: steps.published.outputs.skip != 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Test the icto-ui layer
+        if: steps.published.outputs.skip != 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          printf 'FROM docker.io/coollabsio/coolify:%s\nUSER root\nRUN install-php-extensions sockets\n' "$VERSION" |
+            docker build -q -t icto-test -
+          run() { docker run --rm --entrypoint "" -u "$(id -u):$(id -g)" -e COMPOSER_HOME=/tmp/composer -v "$PWD:/app" -w /app icto-test "$@"; }
+          run composer install --no-interaction --no-progress --quiet
+          run php -d memory_limit=-1 vendor/bin/pest --compact tests/Feature/Dashboard*Test.php tests/Feature/ApplicationLogPanelTest.php
+
+      - name: Push icto-ui
+        if: steps.published.outputs.skip != 'true' && github.event_name != 'push'
+        run: git push origin HEAD:icto-ui
+
+      - name: Build and publish the image
+        if: steps.published.outputs.skip != 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          bash .github/icto/build-context.sh "v$VERSION" "$RUNNER_TEMP/icto"
+          sha=$(git rev-parse --short=7 HEAD)
+          docker build -t "$IMAGE:$VERSION-icto" -t "$IMAGE:$VERSION-icto-$sha" "$RUNNER_TEMP/icto"
+          docker run --rm --entrypoint "" "$IMAGE:$VERSION-icto" php -r "exit(str_contains(file_get_contents('/var/www/html/config/constants.php'), \"'$VERSION'\") ? 0 : 1);"
+          docker push "$IMAGE:$VERSION-icto-$sha"
+          docker push "$IMAGE:$VERSION-icto"
+          echo "Published $IMAGE:$VERSION-icto ($sha)" >> "$GITHUB_STEP_SUMMARY"
