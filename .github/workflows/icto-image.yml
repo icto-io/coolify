@@ -79,6 +79,11 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # The fork carries no upstream tags; both the merge and build-context.sh need this one.
+      - name: Fetch the Coolify tag
+        if: steps.published.outputs.skip != 'true'
+        run: git fetch --no-tags https://github.com/coollabsio/coolify.git "refs/tags/v${{ steps.version.outputs.version }}:refs/tags/v${{ steps.version.outputs.version }}"
+
       - name: Merge the Coolify release
         if: steps.published.outputs.skip != 'true' && github.event_name != 'push'
         env:
@@ -87,7 +92,6 @@ jobs:
         run: |
           git config user.name "icto-ui bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch --no-tags https://github.com/coollabsio/coolify.git "refs/tags/v$VERSION:refs/tags/v$VERSION"
           if git merge-base --is-ancestor "v$VERSION" HEAD; then
             echo "icto-ui already contains v$VERSION."
           elif ! git merge --no-ff --no-edit -m "Merge Coolify v$VERSION into icto-ui [icto-bot]" "v$VERSION"; then
