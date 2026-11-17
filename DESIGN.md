@@ -296,6 +296,32 @@ Rounded and consistent: cards, the page panel, toasts and docked columns 14px; b
 
 ## Components
 
+### Fix-state switch
+
+The "All findings ({n})" card of the Security page splits findings into "Fixed
+by an update" (a fixed version exists, or an action of the main card fixes it)
+and "No fix yet". This is a view switch, not a filter, so it is not in the
+`x-table.filter` menu and "Reset filters" keeps its meaning:
+
+- a segmented control in the table toolbar, after the search: a 4px-padded
+  neutral track (`bg-neutral-100`, dark `white/4%`) with 28px, 6px-radius
+  buttons; the current one is the raised white pill (dark `white/9%`) with a
+  hairline ring;
+- `role="group"` with an `aria-label`, and `aria-pressed` on each button;
+- each label has its count in parentheses: `Fixed by an update (5)`. The counts
+  follow the search and the filters, so a switch never hides results without
+  saying how many;
+- "Fixed by an update" is the default. When it is empty, the empty state says
+  "No finding has a fixed version." and links to "No fix yet ({n})";
+- the same segmented anatomy is used for the "By package / By CVE" grouping
+  toggle on the right of the toolbar;
+- ignored findings are not a third state. The table footer has an "{n} ignored"
+  link that opens the ignored list;
+- a finding of a Dockerfile build that the base image has too says "Comes from
+  {base}." in its details.
+
+The reference is `resources/views/livewire/image-scan/vulnerabilities.blade.php`.
+
 ### Buttons
 - **Shape:** 8px, 1px border, sentence case, 500 weight, control shadow.
 - **Primary:** ink fill and border, light text; hover steps to the hover ink. The Deploy split action uses the same key, its caret divided by a 20% foreground seam.

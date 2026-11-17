@@ -1,5 +1,10 @@
 @php
-    $deploymentStatusMeta = function (string $status): array {
+    $deploymentStatusMeta = function (\App\Models\ApplicationDeploymentQueue $deployment): array {
+        $status = (string) $deployment->status;
+        if ($deployment->isImageScanBlocked()) {
+            return ['Blocked', 'is-bad'];
+        }
+
         $label = match ($status) {
             'finished' => 'Success',
             'in_progress' => 'In progress',
@@ -19,8 +24,8 @@
         return [$label, $tone];
     };
 
-    $hasActiveDeployments = $activeDeployments->isNotEmpty();
-    $hasRecentDeployments = $recentDeployments->isNotEmpty();
+    $hasActiveDeployments = $this->activeDeployments->isNotEmpty();
+    $hasRecentDeployments = $this->recentDeployments->isNotEmpty();
     $hasAnyDeployments = $hasActiveDeployments || $hasRecentDeployments;
 @endphp
 
@@ -37,14 +42,14 @@
                     @endif
                 </div>
                 <span class="ml-auto shrink-0 font-mono text-[12px] text-[var(--pace-fg-muted)]">
-                    Last {{ $activeDeployments->count() + $recentDeployments->count() }}
+                    Last {{ $this->activeDeployments->count() + $this->recentDeployments->count() }}
                 </span>
             </header>
 
             <div class="pace-feed">
-                @foreach ($activeDeployments as $deployment)
+                @foreach ($this->activeDeployments as $deployment)
                     @php
-                        [$deploymentStatus, $deploymentTone] = $deploymentStatusMeta($deployment->status);
+                        [$deploymentStatus, $deploymentTone] = $deploymentStatusMeta($deployment);
                         $environmentPath = collect([$deployment->application?->environment?->project?->name, $deployment->application?->environment?->name])->filter()->join(' / ');
                     @endphp
                     <a wire:key="dashboard-active-deployment-{{ $deployment->deployment_uuid }}"
@@ -65,9 +70,9 @@
                     ])>Recent deployments</h3>
                 @endif
 
-                @foreach ($recentDeployments as $deployment)
+                @foreach ($this->recentDeployments as $deployment)
                     @php
-                        [$deploymentStatus, $deploymentTone] = $deploymentStatusMeta($deployment->status);
+                        [$deploymentStatus, $deploymentTone] = $deploymentStatusMeta($deployment);
                         $environmentPath = collect([$deployment->application?->environment?->project?->name, $deployment->application?->environment?->name])->filter()->join(' / ');
                         $duration = $deployment->finished_at && $deployment->created_at
                             ? $deployment->created_at->diffInSeconds($deployment->finished_at)
@@ -75,8 +80,8 @@
                     @endphp
                     <a wire:key="dashboard-recent-deployment-{{ $deployment->deployment_uuid }}"
                         href="{{ $deployment->deployment_url }}" {{ wireNavigate() }} class="pace-feed-row"
-                        title="{{ $environmentPath ?: '-' }} · {{ $deployment->server_name ?: '-' }} · {{ $deployment->created_at?->diffForHumans() }}">
-                        <time class="pace-feed-time" datetime="{{ $deployment->created_at?->toIso8601String() }}">{{ $deployment->created_at?->format('H:i:s') ?? '-' }}</time>
+                        title="{{ $environmentPath ?: '-' }} · {{ $deployment->server_name ?: '-' }} · {{ ($deployment->finished_at ?? $deployment->created_at)?->diffForHumans() }}">
+                        <time class="pace-feed-time" datetime="{{ ($deployment->finished_at ?? $deployment->created_at)?->toIso8601String() }}">{{ ($deployment->finished_at ?? $deployment->created_at)?->format('H:i:s') ?? '-' }}</time>
                         <span class="pace-feed-dot {{ $deploymentTone }}" aria-hidden="true"></span>
                         <span class="pace-feed-name">{{ $deployment->application_name }}@if ($deployment->pull_request_id)<span>Pull request #{{ $deployment->pull_request_id }}</span>@elseif ($environmentPath)<span>{{ $environmentPath }}</span>@endif</span>
                         <span class="pace-feed-meta">{{ $deploymentStatus }}@if ($duration !== null) · {{ $duration >= 60 ? intdiv((int) $duration, 60).'m '.((int) $duration % 60).'s' : (int) $duration.'s' }}@endif</span>
