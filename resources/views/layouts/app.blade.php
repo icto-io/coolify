@@ -104,7 +104,7 @@
                             <kbd x-text="(navigator.platform.includes('Mac') ? '⌘' : 'Ctrl ') + 'K'"></kbd>
                         </button>
                     @endif
-                    <div id="configuration-warning-hud-slot" class="relative shrink-0"></div>
+                    <div id="configuration-warning-hud-slot" class="relative flex shrink-0 items-center gap-1"></div>
                     <livewire:deployments-indicator variant="topbar" />
                     {{-- Resource actions dock here on desktop. --}}
                     <div id="resource-action-hud-slot" x-ref="resourceActions" class="hidden shrink-0 items-center xl:flex"></div>
@@ -179,6 +179,8 @@
                     <div id="server-timing-hud-slot-mobile" data-server-timing-hud-slot
                         class="hidden shrink-0 items-center"></div>
                     <div id="configuration-warning-hud-slot-mobile" class="relative shrink-0"></div>
+                    {{-- Resource and server pages put their star button here. --}}
+                    <div id="resource-star-slot-mobile" class="flex shrink-0 items-center empty:hidden"></div>
                     <livewire:deployments-indicator variant="mobile" />
                     @if (isInstanceAdmin() && !isCloud())
                         <livewire:upgrade key="mobile-upgrade" />

@@ -84,7 +84,9 @@ it('does not run SSH for an unreachable server when loading dashboard metrics', 
 });
 
 it('loads dashboard metrics over SSH for a reachable server', function () {
-    Process::fake(['*' => Process::result(output: '[{"time":1700000000000,"percent":12.5,"usedPercent":40}]')]);
+    // One SSH call prefetches cpu and memory; Sentinel's responses are separated by 0x1E.
+    $sample = '[{"time":1700000000000,"percent":12.5,"usedPercent":40}]';
+    Process::fake(['*' => Process::result(output: $sample."\x1e".$sample)]);
 
     $server = Server::factory()->create([
         'team_id' => $this->team->id,
