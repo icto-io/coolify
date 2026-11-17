@@ -54,7 +54,8 @@ jobs:
   publish:
     name: Publish image
     needs: build
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
+    # icto fork: the image push targets ghcr.io/coollabsio, so it only runs upstream.
+    if: ${{ github.repository == 'coollabsio/coolify' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
     permissions:
       packages: write # push the image of the pull request to ghcr.io
     runs-on: ubuntu-26.04 # https://github.com/actions/runner-images
