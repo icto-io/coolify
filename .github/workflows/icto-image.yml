@@ -59,7 +59,12 @@ jobs:
         id: version
         run: |
           if [ "${{ github.event_name }}" = push ]; then
-            version=$(grep -oP "'version' => env\('COOLIFY_VERSION'\) \?: '\K[^']+" config/constants.php)
+            # Coolify 4.7+ keeps the version in release.json; older releases hard-code it in config/constants.php.
+            if [ -f release.json ]; then
+              version=$(jq -r '.stable.coolify' release.json)
+            else
+              version=$(grep -oP "'version' => env\('COOLIFY_VERSION'\) \?: '\K[^']+" config/constants.php)
+            fi
           else
             version="${{ inputs.version }}"
             [ -n "$version" ] || version=$(curl -fsSL https://cdn.coollabs.io/coolify/versions.json | jq -r '.coolify.v4.version')
@@ -143,7 +148,7 @@ jobs:
           bash .github/icto/build-context.sh "v$VERSION" "$RUNNER_TEMP/icto"
           sha=$(git rev-parse --short=7 HEAD)
           docker build -t "$IMAGE:$VERSION-icto" -t "$IMAGE:$VERSION-icto-$sha" "$RUNNER_TEMP/icto"
-          docker run --rm --entrypoint "" "$IMAGE:$VERSION-icto" php -r "exit(str_contains(file_get_contents('/var/www/html/config/constants.php'), \"'$VERSION'\") ? 0 : 1);"
+          docker run --rm --entrypoint "" -e V="$VERSION" "$IMAGE:$VERSION-icto" php -r '$v = getenv("V"); $r = json_decode((string) @file_get_contents("/var/www/html/release.json"), true); exit((($r["stable"]["coolify"] ?? null) === $v || str_contains(file_get_contents("/var/www/html/config/constants.php"), "\x27$v\x27")) ? 0 : 1);'
           docker push "$IMAGE:$VERSION-icto-$sha"
           docker push "$IMAGE:$VERSION-icto"
           echo "Published $IMAGE:$VERSION-icto ($sha)" >> "$GITHUB_STEP_SUMMARY"
